@@ -116,6 +116,11 @@ namespace SDVXStarter
             return disk[0];
         }
 
+        private void RefreshStorage()
+        {
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             current.Text = "Root SDVX";
@@ -591,6 +596,31 @@ namespace SDVXStarter
             {
                 MessageBox.Show("The root path does not contain spice tools.");
             }
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int result = (int)MessageBox.Show("Please confirm you have saved any changes in this page.","SDVX Starter", MessageBoxButtons.YesNoCancel);
+            bool saved = result == 6;
+            if (saved)
+            {
+
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("SDVX Starter ver 0.1a\nBy Neskol Lu, 2020\nManages details to play.", "About");
         }
     }
 }

@@ -30,6 +30,11 @@ namespace SDVXStarter
             this.AddVerPathMap("Root SDVX", "(root path)");
         }
 
+        public void ReplaceWith(string path)
+        {
+
+        }
+
         public Dictionary<string, string> GetVerSet()
         {      
             return this.versionSet;
@@ -229,6 +234,21 @@ namespace SDVXStarter
             }
 
             return result;
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save(string path)
+        {
+            throw new NotImplementedException();
         }
     }
 }

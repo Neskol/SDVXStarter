@@ -185,5 +185,15 @@ namespace SDVXStarter
         {
             throw new NotImplementedException();
         }
+
+        public XmlDocument LoadXml(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveXml(string path)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

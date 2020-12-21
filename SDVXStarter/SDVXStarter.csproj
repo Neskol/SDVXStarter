@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="CardNumberGenerator1L.cs" />
     <Compile Include="CardNumberGenerator.cs" />
+    <Compile Include="XmlStorage.cs" />
     <Compile Include="XmlUltility.cs" />
     <Compile Include="View.cs" />
     <Compile Include="Storage.cs" />

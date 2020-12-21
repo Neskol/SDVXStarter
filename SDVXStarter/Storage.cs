@@ -12,6 +12,28 @@ namespace SDVXStarter
     interface Storage
     {
         /// <summary>
+        /// Set storage to its initial value.
+        /// </summary>
+        void Clear();
+
+        /// <summary>
+        /// Saves the storage value to Xml File.
+        /// </summary>
+        void Save();
+
+        /// <summary>
+        /// Saves the storage to given path.
+        /// </summary>
+        /// <param name="path">path to save the configuration</param>
+        void Save(string path);
+
+        /// <summary>
+        /// Replaces the storage with given XML in path.
+        /// </summary>
+        /// <param name="path">path to load the configuration.</param>
+        void ReplaceWith(string path);
+
+        /// <summary>
         /// Return the version set for operation.
         /// </summary>
         /// <returns>
