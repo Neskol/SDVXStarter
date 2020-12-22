@@ -116,13 +116,19 @@ namespace SDVXStarter
             return disk[0];
         }
 
-        private void RefreshStorage()
+        public void RefreshView()
         {
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void RefreshStorage()
         {
+            versionCombo.Items.Clear();
+            urlCombo.Items.Clear();
+            cardCombo.Items.Clear();
+            pcbidCombo.Items.Clear();
+
+
             current.Text = "Root SDVX";
             versionCombo.Items.Add("(Remove)");
             versionCombo.Items.Add("(root path)");
@@ -140,6 +146,11 @@ namespace SDVXStarter
             pcbidCombo.Items.Add("(Add)");
             pcbidCombo.Items.Add("(Remove)");
             PackageAndUpdate();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void bGenerate_Click(object sender, EventArgs e)

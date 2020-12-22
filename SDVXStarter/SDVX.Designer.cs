@@ -80,6 +80,7 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.versionBox.SuspendLayout();
             this.configBox.SuspendLayout();
             this.optionBox.SuspendLayout();
@@ -174,6 +175,7 @@
             // 
             // optionBox
             // 
+            this.optionBox.Controls.Add(this.checkBox1);
             this.optionBox.Controls.Add(this.pcbidCombo);
             this.optionBox.Controls.Add(this.bImport);
             this.optionBox.Controls.Add(this.hdCheck);
@@ -242,9 +244,9 @@
             this.sslCheck.Location = new System.Drawing.Point(130, 77);
             this.sslCheck.Margin = new System.Windows.Forms.Padding(2);
             this.sslCheck.Name = "sslCheck";
-            this.sslCheck.Size = new System.Drawing.Size(132, 16);
+            this.sslCheck.Size = new System.Drawing.Size(90, 16);
             this.sslCheck.TabIndex = 6;
-            this.sslCheck.Text = "Use SSL connection";
+            this.sslCheck.Text = "Disable SSL";
             this.sslCheck.UseVisualStyleBackColor = true;
             // 
             // printerCheck
@@ -519,13 +521,13 @@
             // starterConfigToolStripMenuItem1
             // 
             this.starterConfigToolStripMenuItem1.Name = "starterConfigToolStripMenuItem1";
-            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.starterConfigToolStripMenuItem1.Text = "Starter Config";
             // 
             // ea3configToolStripMenuItem1
             // 
             this.ea3configToolStripMenuItem1.Name = "ea3configToolStripMenuItem1";
-            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.ea3configToolStripMenuItem1.Text = "ea3-config";
             // 
             // saveAsToolStripMenuItem
@@ -563,13 +565,13 @@
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.customizeToolStripMenuItem.Text = "&Customize";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // helpToolStripMenuItem
@@ -585,21 +587,31 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.searchToolStripMenuItem.Text = "&Get Help";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(124, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(264, 77);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // SDVX
             // 
@@ -685,6 +697,7 @@
         private System.Windows.Forms.ToolStripMenuItem ea3configToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem starterConfigToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ea3configToolStripMenuItem1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
