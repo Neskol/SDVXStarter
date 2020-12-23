@@ -79,7 +79,7 @@ namespace SDVXStarter
         {
             string path = "";
             this.versionSet.TryGetValue(version, out path);
-            if (path.Equals("(root path)"))
+            if (path.Equals("(root path)")||path.Equals(""))
             {
                 path = "";
             }
@@ -238,7 +238,12 @@ namespace SDVXStarter
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            this.versionSet.Clear();
+            this.pathSet.Clear();
+            this.versionSet.Add("Root SDVX","");
+            this.pathSet.Add("","Root SDVX");
+            this.configSet.Clear();
+            this.valueSet.Clear();
         }
 
         public void Save()

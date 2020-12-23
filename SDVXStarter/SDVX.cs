@@ -10,10 +10,11 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.VisualBasic;
+using SDVXStarter;
 
 namespace SDVXStarter
 {
-    public partial class SDVX : Form
+    public partial class SDVX : Form, SDVXStatrter.SDVXView
     {
         private Storage globalStorage;
         private CardNumberGenerator globalGenerator;
@@ -26,9 +27,6 @@ namespace SDVXStarter
             globalGenerator = new CardNumberGenerator1L();
         }
 
-        /// <summary>
-        /// Packages all settings and Update sets for argument
-        /// </summary>
         public void PackageAndUpdate()
         {
             pcbidCombo.SelectedItem = pcbidCombo.Text;
@@ -72,11 +70,11 @@ namespace SDVXStarter
                 valueSet.Add("card", cardCombo.SelectedItem.ToString());
             }
             // Checks url
-            if (cardCombo.Text.Equals("") || cardCombo.Text.Equals("(Empty)"))
+            if (urlCombo.Text.Equals("") || urlCombo.Text.Equals("(Empty)"))
             {
                 valueSet.Add("url", "");
             }
-            else if (cardCombo.Text.Equals("(Add)") || cardCombo.Text.Equals("(Remove)"))
+            else if (urlCombo.Text.Equals("(Add)") || urlCombo.Text.Equals("(Remove)"))
             {
                 MessageBox.Show("Invalid url.", "Seems like you entered ommands");
             }
@@ -87,12 +85,6 @@ namespace SDVXStarter
             globalStorage.Update(configSet, valueSet);
         }
 
-        /// <summary>
-        /// Find if added string is already in given array.
-        /// </summary>
-        /// <param name="array">List to find</param>
-        /// <param name="name">Item to find</param>
-        /// <returns></returns>
         public bool FindDuplicate(ComboBox.ObjectCollection array, string name)
         {
             bool result = false;
@@ -105,11 +97,6 @@ namespace SDVXStarter
             return result;
         }
 
-        /// <summary>
-        /// Returns the Disk Name of given path.
-        /// </summary>
-        /// <param name="path">Path to find</param>
-        /// <returns>path.DiskName</returns>
         public string GetDiskName(string path)
         {
             string[] disk = path.Split('\\');
@@ -118,20 +105,39 @@ namespace SDVXStarter
 
         public void RefreshView()
         {
+            pathCombo.SelectedItem = "(root path)";
+            pathCombo.Text = ("(root path)");
+            current.Text = "Root SDVX";
+            pathBox.Text = "(root path)";
+            cardCombo.SelectedItem = "(Empty)";
+            cardCombo.Text = "(Empty)";
+            urlCombo.SelectedItem = "(Offline)";
+            urlCombo.Text = "(Offline)";
+            pcbidCombo.SelectedItem = "(Default)";
+            pcbidCombo.Text = "(Default)";
+            fullScreenCheck.CheckState = CheckState.Unchecked;
+            sslCheck.CheckState = CheckState.Unchecked;
+            printerCheck.CheckState = CheckState.Unchecked;
+            urlCheck.CheckState = CheckState.Unchecked;
+            hdCheck.CheckState = CheckState.Unchecked;
+        }
+
+        void SDVXStatrter.SDVXView.RefreshView(Storage newStorage)
+        {
 
         }
 
-        private void RefreshStorage()
+        public void RefreshStorage()
         {
-            versionCombo.Items.Clear();
+            pathCombo.Items.Clear();
             urlCombo.Items.Clear();
             cardCombo.Items.Clear();
             pcbidCombo.Items.Clear();
-
+            globalStorage.Clear();
 
             current.Text = "Root SDVX";
-            versionCombo.Items.Add("(Remove)");
-            versionCombo.Items.Add("(root path)");
+            pathCombo.Items.Add("(Remove)");
+            pathCombo.Items.Add("(root path)");
             urlCombo.Items.Add("(Offline)");
             urlCombo.Items.Add("(Add)");
             urlCombo.Items.Add("(Remove)");
@@ -145,12 +151,13 @@ namespace SDVXStarter
             pcbidCombo.Items.Add("(Default)");
             pcbidCombo.Items.Add("(Add)");
             pcbidCombo.Items.Add("(Remove)");
-            PackageAndUpdate();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            RefreshStorage();
+            RefreshView();
+            PackageAndUpdate();
         }
 
         private void bGenerate_Click(object sender, EventArgs e)
@@ -163,7 +170,6 @@ namespace SDVXStarter
             }
             if (!duplicated)
             {
-                cardCombo.Items.Add(newCard);
                 cardCombo.Text = newCard;
             }
             else MessageBox.Show("This card is duplicated.");
@@ -212,8 +218,8 @@ namespace SDVXStarter
                     if (x.Equals(note))
                         note += "(n)";
                 }
-                versionCombo.Items.Add(path);
-                versionCombo.Text = (path);
+                pathCombo.Items.Add(path);
+                pathCombo.Text = (path);
                 current.Text = note;
                 globalStorage.AddVerPathMap(note, path);
             }  
@@ -240,9 +246,9 @@ namespace SDVXStarter
 
         private void bStarter_Click(object sender, EventArgs e)
         {
-            if (versionCombo.Text.Equals(""))
+            if (pathCombo.Text.Equals(""))
             {
-                versionCombo.SelectedItem = "(root path)";
+                pathCombo.SelectedItem = "(root path)";
             }
             string path = globalStorage.GetPath(current.Text);
             this.PackageAndUpdate();
@@ -289,9 +295,9 @@ namespace SDVXStarter
 
         private void bStarter64_Click(object sender, EventArgs e)
         {
-            if (versionCombo.Text.Equals(""))
+            if (pathCombo.Text.Equals(""))
             {
-                versionCombo.SelectedItem = "(root path)";
+                pathCombo.SelectedItem = "(root path)";
             }
             string path = globalStorage.GetPath(current.Text);
             this.PackageAndUpdate();
@@ -338,7 +344,7 @@ namespace SDVXStarter
 
         private void versionCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (versionCombo.SelectedItem.ToString().Equals("(Remove)"))
+            if (pathCombo.SelectedItem.ToString().Equals("(Remove)"))
             {
                 string remove = Interaction.InputBox("Insert the version NOTE you'd like to remove.", "Which version is it?", "SDVX", -1, -1);
                 if (remove.Equals("Root SDVX"))
@@ -350,16 +356,16 @@ namespace SDVXStarter
                     bool found = globalStorage.RemoveVerPathMap(remove);
                     if (found)
                     {
-                        versionCombo.Items.Clear();
-                        versionCombo.Items.Add("(Remove)");
+                        pathCombo.Items.Clear();
+                        pathCombo.Items.Add("(Remove)");
                         foreach (string x in globalStorage.GetVerSet().Values)
                         {
-                            versionCombo.Items.Add(x);
+                            pathCombo.Items.Add(x);
                         }
                         MessageBox.Show("Suceesfuly removed version "+remove);
-                        if (versionCombo.Text.Equals(""))
+                        if (pathCombo.Text.Equals(""))
                         {
-                            versionCombo.SelectedItem = "(root path)";
+                            pathCombo.SelectedItem = "(root path)";
                         }
                     }
                     else
@@ -370,7 +376,7 @@ namespace SDVXStarter
             }
             else 
             {
-                current.Text = globalStorage.GetVersion(versionCombo.SelectedItem.ToString());
+                current.Text = globalStorage.GetVersion(pathCombo.SelectedItem.ToString());
             }
             
         }
@@ -550,9 +556,9 @@ namespace SDVXStarter
 
         private void bSpiceConfig_Click(object sender, EventArgs e)
         {
-            if (versionCombo.Text.Equals(""))
+            if (pathCombo.Text.Equals(""))
             {
-                versionCombo.SelectedItem = "(root path)";
+                pathCombo.SelectedItem = "(root path)";
             }
             string path = globalStorage.GetPath(current.Text);
             bool spiceCfgExist = File.Exists(path + "spicecfg.exe");
@@ -625,7 +631,8 @@ namespace SDVXStarter
             bool saved = result == 6;
             if (saved)
             {
-
+                RefreshStorage();
+                RefreshView();
             }
         }
 
