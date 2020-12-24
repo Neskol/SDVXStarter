@@ -721,9 +721,55 @@ namespace SDVXStarter
                     sslCheck.CheckState = CheckState.Unchecked;
                     urlCheck.CheckState = CheckState.Checked;
                     PackageAndUpdate();
-                    MessageBox.Show(compiler.Version);
                 }
             }
+        }
+
+        private void bLoad_Click(object sender, EventArgs e)
+        {
+            bool selected = false;
+            OpenFileDialog cardSelector = new OpenFileDialog();
+            cardSelector.Title = "Select the card number you'd like to load:";
+            cardSelector.Filter = "Text File |*.txt";
+            if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
+            {
+                cardSelector.InitialDirectory = pathCombo.Text;
+            }
+            else
+            {
+                cardSelector.InitialDirectory = Application.StartupPath;
+            }
+            if (cardSelector.ShowDialog() == DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(cardSelector.FileName))
+                {
+                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                }
+                else
+                {
+                    selected = true;
+                }
+            }
+            if (selected)
+            {
+                StreamReader cardStream = new StreamReader(cardSelector.FileName);
+                string card = cardStream.ReadLine();
+                bool valid = globalGenerator.Verify(card);
+                if (valid)
+                {
+                    MessageBox.Show("Your card is valid and added to list.", "Card Verifier");
+                    if (!FindDuplicate(cardCombo.Items, card))
+                    {
+                        cardCombo.Items.Add(card);
+                    }
+                    cardCombo.SelectedItem = card;
+                }
+                else
+                {
+                    MessageBox.Show("Your card is invalid!", "Card Verifier");
+                }
+            }
+            PackageAndUpdate();
         }
     }
 }
