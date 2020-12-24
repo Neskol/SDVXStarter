@@ -42,22 +42,27 @@ namespace SDVXStarter
             this.spec = this.ea3Config.SelectSingleNode("ea3/soft/spec");
             this.rev = this.ea3Config.SelectSingleNode("ea3/soft/rev");
             this.ext = this.ea3Config.SelectSingleNode("ea3/soft/ext");
-            this.version = this.ComposeVersion();
-
             this.idX = this.ea3Config.SelectSingleNode("ea3/id/pcbid");
-            this.pcbid = this.idX.InnerText;
-
             this.servicesX = this.ea3Config.SelectSingleNode("ea3/network/services");
-            this.services = this.servicesX.InnerText;
-
             this.urlSlashX = this.ea3Config.SelectSingleNode("ea3/network/url_slash");
+            if (CheckValidity())
+            {
+                Update();
+            }
+        }
+
+        public void Update()
+        {
+            this.version = this.ComposeVersion();
+            this.pcbid = this.idX.InnerText;
+            this.services = this.servicesX.InnerText;
             this.urlSlash = this.urlSlashX.Attributes.ToString();
         }
 
         /// <summary>
         /// Update ea3-config.xml by runtime variable.
         /// </summary>
-        public void Update()
+        public void UpdateByRuntime()
         {
             string[] verR = DecomposeVersion(this.Version);
             this.model.InnerText = verR[0];
@@ -114,7 +119,7 @@ namespace SDVXStarter
         /// <summary>
         /// Contains PCBID.
         /// </summary>
-        private string PCBID
+        public string PCBID
         {
             get
             {
@@ -129,7 +134,7 @@ namespace SDVXStarter
         /// <summary>
         /// Contains Version.
         /// </summary>
-        private string Version
+        public string Version
         {
             get
             {
@@ -144,7 +149,7 @@ namespace SDVXStarter
         /// <summary>
         /// Contains URL.
         /// </summary>
-        private string Services
+        public string Services
         {
             get
             {
@@ -159,7 +164,7 @@ namespace SDVXStarter
         /// <summary>
         /// Contains UrlSlash.
         /// </summary>
-        private string UrlSlash
+        public string UrlSlash
         {
             get
             {
@@ -194,6 +199,15 @@ namespace SDVXStarter
         public void SaveXml(string path)
         {
             throw new NotImplementedException();
+        }
+
+        public bool CheckValidity()
+        {
+            bool result = false;
+
+            result = (this.ea3Config != null) && (this.idX != null) && (this.servicesX != null) && (this.urlSlashX != null);
+
+            return result;
         }
     }
 }

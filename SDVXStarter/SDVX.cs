@@ -39,6 +39,7 @@ namespace SDVXStarter
             configSet.Add("printer", printerCheck.CheckState == CheckState.Checked);
             configSet.Add("urlSlash", urlCheck.CheckState == CheckState.Checked);
             configSet.Add("hd", hdCheck.CheckState == CheckState.Checked);
+            configSet.Add("api", apiCheck.CheckState == CheckState.Checked);
             // Checks PCBID
             if (pcbidCombo.Text.Equals("(Default)"))
             {
@@ -82,6 +83,12 @@ namespace SDVXStarter
             {
                 valueSet.Add("url", urlCombo.SelectedItem.ToString());
             }
+            // Checks api
+            if (apiCheck.Checked)
+            {
+                valueSet.Add("apiPort", portBox.Text);
+                valueSet.Add("apiPassword",passwordBox.Text);
+            }
             globalStorage.Update(configSet, valueSet);
         }
 
@@ -122,7 +129,12 @@ namespace SDVXStarter
             hdCheck.CheckState = CheckState.Unchecked;
         }
 
-        void SDVXStatrter.SDVXView.RefreshView(Storage newStorage)
+        void SDVXStatrter.SDVXView.RefreshView(XmlStorage newStorage)
+        {
+
+        }
+
+        void SDVXStatrter.SDVXView.UpdateView(Storage storage)
         {
 
         }
@@ -134,6 +146,7 @@ namespace SDVXStarter
             cardCombo.Items.Clear();
             pcbidCombo.Items.Clear();
             globalStorage.Clear();
+            globalStorage.AddVerPathMap("Root SDVX","(root path)");
 
             current.Text = "Root SDVX";
             pathCombo.Items.Add("(Remove)");
@@ -213,10 +226,10 @@ namespace SDVXStarter
                 {
                     note = "New SDVX Instance";
                 }
-                foreach (string x in globalStorage.GetVerSet().Values)
+                bool verDuplicated = globalStorage.FindKeyDuplicate(globalStorage.GetVerSet(), note);
+                if (verDuplicated)
                 {
-                    if (x.Equals(note))
-                        note += "(n)";
+                    note += "(n)";
                 }
                 pathCombo.Items.Add(path);
                 pathCombo.Text = (path);
@@ -233,7 +246,7 @@ namespace SDVXStarter
         {
             FolderBrowserDialog pathSelector = new FolderBrowserDialog();
             pathSelector.Description = "Select the folder with Game assets and spice tools:";
-            if (pathSelector.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (pathSelector.ShowDialog() == DialogResult.OK)
             {
                 if (string.IsNullOrEmpty(pathSelector.SelectedPath))
                 {
@@ -351,7 +364,7 @@ namespace SDVXStarter
                 {
                     MessageBox.Show("No you cannot remove the root path.");
                 }
-                else
+                else if (!remove.Equals(""))
                 {
                     bool found = globalStorage.RemoveVerPathMap(remove);
                     if (found)
@@ -360,7 +373,10 @@ namespace SDVXStarter
                         pathCombo.Items.Add("(Remove)");
                         foreach (string x in globalStorage.GetVerSet().Values)
                         {
-                            pathCombo.Items.Add(x);
+                            if (!x.Equals(""))
+                            {
+                                pathCombo.Items.Add(x);
+                            }
                         }
                         MessageBox.Show("Suceesfuly removed version "+remove);
                         if (pathCombo.Text.Equals(""))
@@ -373,6 +389,10 @@ namespace SDVXStarter
                         MessageBox.Show("No such version identified.");
                     }
                 }
+            }
+            else if (pathCombo.SelectedItem.ToString().Equals("(root path)"))
+            {
+                current.Text = "Root SDVX";
             }
             else 
             {
@@ -565,6 +585,7 @@ namespace SDVXStarter
             int result = (int)MessageBox.Show("Is this version in 64-bit?","SDVX Starter", MessageBoxButtons.YesNoCancel);
             bool x64 = result == 6;
             bool x86 = result == 7;
+            bool cancel = result == 2;
 
             if (!current.Text.Equals("Root SDVX"))
             {
@@ -609,7 +630,7 @@ namespace SDVXStarter
                 spice.StandardInput.WriteLine("exit");
                 spice.Close();
             }
-            else
+            else if (!cancel)
             {
                 MessageBox.Show("The root path does not contain spice tools.");
             }
@@ -633,12 +654,76 @@ namespace SDVXStarter
             {
                 RefreshStorage();
                 RefreshView();
+                PackageAndUpdate();
             }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("SDVX Starter ver 0.1a\nBy Neskol Lu, 2020\nManages details to play.", "About");
+        }
+
+        private void apiBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (apiCheck.Checked)
+            {
+                apiGroup.Visible = true;
+            }
+            else
+            {
+                apiGroup.Visible = false;
+            }
+        }
+
+        private void ea3configToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool selected = false;
+            OpenFileDialog xmlSelector = new OpenFileDialog();
+            xmlSelector.Title = "Select the ea3-config.xml you'd like to load:";
+            xmlSelector.Filter = "ea3-config.xml|*.xml";
+            if (!pathCombo.Text.Equals("(root path)")&& !pathCombo.Text.Equals("(Remove)")&& !pathCombo.Text.Equals(""))
+            {
+                xmlSelector.InitialDirectory = pathCombo.Text;
+            }
+            else
+            {
+                xmlSelector.InitialDirectory = Application.StartupPath;
+            }           
+            if (xmlSelector.ShowDialog() == DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(xmlSelector.FileName))
+                {
+                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                }else
+                {
+                    selected = true;
+                }
+            }
+            if (selected)
+            {
+                EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
+                if (!compiler.CheckValidity())
+                {
+                    MessageBox.Show("The xml file you selected is invalid.");
+                }
+                else
+                {
+                    if (!FindDuplicate(pcbidCombo.Items, compiler.PCBID))
+                    {
+                        pcbidCombo.Items.Add(compiler.PCBID);
+                    }
+                    pcbidCombo.SelectedItem = (compiler.PCBID);
+                    if (!FindDuplicate(urlCombo.Items, compiler.Services))
+                    {
+                        urlCombo.Items.Add(compiler.Services);
+                    }
+                    urlCombo.SelectedItem = (compiler.Services);
+                    sslCheck.CheckState = CheckState.Unchecked;
+                    urlCheck.CheckState = CheckState.Checked;
+                    PackageAndUpdate();
+                    MessageBox.Show(compiler.Version);
+                }
+            }
         }
     }
 }

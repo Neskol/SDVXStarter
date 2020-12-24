@@ -18,10 +18,16 @@ namespace SDVXStarter
         void Update();
 
         /// <summary>
+        /// Check if given xml file is good to use.
+        /// </summary>
+        /// <returns>True if this is valid, false elsewise</returns>
+        bool CheckValidity();
+
+        /// <summary>
         /// Creates and return a new XmlDocument: loadxml
         /// </summary>
         /// <param name="inputs">The input string</param>
-        /// <returns></returns>
+        /// <returns>An XML document = inputs</returns>
         XmlDocument CreateXml(string inputs);
 
         /// <summary>

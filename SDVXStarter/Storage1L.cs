@@ -47,8 +47,18 @@ namespace SDVXStarter
 
         public void AddVerPathMap(string note, string path)
         {
-            this.versionSet.Add(note, path);
-            this.pathSet.Add(path, note);
+            if (!FindKeyDuplicate(versionSet,note))
+            {
+                this.versionSet.Add(note, path);
+                if (note.Equals("Root SDVX")||path.Equals(""))
+                {
+                    this.pathSet.Add("(root path)",note);
+                }
+                else
+                {
+                    this.pathSet.Add(path, note);
+                }
+            }           
         }
 
         public bool RemoveVerPathMap(string note)
@@ -79,7 +89,7 @@ namespace SDVXStarter
         {
             string path = "";
             this.versionSet.TryGetValue(version, out path);
-            if (path.Equals("(root path)")||path.Equals(""))
+            if (path.Equals("(root path)")||version.Equals(""))
             {
                 path = "";
             }
@@ -101,33 +111,41 @@ namespace SDVXStarter
         public void UpdateArgument()
         {
             this.argument.Clear();
+            // Updates 720p setting
             if (this.GetCfgSet("hd"))
             {
                 this.argument.Add("-sdvx720p");
             }           
             else
-            { this.argument.Add("-sdvx");
-        }
+            { 
+                this.argument.Add("-sdvx");
+            }
+            // Updates full screen setting
             if (!this.GetCfgSet("window"))
             {
                 this.argument.Add("-w");
             }
+            // Updates printer setting
             if (this.GetCfgSet("printer"))
             {
                 this.argument.Add("-printer");
             }
+            // Updates urlSlash setting
             if (this.GetCfgSet("urlSlash"))
             {
                 this.argument.Add("-urlslash 1");
             }
+            // Updates ssl setting
             if (!this.GetCfgSet("ssl"))
             {
                 this.argument.Add("-ssldisable");
             }
+            // Updates card setting
             if (!this.GetCfgValue("card").Equals(""))
             {
                 this.argument.Add("-card0 "+this.GetCfgValue("card"));
             }
+            // Updates url setting
             if (!this.GetCfgValue("url").Equals("")&&!this.GetCfgValue("url").Equals("(Offline)"))
             {
                 this.argument.Add("-url " + this.GetCfgValue("url"));
@@ -136,9 +154,19 @@ namespace SDVXStarter
             {
                 this.argument.Add("-ea");
             }
+            // Updates pcbid setting
             if (!this.GetCfgValue("pcbid").Equals(""))
             {
                 this.argument.Add("-p " + this.GetCfgValue("pcbid"));
+            }
+            // Updates spice companion setting
+            if (this.GetCfgSet("api"))
+            {
+                if (!this.GetCfgValue("apiPort").Equals("")&&!this.GetCfgValue("apiPassword").Equals(""))
+                {
+                    this.argument.Add("-api "+ this.GetCfgValue("apiPort"));
+                    this.argument.Add("-apipass " + this.GetCfgValue("apiPassword"));
+                }
             }
         }
 
@@ -240,8 +268,8 @@ namespace SDVXStarter
         {
             this.versionSet.Clear();
             this.pathSet.Clear();
-            this.versionSet.Add("Root SDVX","");
-            this.pathSet.Add("","Root SDVX");
+            this.versionSet.Add("Root SDVX","(root path)");
+            this.pathSet.Add("(root path)","Root SDVX");
             this.configSet.Clear();
             this.valueSet.Clear();
         }

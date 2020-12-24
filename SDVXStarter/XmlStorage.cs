@@ -30,9 +30,16 @@ namespace SDVXStarter
             throw new NotImplementedException();
         }
 
-        public XmlDocument CreateXml(string inputs)
+        public bool CheckValidity()
         {
             throw new NotImplementedException();
+        }
+
+        public XmlDocument CreateXml(string inputs)
+        {
+            XmlDocument result = new XmlDocument();
+            result.LoadXml(path);
+            return result;
         }
 
         public string GetValue(XmlNode name)
@@ -42,7 +49,9 @@ namespace SDVXStarter
 
         public XmlDocument LoadXml(string path)
         {
-            throw new NotImplementedException();
+            XmlDocument result = new XmlDocument();
+            result.Load(path);
+            return result;
         }
 
         public void SaveXml(string path)
@@ -52,7 +61,7 @@ namespace SDVXStarter
 
         public void Update()
         {
-            throw new NotImplementedException();
+
         }
     }
 }
