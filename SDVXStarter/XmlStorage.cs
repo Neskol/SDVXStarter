@@ -122,13 +122,13 @@ namespace SDVXStarter
 
         public bool CheckValidity()
         {
-            return true;
+            return (localStorage != null);
         }
 
         public XmlDocument CreateXml(string inputs)
         {
             XmlDocument result = new XmlDocument();
-            result.LoadXml(path);
+            result.LoadXml(inputs);
             return result;
         }
 
@@ -149,9 +149,54 @@ namespace SDVXStarter
             configStorage.Save(path);
         }
 
-        public void Update()
+        public void UpdateStorage()
         {
+            
+        }
 
+        /// <summary>
+        /// Get and set localStorage
+        /// </summary>
+        public Storage LocalStorage
+        {
+            get
+            {
+                return this.localStorage;
+            }
+            set
+            {
+                this.localStorage = value;
+            }
+        }
+
+        /// <summary>
+        /// Get and set this.configStorage
+        /// </summary>
+        public XmlDocument ConfigStorage
+        {
+            get
+            {
+                return this.configStorage;
+            }
+            set
+            {
+                this.configStorage = value;
+            }
+        }
+
+        /// <summary>
+        /// Get and set this.path
+        /// </summary>
+        public string Path
+        {
+            get
+            {
+                return this.path;
+            }
+            set
+            {
+                this.path = value;
+            }
         }
     }
 }

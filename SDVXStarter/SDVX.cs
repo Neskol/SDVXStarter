@@ -805,5 +805,41 @@ namespace SDVXStarter
             save.SaveXml("cfg.xml");
             MessageBox.Show("Successfully saved at: "+ Application.StartupPath + "\\cfg.xml");
         }
+
+        private void bImport_Click(object sender, EventArgs e)
+        {
+            string note = Interaction.InputBox("Paste config text from your account.", "BEMANICN Config fast import", "", -1, -1);
+            if (!note.Equals(""))
+            {
+                EA3Compiler quickImport = new EA3Compiler(note, true);
+                bool isValid = quickImport.CheckValidity();
+                if (isValid)
+                {
+                    /// Set PCBID
+                    if (!FindDuplicate(pcbidCombo.Items, quickImport.PCBID))
+                    {
+                        pcbidCombo.Items.Add(quickImport.PCBID);
+                    }
+                    pcbidCombo.SelectedItem = quickImport.PCBID;
+                    /// Set URL
+                    if (!FindDuplicate(urlCombo.Items, quickImport.Services))
+                    {
+                        pcbidCombo.Items.Add(quickImport.Services);
+                    }
+                    pcbidCombo.SelectedItem = quickImport.Services;
+                    /// Set UrlSlash
+                    sslCheck.CheckState = CheckState.Unchecked;
+                    if (quickImport.UrlSlash.Equals("1"))
+                    {
+                        urlCheck.CheckState = CheckState.Checked;
+                    }
+                    else
+                    {
+                        urlCheck.CheckState = CheckState.Unchecked;
+                    }
+                }
+            
+        }
+        }   
     }
 }

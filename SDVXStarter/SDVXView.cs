@@ -14,7 +14,7 @@ namespace SDVXStatrter
     interface SDVXView
     {
         /// <summary>
-        /// Packages all settings and Update sets for argument
+        /// Packages all settings and UpdateStorage sets for argument
         /// </summary>
         void PackageAndUpdate();
 

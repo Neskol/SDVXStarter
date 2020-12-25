@@ -222,6 +222,7 @@
             this.bImport.TabIndex = 11;
             this.bImport.Text = "Quick Import";
             this.bImport.UseVisualStyleBackColor = true;
+            this.bImport.Click += new System.EventHandler(this.bImport_Click);
             // 
             // hdCheck
             // 
@@ -537,14 +538,14 @@
             // starterConfigToolStripMenuItem1
             // 
             this.starterConfigToolStripMenuItem1.Name = "starterConfigToolStripMenuItem1";
-            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(194, 26);
             this.starterConfigToolStripMenuItem1.Text = "Starter Config";
             this.starterConfigToolStripMenuItem1.Click += new System.EventHandler(this.starterConfigToolStripMenuItem1_Click);
             // 
             // ea3configToolStripMenuItem1
             // 
             this.ea3configToolStripMenuItem1.Name = "ea3configToolStripMenuItem1";
-            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(194, 26);
             this.ea3configToolStripMenuItem1.Text = "ea3-config";
             // 
             // saveAsToolStripMenuItem
@@ -627,9 +628,9 @@
             this.apiGroup.Controls.Add(this.passwordBox);
             this.apiGroup.Controls.Add(this.portBox);
             this.apiGroup.Location = new System.Drawing.Point(331, 369);
-            this.apiGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.apiGroup.Margin = new System.Windows.Forms.Padding(4);
             this.apiGroup.Name = "apiGroup";
-            this.apiGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.apiGroup.Padding = new System.Windows.Forms.Padding(4);
             this.apiGroup.Size = new System.Drawing.Size(384, 79);
             this.apiGroup.TabIndex = 8;
             this.apiGroup.TabStop = false;
@@ -659,7 +660,7 @@
             // passwordBox
             // 
             this.passwordBox.Location = new System.Drawing.Point(133, 46);
-            this.passwordBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.passwordBox.Margin = new System.Windows.Forms.Padding(4);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.Size = new System.Drawing.Size(229, 25);
             this.passwordBox.TabIndex = 1;
@@ -668,7 +669,7 @@
             // portBox
             // 
             this.portBox.Location = new System.Drawing.Point(12, 48);
-            this.portBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.portBox.Margin = new System.Windows.Forms.Padding(4);
             this.portBox.Name = "portBox";
             this.portBox.Size = new System.Drawing.Size(109, 25);
             this.portBox.TabIndex = 0;

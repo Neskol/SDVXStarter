@@ -23,16 +23,10 @@ namespace SDVXStarter
         XmlNode servicesX;
         XmlNode urlSlashX;
 
-        /**
-         * Constructor.
-         * 
-         * <param name="path">
-         * The path for ea3-config.xml
-         * </param>
-         * <require>
-         * ea3-config.xml exists and all elements exist
-         * </require>
-         */
+       /// <summary>
+       /// Construct compiler from given path.
+       /// </summary>
+       /// <param name="path">Path to load</param>
         public EA3Compiler(string path)
         {
             this.ea3Config = new XmlDocument();
@@ -47,11 +41,57 @@ namespace SDVXStarter
             this.urlSlashX = this.ea3Config.SelectSingleNode("ea3/network/url_slash");
             if (CheckValidity())
             {
-                Update();
+                UpdateStorage();
             }
         }
 
-        public void Update()
+        /// <summary>
+        /// Construct EA3Compiler either from a file or a segment of text: True to construct from text, false to constructe from file.
+        /// </summary>
+        /// <param name="intake">Text to process</param>
+        /// <param name="isText"></param>
+        public EA3Compiler(string intake, bool isText)
+        {
+            if (isText)
+            {
+                throw new NotImplementedException();
+                this.ea3Config = new XmlDocument();
+                XmlNode root = this.ea3Config.CreateElement("ea3");
+                this.ea3Config.AppendChild(root);
+
+                this.model = this.ea3Config.SelectSingleNode("ea3/soft/model");
+                this.dest = this.ea3Config.SelectSingleNode("ea3/soft/dest");
+                this.spec = this.ea3Config.SelectSingleNode("ea3/soft/spec");
+                this.rev = this.ea3Config.SelectSingleNode("ea3/soft/rev");
+                this.ext = this.ea3Config.SelectSingleNode("ea3/soft/ext");
+                this.idX = this.ea3Config.SelectSingleNode("ea3/id/pcbid");
+                this.servicesX = this.ea3Config.SelectSingleNode("ea3/network/services");
+                this.urlSlashX = this.ea3Config.SelectSingleNode("ea3/network/url_slash");
+                if (CheckValidity())
+                {
+                    UpdateStorage();
+                }
+            }
+            else
+            {
+                this.ea3Config = new XmlDocument();
+                this.ea3Config.Load(intake);
+                this.model = this.ea3Config.SelectSingleNode("ea3/soft/model");
+                this.dest = this.ea3Config.SelectSingleNode("ea3/soft/dest");
+                this.spec = this.ea3Config.SelectSingleNode("ea3/soft/spec");
+                this.rev = this.ea3Config.SelectSingleNode("ea3/soft/rev");
+                this.ext = this.ea3Config.SelectSingleNode("ea3/soft/ext");
+                this.idX = this.ea3Config.SelectSingleNode("ea3/id/pcbid");
+                this.servicesX = this.ea3Config.SelectSingleNode("ea3/network/services");
+                this.urlSlashX = this.ea3Config.SelectSingleNode("ea3/network/url_slash");
+                if (CheckValidity())
+                {
+                    UpdateStorage();
+                }
+            }
+        }
+
+        public void UpdateStorage()
         {
             this.version = this.ComposeVersion();
             this.pcbid = this.idX.InnerText;
@@ -60,7 +100,7 @@ namespace SDVXStarter
         }
 
         /// <summary>
-        /// Update ea3-config.xml by runtime variable.
+        /// UpdateStorage ea3-config.xml by runtime variable.
         /// </summary>
         public void UpdateByRuntime()
         {
@@ -103,7 +143,7 @@ namespace SDVXStarter
         }
 
         /// <summary>
-        /// Decomposes version text to arrays for nodes to Update.
+        /// Decomposes version text to arrays for nodes to UpdateStorage.
         /// </summary>
         /// <param name="version">
         /// Intake version text
@@ -178,27 +218,32 @@ namespace SDVXStarter
 
         public XmlDocument CreateXml(string inputs)
         {
-            throw new NotImplementedException();
+            XmlDocument result = new XmlDocument();
+            result.LoadXml(inputs);
+            return result;
         }
 
         public string GetValue(XmlNode name)
         {
-            throw new NotImplementedException();
+            return name.InnerText;
         }
 
         public void AppendChild(XmlNode node, XmlNode child)
         {
-            throw new NotImplementedException();
+            node.AppendChild(child);
         }
 
         public XmlDocument LoadXml(string path)
         {
-            throw new NotImplementedException();
+            XmlDocument result = new XmlDocument();
+            result.Load(path);
+            return result;
         }
 
         public void SaveXml(string path)
         {
-            throw new NotImplementedException();
+            this.UpdateByRuntime();
+            this.ea3Config.Save(path);
         }
 
         public bool CheckValidity()

@@ -15,7 +15,7 @@ namespace SDVXStarter
         /// <summary>
         /// Updates the storage.
         /// </summary>
-        void Update();
+        void UpdateStorage();
 
         /// <summary>
         /// Check if given xml file is good to use.
