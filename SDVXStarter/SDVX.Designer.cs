@@ -102,21 +102,21 @@
             this.versionGroup.Controls.Add(this.pathCombo);
             this.versionGroup.Controls.Add(this.bStarter);
             this.versionGroup.Controls.Add(this.versionLabel);
-            this.versionGroup.Location = new System.Drawing.Point(9, 83);
-            this.versionGroup.Margin = new System.Windows.Forms.Padding(2);
+            this.versionGroup.Location = new System.Drawing.Point(12, 104);
+            this.versionGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.versionGroup.Name = "versionGroup";
-            this.versionGroup.Padding = new System.Windows.Forms.Padding(2);
-            this.versionGroup.Size = new System.Drawing.Size(218, 134);
+            this.versionGroup.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.versionGroup.Size = new System.Drawing.Size(291, 168);
             this.versionGroup.TabIndex = 0;
             this.versionGroup.TabStop = false;
             this.versionGroup.Text = "Version Select";
             // 
             // bStarter64
             // 
-            this.bStarter64.Location = new System.Drawing.Point(117, 62);
-            this.bStarter64.Margin = new System.Windows.Forms.Padding(2);
+            this.bStarter64.Location = new System.Drawing.Point(156, 78);
+            this.bStarter64.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bStarter64.Name = "bStarter64";
-            this.bStarter64.Size = new System.Drawing.Size(86, 58);
+            this.bStarter64.Size = new System.Drawing.Size(115, 72);
             this.bStarter64.TabIndex = 4;
             this.bStarter64.Text = "Run spice64";
             this.bStarter64.UseVisualStyleBackColor = true;
@@ -128,19 +128,19 @@
             this.pathCombo.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.pathCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pathCombo.FormattingEnabled = true;
-            this.pathCombo.Location = new System.Drawing.Point(20, 38);
-            this.pathCombo.Margin = new System.Windows.Forms.Padding(2);
+            this.pathCombo.Location = new System.Drawing.Point(27, 48);
+            this.pathCombo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pathCombo.Name = "pathCombo";
-            this.pathCombo.Size = new System.Drawing.Size(183, 20);
+            this.pathCombo.Size = new System.Drawing.Size(243, 23);
             this.pathCombo.TabIndex = 3;
             this.pathCombo.SelectedIndexChanged += new System.EventHandler(this.versionCombo_SelectedIndexChanged);
             // 
             // bStarter
             // 
-            this.bStarter.Location = new System.Drawing.Point(20, 62);
-            this.bStarter.Margin = new System.Windows.Forms.Padding(2);
+            this.bStarter.Location = new System.Drawing.Point(27, 78);
+            this.bStarter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bStarter.Name = "bStarter";
-            this.bStarter.Size = new System.Drawing.Size(86, 58);
+            this.bStarter.Size = new System.Drawing.Size(115, 72);
             this.bStarter.TabIndex = 2;
             this.bStarter.Text = "Run spice";
             this.bStarter.UseVisualStyleBackColor = true;
@@ -149,10 +149,9 @@
             // versionLabel
             // 
             this.versionLabel.AutoSize = true;
-            this.versionLabel.Location = new System.Drawing.Point(18, 17);
-            this.versionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.versionLabel.Location = new System.Drawing.Point(24, 21);
             this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(173, 12);
+            this.versionLabel.Size = new System.Drawing.Size(231, 15);
             this.versionLabel.TabIndex = 1;
             this.versionLabel.Text = "Select a version to startup.";
             // 
@@ -160,11 +159,11 @@
             // 
             this.configGroup.Controls.Add(this.optionBox);
             this.configGroup.Controls.Add(this.cardBox);
-            this.configGroup.Location = new System.Drawing.Point(248, 32);
-            this.configGroup.Margin = new System.Windows.Forms.Padding(2);
+            this.configGroup.Location = new System.Drawing.Point(331, 40);
+            this.configGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.configGroup.Name = "configGroup";
-            this.configGroup.Padding = new System.Windows.Forms.Padding(2);
-            this.configGroup.Size = new System.Drawing.Size(375, 252);
+            this.configGroup.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.configGroup.Size = new System.Drawing.Size(500, 315);
             this.configGroup.TabIndex = 1;
             this.configGroup.TabStop = false;
             this.configGroup.Text = "Quick Config";
@@ -182,11 +181,11 @@
             this.optionBox.Controls.Add(this.pcbLabel);
             this.optionBox.Controls.Add(this.urlCombo);
             this.optionBox.Controls.Add(this.networkLabel);
-            this.optionBox.Location = new System.Drawing.Point(14, 109);
-            this.optionBox.Margin = new System.Windows.Forms.Padding(2);
+            this.optionBox.Location = new System.Drawing.Point(19, 136);
+            this.optionBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.optionBox.Name = "optionBox";
-            this.optionBox.Padding = new System.Windows.Forms.Padding(2);
-            this.optionBox.Size = new System.Drawing.Size(356, 129);
+            this.optionBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.optionBox.Size = new System.Drawing.Size(475, 161);
             this.optionBox.TabIndex = 2;
             this.optionBox.TabStop = false;
             this.optionBox.Text = "Start up selection";
@@ -194,10 +193,10 @@
             // apiCheck
             // 
             this.apiCheck.AutoSize = true;
-            this.apiCheck.Location = new System.Drawing.Point(264, 77);
-            this.apiCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.apiCheck.Location = new System.Drawing.Point(352, 96);
+            this.apiCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.apiCheck.Name = "apiCheck";
-            this.apiCheck.Size = new System.Drawing.Size(78, 16);
+            this.apiCheck.Size = new System.Drawing.Size(101, 19);
             this.apiCheck.TabIndex = 14;
             this.apiCheck.Text = "Use Comp.";
             this.apiCheck.UseVisualStyleBackColor = true;
@@ -206,20 +205,20 @@
             // pcbidCombo
             // 
             this.pcbidCombo.FormattingEnabled = true;
-            this.pcbidCombo.Location = new System.Drawing.Point(84, 47);
-            this.pcbidCombo.Margin = new System.Windows.Forms.Padding(2);
+            this.pcbidCombo.Location = new System.Drawing.Point(112, 59);
+            this.pcbidCombo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pcbidCombo.Name = "pcbidCombo";
-            this.pcbidCombo.Size = new System.Drawing.Size(176, 20);
+            this.pcbidCombo.Size = new System.Drawing.Size(233, 23);
             this.pcbidCombo.TabIndex = 12;
             this.pcbidCombo.Text = "(Default)";
             this.pcbidCombo.SelectedIndexChanged += new System.EventHandler(this.pcbidCombo_SelectedIndexChanged);
             // 
             // bImport
             // 
-            this.bImport.Location = new System.Drawing.Point(274, 22);
-            this.bImport.Margin = new System.Windows.Forms.Padding(2);
+            this.bImport.Location = new System.Drawing.Point(365, 28);
+            this.bImport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bImport.Name = "bImport";
-            this.bImport.Size = new System.Drawing.Size(62, 43);
+            this.bImport.Size = new System.Drawing.Size(83, 54);
             this.bImport.TabIndex = 11;
             this.bImport.Text = "Quick Import";
             this.bImport.UseVisualStyleBackColor = true;
@@ -227,10 +226,10 @@
             // hdCheck
             // 
             this.hdCheck.AutoSize = true;
-            this.hdCheck.Location = new System.Drawing.Point(264, 105);
-            this.hdCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.hdCheck.Location = new System.Drawing.Point(352, 131);
+            this.hdCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.hdCheck.Name = "hdCheck";
-            this.hdCheck.Size = new System.Drawing.Size(84, 16);
+            this.hdCheck.Size = new System.Drawing.Size(109, 19);
             this.hdCheck.TabIndex = 10;
             this.hdCheck.Text = "Force 720p";
             this.hdCheck.UseVisualStyleBackColor = true;
@@ -238,10 +237,10 @@
             // urlCheck
             // 
             this.urlCheck.AutoSize = true;
-            this.urlCheck.Location = new System.Drawing.Point(130, 105);
-            this.urlCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.urlCheck.Location = new System.Drawing.Point(173, 131);
+            this.urlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.urlCheck.Name = "urlCheck";
-            this.urlCheck.Size = new System.Drawing.Size(120, 16);
+            this.urlCheck.Size = new System.Drawing.Size(157, 19);
             this.urlCheck.TabIndex = 8;
             this.urlCheck.Text = "Enable URL Slash";
             this.urlCheck.UseVisualStyleBackColor = true;
@@ -249,10 +248,10 @@
             // sslCheck
             // 
             this.sslCheck.AutoSize = true;
-            this.sslCheck.Location = new System.Drawing.Point(130, 77);
-            this.sslCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.sslCheck.Location = new System.Drawing.Point(173, 96);
+            this.sslCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sslCheck.Name = "sslCheck";
-            this.sslCheck.Size = new System.Drawing.Size(90, 16);
+            this.sslCheck.Size = new System.Drawing.Size(117, 19);
             this.sslCheck.TabIndex = 6;
             this.sslCheck.Text = "Disable SSL";
             this.sslCheck.UseVisualStyleBackColor = true;
@@ -260,10 +259,10 @@
             // printerCheck
             // 
             this.printerCheck.AutoSize = true;
-            this.printerCheck.Location = new System.Drawing.Point(12, 105);
-            this.printerCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.printerCheck.Location = new System.Drawing.Point(16, 131);
+            this.printerCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.printerCheck.Name = "printerCheck";
-            this.printerCheck.Size = new System.Drawing.Size(108, 16);
+            this.printerCheck.Size = new System.Drawing.Size(141, 19);
             this.printerCheck.TabIndex = 5;
             this.printerCheck.Text = "Enable printer";
             this.printerCheck.UseVisualStyleBackColor = true;
@@ -271,10 +270,10 @@
             // fullScreenCheck
             // 
             this.fullScreenCheck.AutoSize = true;
-            this.fullScreenCheck.Location = new System.Drawing.Point(13, 77);
-            this.fullScreenCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.fullScreenCheck.Location = new System.Drawing.Point(17, 96);
+            this.fullScreenCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fullScreenCheck.Name = "fullScreenCheck";
-            this.fullScreenCheck.Size = new System.Drawing.Size(90, 16);
+            this.fullScreenCheck.Size = new System.Drawing.Size(117, 19);
             this.fullScreenCheck.TabIndex = 4;
             this.fullScreenCheck.Text = "Full screen";
             this.fullScreenCheck.UseVisualStyleBackColor = true;
@@ -282,20 +281,19 @@
             // pcbLabel
             // 
             this.pcbLabel.AutoSize = true;
-            this.pcbLabel.Location = new System.Drawing.Point(8, 50);
-            this.pcbLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.pcbLabel.Location = new System.Drawing.Point(11, 62);
             this.pcbLabel.Name = "pcbLabel";
-            this.pcbLabel.Size = new System.Drawing.Size(41, 12);
+            this.pcbLabel.Size = new System.Drawing.Size(55, 15);
             this.pcbLabel.TabIndex = 2;
             this.pcbLabel.Text = "PCBID:";
             // 
             // urlCombo
             // 
             this.urlCombo.FormattingEnabled = true;
-            this.urlCombo.Location = new System.Drawing.Point(84, 22);
-            this.urlCombo.Margin = new System.Windows.Forms.Padding(2);
+            this.urlCombo.Location = new System.Drawing.Point(112, 28);
+            this.urlCombo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.urlCombo.Name = "urlCombo";
-            this.urlCombo.Size = new System.Drawing.Size(176, 20);
+            this.urlCombo.Size = new System.Drawing.Size(233, 23);
             this.urlCombo.TabIndex = 1;
             this.urlCombo.Text = "(Offline)";
             this.urlCombo.SelectedIndexChanged += new System.EventHandler(this.urlCombo_SelectedIndexChanged);
@@ -303,10 +301,9 @@
             // networkLabel
             // 
             this.networkLabel.AutoSize = true;
-            this.networkLabel.Location = new System.Drawing.Point(8, 25);
-            this.networkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.networkLabel.Location = new System.Drawing.Point(11, 31);
             this.networkLabel.Name = "networkLabel";
-            this.networkLabel.Size = new System.Drawing.Size(71, 12);
+            this.networkLabel.Size = new System.Drawing.Size(95, 15);
             this.networkLabel.TabIndex = 0;
             this.networkLabel.Text = "Connect to:";
             // 
@@ -316,21 +313,21 @@
             this.cardBox.Controls.Add(this.bLoad);
             this.cardBox.Controls.Add(this.bCardVerify);
             this.cardBox.Controls.Add(this.cardCombo);
-            this.cardBox.Location = new System.Drawing.Point(14, 19);
-            this.cardBox.Margin = new System.Windows.Forms.Padding(2);
+            this.cardBox.Location = new System.Drawing.Point(19, 24);
+            this.cardBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cardBox.Name = "cardBox";
-            this.cardBox.Padding = new System.Windows.Forms.Padding(2);
-            this.cardBox.Size = new System.Drawing.Size(356, 85);
+            this.cardBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cardBox.Size = new System.Drawing.Size(475, 106);
             this.cardBox.TabIndex = 1;
             this.cardBox.TabStop = false;
             this.cardBox.Text = "Card number";
             // 
             // bGenerate
             // 
-            this.bGenerate.Location = new System.Drawing.Point(274, 18);
-            this.bGenerate.Margin = new System.Windows.Forms.Padding(2);
+            this.bGenerate.Location = new System.Drawing.Point(365, 22);
+            this.bGenerate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bGenerate.Name = "bGenerate";
-            this.bGenerate.Size = new System.Drawing.Size(62, 43);
+            this.bGenerate.Size = new System.Drawing.Size(83, 54);
             this.bGenerate.TabIndex = 3;
             this.bGenerate.Text = "Generate";
             this.bGenerate.UseVisualStyleBackColor = true;
@@ -338,10 +335,10 @@
             // 
             // bLoad
             // 
-            this.bLoad.Location = new System.Drawing.Point(206, 19);
-            this.bLoad.Margin = new System.Windows.Forms.Padding(2);
+            this.bLoad.Location = new System.Drawing.Point(275, 24);
+            this.bLoad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bLoad.Name = "bLoad";
-            this.bLoad.Size = new System.Drawing.Size(62, 43);
+            this.bLoad.Size = new System.Drawing.Size(83, 54);
             this.bLoad.TabIndex = 2;
             this.bLoad.Text = "Load";
             this.bLoad.UseVisualStyleBackColor = true;
@@ -349,10 +346,10 @@
             // 
             // bCardVerify
             // 
-            this.bCardVerify.Location = new System.Drawing.Point(136, 19);
-            this.bCardVerify.Margin = new System.Windows.Forms.Padding(2);
+            this.bCardVerify.Location = new System.Drawing.Point(181, 24);
+            this.bCardVerify.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bCardVerify.Name = "bCardVerify";
-            this.bCardVerify.Size = new System.Drawing.Size(62, 43);
+            this.bCardVerify.Size = new System.Drawing.Size(83, 54);
             this.bCardVerify.TabIndex = 1;
             this.bCardVerify.Text = "Verify and Add";
             this.bCardVerify.UseVisualStyleBackColor = true;
@@ -361,20 +358,20 @@
             // cardCombo
             // 
             this.cardCombo.FormattingEnabled = true;
-            this.cardCombo.Location = new System.Drawing.Point(12, 32);
-            this.cardCombo.Margin = new System.Windows.Forms.Padding(2);
+            this.cardCombo.Location = new System.Drawing.Point(16, 40);
+            this.cardCombo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cardCombo.Name = "cardCombo";
-            this.cardCombo.Size = new System.Drawing.Size(120, 20);
+            this.cardCombo.Size = new System.Drawing.Size(159, 23);
             this.cardCombo.TabIndex = 0;
             this.cardCombo.Text = "(Empty)";
             this.cardCombo.SelectedIndexChanged += new System.EventHandler(this.cardCombo_SelectedIndexChanged);
             // 
             // bSpiceConfig
             // 
-            this.bSpiceConfig.Location = new System.Drawing.Point(543, 299);
-            this.bSpiceConfig.Margin = new System.Windows.Forms.Padding(2);
+            this.bSpiceConfig.Location = new System.Drawing.Point(724, 374);
+            this.bSpiceConfig.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bSpiceConfig.Name = "bSpiceConfig";
-            this.bSpiceConfig.Size = new System.Drawing.Size(71, 60);
+            this.bSpiceConfig.Size = new System.Drawing.Size(95, 75);
             this.bSpiceConfig.TabIndex = 7;
             this.bSpiceConfig.Text = " spice   Config";
             this.bSpiceConfig.UseVisualStyleBackColor = true;
@@ -386,21 +383,21 @@
             this.pathGroup.Controls.Add(this.pathLabel);
             this.pathGroup.Controls.Add(this.bPathVerify);
             this.pathGroup.Controls.Add(this.pathBox);
-            this.pathGroup.Location = new System.Drawing.Point(9, 222);
-            this.pathGroup.Margin = new System.Windows.Forms.Padding(2);
+            this.pathGroup.Location = new System.Drawing.Point(12, 278);
+            this.pathGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pathGroup.Name = "pathGroup";
-            this.pathGroup.Padding = new System.Windows.Forms.Padding(2);
-            this.pathGroup.Size = new System.Drawing.Size(218, 145);
+            this.pathGroup.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pathGroup.Size = new System.Drawing.Size(291, 181);
             this.pathGroup.TabIndex = 2;
             this.pathGroup.TabStop = false;
             this.pathGroup.Text = "Game path verifier";
             // 
             // bBrowse
             // 
-            this.bBrowse.Location = new System.Drawing.Point(166, 42);
-            this.bBrowse.Margin = new System.Windows.Forms.Padding(2);
+            this.bBrowse.Location = new System.Drawing.Point(221, 52);
+            this.bBrowse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bBrowse.Name = "bBrowse";
-            this.bBrowse.Size = new System.Drawing.Size(37, 20);
+            this.bBrowse.Size = new System.Drawing.Size(49, 25);
             this.bBrowse.TabIndex = 3;
             this.bBrowse.Text = "...";
             this.bBrowse.UseVisualStyleBackColor = true;
@@ -409,19 +406,18 @@
             // pathLabel
             // 
             this.pathLabel.AutoSize = true;
-            this.pathLabel.Location = new System.Drawing.Point(19, 17);
-            this.pathLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.pathLabel.Location = new System.Drawing.Point(25, 21);
             this.pathLabel.Name = "pathLabel";
-            this.pathLabel.Size = new System.Drawing.Size(137, 12);
+            this.pathLabel.Size = new System.Drawing.Size(183, 15);
             this.pathLabel.TabIndex = 2;
             this.pathLabel.Text = "Verify following path:";
             // 
             // bPathVerify
             // 
-            this.bPathVerify.Location = new System.Drawing.Point(20, 85);
-            this.bPathVerify.Margin = new System.Windows.Forms.Padding(2);
+            this.bPathVerify.Location = new System.Drawing.Point(27, 106);
+            this.bPathVerify.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bPathVerify.Name = "bPathVerify";
-            this.bPathVerify.Size = new System.Drawing.Size(182, 45);
+            this.bPathVerify.Size = new System.Drawing.Size(243, 56);
             this.bPathVerify.TabIndex = 1;
             this.bPathVerify.Text = "Verify";
             this.bPathVerify.UseVisualStyleBackColor = true;
@@ -429,21 +425,21 @@
             // 
             // pathBox
             // 
-            this.pathBox.Location = new System.Drawing.Point(20, 42);
-            this.pathBox.Margin = new System.Windows.Forms.Padding(2);
+            this.pathBox.Location = new System.Drawing.Point(27, 52);
+            this.pathBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pathBox.Name = "pathBox";
-            this.pathBox.Size = new System.Drawing.Size(137, 21);
+            this.pathBox.Size = new System.Drawing.Size(181, 25);
             this.pathBox.TabIndex = 0;
             this.pathBox.Text = "(root path)";
             // 
             // curentGroup
             // 
             this.curentGroup.Controls.Add(this.current);
-            this.curentGroup.Location = new System.Drawing.Point(9, 32);
-            this.curentGroup.Margin = new System.Windows.Forms.Padding(2);
+            this.curentGroup.Location = new System.Drawing.Point(12, 40);
+            this.curentGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.curentGroup.Name = "curentGroup";
-            this.curentGroup.Padding = new System.Windows.Forms.Padding(2);
-            this.curentGroup.Size = new System.Drawing.Size(218, 46);
+            this.curentGroup.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.curentGroup.Size = new System.Drawing.Size(291, 58);
             this.curentGroup.TabIndex = 3;
             this.curentGroup.TabStop = false;
             this.curentGroup.Text = "Current Version";
@@ -451,10 +447,9 @@
             // current
             // 
             this.current.AutoSize = true;
-            this.current.Location = new System.Drawing.Point(19, 19);
-            this.current.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.current.Location = new System.Drawing.Point(25, 24);
             this.current.Name = "current";
-            this.current.Size = new System.Drawing.Size(59, 12);
+            this.current.Size = new System.Drawing.Size(79, 15);
             this.current.TabIndex = 0;
             this.current.Text = "Root SDVX";
             // 
@@ -467,8 +462,8 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(633, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(844, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -484,7 +479,7 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -493,7 +488,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.newToolStripMenuItem.Text = "&New Config";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -506,26 +501,26 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.openToolStripMenuItem.Text = "&Open";
             // 
             // starterConfigToolStripMenuItem
             // 
             this.starterConfigToolStripMenuItem.Name = "starterConfigToolStripMenuItem";
-            this.starterConfigToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.starterConfigToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.starterConfigToolStripMenuItem.Text = "Starter Config";
             // 
             // ea3configToolStripMenuItem
             // 
             this.ea3configToolStripMenuItem.Name = "ea3configToolStripMenuItem";
-            this.ea3configToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.ea3configToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.ea3configToolStripMenuItem.Text = "ea3-config";
             this.ea3configToolStripMenuItem.Click += new System.EventHandler(this.ea3configToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(188, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(232, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -536,41 +531,42 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.saveToolStripMenuItem.Text = "&Save";
             // 
             // starterConfigToolStripMenuItem1
             // 
             this.starterConfigToolStripMenuItem1.Name = "starterConfigToolStripMenuItem1";
-            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.starterConfigToolStripMenuItem1.Text = "Starter Config";
+            this.starterConfigToolStripMenuItem1.Click += new System.EventHandler(this.starterConfigToolStripMenuItem1_Click);
             // 
             // ea3configToolStripMenuItem1
             // 
             this.ea3configToolStripMenuItem1.Name = "ea3configToolStripMenuItem1";
-            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.ea3configToolStripMenuItem1.Text = "ea3-config";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(188, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(232, 6);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(188, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(232, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -580,19 +576,19 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
             this.customizeToolStripMenuItem.Text = "&Customize";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
             this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // helpToolStripMenuItem
@@ -602,25 +598,25 @@
             this.toolStripSeparator5,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.searchToolStripMenuItem.Text = "&Get Help";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(124, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(154, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -630,9 +626,11 @@
             this.apiGroup.Controls.Add(this.portLabel);
             this.apiGroup.Controls.Add(this.passwordBox);
             this.apiGroup.Controls.Add(this.portBox);
-            this.apiGroup.Location = new System.Drawing.Point(248, 295);
+            this.apiGroup.Location = new System.Drawing.Point(331, 369);
+            this.apiGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.apiGroup.Name = "apiGroup";
-            this.apiGroup.Size = new System.Drawing.Size(288, 63);
+            this.apiGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.apiGroup.Size = new System.Drawing.Size(384, 79);
             this.apiGroup.TabIndex = 8;
             this.apiGroup.TabStop = false;
             this.apiGroup.Text = "Spice Companion Settings";
@@ -641,42 +639,46 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(102, 21);
+            this.passwordLabel.Location = new System.Drawing.Point(136, 26);
+            this.passwordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(125, 12);
+            this.passwordLabel.Size = new System.Drawing.Size(167, 15);
             this.passwordLabel.TabIndex = 3;
             this.passwordLabel.Text = "Password to connect:";
             // 
             // portLabel
             // 
             this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(10, 20);
+            this.portLabel.Location = new System.Drawing.Point(13, 25);
+            this.portLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(71, 12);
+            this.portLabel.Size = new System.Drawing.Size(95, 15);
             this.portLabel.TabIndex = 2;
             this.portLabel.Text = "Using port:";
             // 
             // passwordBox
             // 
-            this.passwordBox.Location = new System.Drawing.Point(100, 37);
+            this.passwordBox.Location = new System.Drawing.Point(133, 46);
+            this.passwordBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(173, 21);
+            this.passwordBox.Size = new System.Drawing.Size(229, 25);
             this.passwordBox.TabIndex = 1;
             this.passwordBox.Text = "0000";
             // 
             // portBox
             // 
-            this.portBox.Location = new System.Drawing.Point(9, 38);
+            this.portBox.Location = new System.Drawing.Point(12, 48);
+            this.portBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.portBox.Name = "portBox";
-            this.portBox.Size = new System.Drawing.Size(83, 21);
+            this.portBox.Size = new System.Drawing.Size(109, 25);
             this.portBox.TabIndex = 0;
             this.portBox.Text = "8080";
             // 
             // SDVX
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 374);
+            this.ClientSize = new System.Drawing.Size(844, 468);
             this.Controls.Add(this.apiGroup);
             this.Controls.Add(this.bSpiceConfig);
             this.Controls.Add(this.curentGroup);
@@ -684,7 +686,7 @@
             this.Controls.Add(this.configGroup);
             this.Controls.Add(this.versionGroup);
             this.Controls.Add(this.menuStrip1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SDVX";
             this.Text = "SDVX Starter";
             this.Load += new System.EventHandler(this.Form1_Load);

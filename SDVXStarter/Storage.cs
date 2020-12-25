@@ -12,6 +12,35 @@ namespace SDVXStarter
     interface Storage
     {
         /// <summary>
+        /// Updates cardSet, pcbidSet, urlSet and viewPathSet
+        /// </summary>
+        /// <param name="cardSet">card set in view</param>
+        /// <param name="pcbidSet">pcbid set in view</param>
+        /// <param name="urlSet">url set in view</param>
+        /// <param name="viewPathSet">path set in view</param>
+         void IntakeViewValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet);
+
+        /// <summary>
+        /// Return this.CardSet
+        /// </summary>
+         List<string> GetCardSet();
+
+        /// <summary>
+        /// Return this.UrlSet
+        /// </summary>
+         List<string> GetUrlSet();
+
+        /// <summary>
+        /// Return this.pcbidSet
+        /// </summary>
+         List<string> GetPCBIDSet();
+
+        /// <summary>
+        /// Return this.viewPathSet
+        /// </summary>
+         List<string> GetViewPathSet();
+
+        /// <summary>
         /// Set storage to its initial value.
         /// </summary>
         void Clear();
@@ -109,6 +138,12 @@ namespace SDVXStarter
         /// each in this.argument
         /// </returns>
         string GetArgument();
+
+        /// <summary>
+        /// Return Argument List for saving
+        /// </summary>
+        /// <returns>Argument List</returns>
+        List<string> ReturnArgument();
 
         /// <summary>
         /// Updates argument to match user choises in pannel.

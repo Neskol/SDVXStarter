@@ -15,6 +15,10 @@ namespace SDVXStarter
         private Dictionary<string, string> pathSet;
         private Dictionary<string, string> valueSet;
         private Dictionary<string, bool> configSet;
+        private List<string> cardSet;
+        private List<string> pcbidSet;
+        private List<string> urlSet;
+        private List<string> viewPathSet;
         private List<string> argument;
 
         /// <summary>
@@ -26,8 +30,52 @@ namespace SDVXStarter
             pathSet = new Dictionary<string, string>();
             configSet = new Dictionary<string, bool>();
             valueSet = new Dictionary<string, string>();
+            cardSet = new List<string>();
+            pcbidSet = new List<string>();
+            urlSet = new List<string>();
+            viewPathSet = new List<string>();
             argument = new List<string>();
             this.AddVerPathMap("Root SDVX", "(root path)");
+        }
+
+        public void IntakeViewValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet)
+        {
+            this.cardSet = cardSet;
+            this.pcbidSet = pcbidSet;
+            this.urlSet = urlSet;
+            this.viewPathSet = viewPathSet;
+        }
+
+        /// <summary>
+        /// Return this.CardSet
+        /// </summary>
+        public List<string> GetCardSet()
+        {
+                return this.cardSet;
+        }
+
+        /// <summary>
+        /// Return this.UrlSet
+        /// </summary>
+        public List<string> GetUrlSet()
+        {
+                return this.urlSet;
+        }
+
+        /// <summary>
+        /// Return this.pcbidSet
+        /// </summary>
+        public List<string> GetPCBIDSet()
+        {
+                return this.pcbidSet;
+        }
+
+        /// <summary>
+        /// Return this.viewPathSet
+        /// </summary>
+        public List<string> GetViewPathSet()
+        {
+                return this.viewPathSet;
         }
 
         public void ReplaceWith(string path)
@@ -282,6 +330,11 @@ namespace SDVXStarter
         public void Save(string path)
         {
             throw new NotImplementedException();
+        }
+
+        public List<string> ReturnArgument()
+        {
+            return this.argument;
         }
     }
 }

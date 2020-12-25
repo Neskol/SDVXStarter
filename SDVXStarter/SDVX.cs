@@ -771,5 +771,39 @@ namespace SDVXStarter
             }
             PackageAndUpdate();
         }
+
+        private void starterConfigToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            PackageAndUpdate();
+            List<string> viewPathSet = new List<string>();
+            List<string> cardSet = new List<string>();
+            List<string> urlSet = new List<string>();
+            List<string> pcbidSet = new List<string>();
+            /// Add element to view path set
+            foreach (string x in pathCombo.Items)
+            {
+                viewPathSet.Add(x);
+            }
+            /// Add element to card set
+            foreach (string x in cardCombo.Items)
+            {
+                cardSet.Add(x);
+            }
+            /// Add element to url set
+            foreach (string x in urlCombo.Items)
+            {
+                urlSet.Add(x);
+            }
+            /// Add element to view path set
+            foreach (string x in pcbidCombo.Items)
+            {
+                pcbidSet.Add(x);
+            }
+            globalStorage.IntakeViewValue(cardSet,pcbidSet,urlSet,viewPathSet);
+            XmlStorage save = new XmlStorage(globalStorage);
+            save.ConstructCfgStorage();
+            save.SaveXml("cfg.xml");
+            MessageBox.Show("Successfully saved at: "+ Application.StartupPath + "\\cfg.xml");
+        }
     }
 }
