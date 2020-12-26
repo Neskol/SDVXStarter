@@ -12,7 +12,7 @@ namespace SDVXStarter
     /// <summary>
     /// Construct a XMLDocument for EA3 Complier.
     /// </summary>
-    public class EA3Compiler : XmlUltility
+    public class EA3Compiler : IXmlUltility
     {
         private XmlDocument ea3Config;
         private string version;
@@ -98,6 +98,11 @@ namespace SDVXStarter
                     UpdateStorage();
                 }
             }
+        }
+
+        public string GetAttribute(XmlNode name, string attrName)
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateStorage()

@@ -10,7 +10,7 @@ namespace SDVXStarter
     /// <summary>
     /// Processes the Xml Functions
     /// </summary>
-    interface XmlUltility
+    interface IXmlUltility
     {
         /// <summary>
         /// Updates the storage.
@@ -49,6 +49,14 @@ namespace SDVXStarter
         /// <param name="name">Node to find</param>
         /// <returns>name.InnerText</returns>
         string GetValue(XmlNode name);
+
+        /// <summary>
+        /// Return the attribute text inside given node
+        /// </summary>
+        /// <param name="name">Node name</param>
+        /// <param name="attrName">Attribute to find</param>
+        /// <returns>name.attribute</returns>
+        string GetAttribute(XmlNode name, string attrName);
       
         /// <summary>
         /// Append child to node.

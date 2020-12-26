@@ -41,7 +41,7 @@ namespace SDVXStatrter
         /// <summary>
         /// Resets the user interface to given storage's value.
         /// </summary>
-        /// <param name="newStorage">Storage to read</param>
+        /// <param name="newStorage">IStorage to read</param>
         void RefreshView(XmlStorage newStorage);
 
         /// <summary>
@@ -52,6 +52,6 @@ namespace SDVXStatrter
         /// <summary>
         /// Updates the view to match the storage
         /// </summary>
-        void UpdateView(Storage stroage);
+        void UpdateView(IStorage stroage);
     }
 }

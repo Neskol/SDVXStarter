@@ -9,7 +9,7 @@ namespace SDVXStarter
     /**
      * Create a card generator.
      */
-    public class CardNumberGenerator1L : CardNumberGenerator
+    public class CardNumberGenerator1L : ICardNumberGenerator
     {
         public const string CHAR_ALLOWED = "01234567890ABCDEF";
        

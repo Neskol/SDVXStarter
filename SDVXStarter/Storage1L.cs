@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace SDVXStarter
 {
     /// <summary>
-    /// Implementation of Memory / Storage.
+    /// Implementation of Memory / IStorage.
     /// </summary>
-    public class Storage1L : Storage
+    public class Storage1L : IStorage
     {
         private Dictionary<string, string> versionSet;
         private Dictionary<string, string> pathSet;
@@ -369,6 +369,11 @@ namespace SDVXStarter
             {
                 this.configSet = value;
             }
+        }
+
+        public bool CheckValidity()
+        {
+            return (this.pathSet != null)&& (this.versionSet != null) && (this.valueSet != null) && (this.configSet != null)  ;
         }
     }
 }

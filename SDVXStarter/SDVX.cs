@@ -16,8 +16,8 @@ namespace SDVXStarter
 {
     public partial class SDVX : Form, SDVXStatrter.SDVXView
     {
-        private Storage globalStorage;
-        private CardNumberGenerator globalGenerator;
+        private IStorage globalStorage;
+        private ICardNumberGenerator globalGenerator;
         private const string DefaultCard = "E004000000000000";
 
         public SDVX()
@@ -134,7 +134,7 @@ namespace SDVXStarter
 
         }
 
-        void SDVXStatrter.SDVXView.UpdateView(Storage storage)
+        void SDVXStatrter.SDVXView.UpdateView(IStorage storage)
         {
 
         }
@@ -851,20 +851,20 @@ namespace SDVXStarter
         {
             throw new NotImplementedException();
             bool selected = false;
-            OpenFileDialog xmlSelector = new OpenFileDialog();
-            xmlSelector.Title = "Select the ea3-config.xml you'd like to load:";
-            xmlSelector.Filter = "ea3-config.xml|*.xml";
+            OpenFileDialog configSelector = new OpenFileDialog();
+            configSelector.Title = "Select the Starter Config you'd like to load:";
+            configSelector.Filter = "Starter Config |*.xml";
             if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
             {
-                xmlSelector.InitialDirectory = pathCombo.Text;
+                configSelector.InitialDirectory = pathCombo.Text;
             }
             else
             {
-                xmlSelector.InitialDirectory = Application.StartupPath;
+                configSelector.InitialDirectory = Application.StartupPath;
             }
-            if (xmlSelector.ShowDialog() == DialogResult.OK)
+            if (configSelector.ShowDialog() == DialogResult.OK)
             {
-                if (string.IsNullOrEmpty(xmlSelector.FileName))
+                if (string.IsNullOrEmpty(configSelector.FileName))
                 {
                     MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
                 }
@@ -875,26 +875,29 @@ namespace SDVXStarter
             }
             if (selected)
             {
-                EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
-                if (!compiler.CheckValidity())
+                XmlStorage configLoader = new XmlStorage();
+                configLoader.LoadXml(configSelector.FileName);
+                if (!configLoader.CheckValidity())
                 {
                     MessageBox.Show("The xml file you selected is invalid.");
                 }
                 else
                 {
-                    if (!FindDuplicate(pcbidCombo.Items, compiler.PCBID))
+                    pcbidCombo.Items.Clear();
+                    foreach(string x in configLoader.LocalStorage.GetVerSet().Values)
                     {
-                        pcbidCombo.Items.Add(compiler.PCBID);
+                        pcbidCombo.Items.Add(x);
                     }
-                    pcbidCombo.SelectedItem = (compiler.PCBID);
-                    if (!FindDuplicate(urlCombo.Items, compiler.Services))
-                    {
-                        urlCombo.Items.Add(compiler.Services);
-                    }
-                    urlCombo.SelectedItem = (compiler.Services);
-                    sslCheck.CheckState = CheckState.Unchecked;
-                    urlCheck.CheckState = CheckState.Checked;
-                    PackageAndUpdate();
+                    pcbidCombo.SelectedItem = configLoader.LocalStorage.GetArgument();
+                    //pcbidCombo.SelectedItem = (configLoader.PCBID);
+                    //if (!FindDuplicate(urlCombo.Items, configLoader.Services))
+                    //{
+                     //   urlCombo.Items.Add(configLoader.Services);
+                    //}
+                   // urlCombo.SelectedItem = (configLoader.Services);
+                    //sslCheck.CheckState = CheckState.Unchecked;
+                   // urlCheck.CheckState = CheckState.Checked;
+                   // PackageAndUpdate();
                 }
             }
         }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace SDVXStarter
 {
     /// <summary>
-    /// Interface for CardNumberGenerator.
+    /// Interface for ICardNumberGenerator.
     /// </summary>
-    interface CardNumberGenerator
+    interface ICardNumberGenerator
     {
         ///<summary>
         ///Returns a valid card number.

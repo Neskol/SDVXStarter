@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace SDVXStarter
 {
     /// <summary>
-    /// Interface of Memory / Storage
+    /// Interface of Memory / IStorage
     /// </summary>
-    interface Storage
+    interface IStorage
     {
         /// <summary>
         /// Updates cardSet, pcbidSet, urlSet and viewPathSet
@@ -200,5 +200,11 @@ namespace SDVXStarter
         /// <param name="key">Key to verify</param>
         /// <returns>True if contains key, false elsewise</returns>
         bool FindKeyDuplicate(Dictionary<string, bool> set, string key);
+
+        /// <summary>
+        /// Checks if the storage contains all elements
+        /// </summary>
+        /// <returns>True if valid, false elsewise</returns>
+        bool CheckValidity();
     }
 }

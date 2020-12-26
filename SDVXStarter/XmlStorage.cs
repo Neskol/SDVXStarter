@@ -7,10 +7,10 @@ using System.Xml;
 
 namespace SDVXStarter
 {
-    class XmlStorage : XmlUltility
+    class XmlStorage : IXmlUltility
     {
         private string path;
-        private Storage localStorage;
+        private IStorage localStorage;
         private XmlDocument configStorage;
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace SDVXStarter
         /// </summary>
         /// <param name="globalStorage">storage that contains all values.</param>
         /// <param name="saving">place to save </param>
-        public XmlStorage(Storage globalStorage, string saving)
+        public XmlStorage(IStorage globalStorage, string saving)
         {
             path = saving;
             localStorage = globalStorage;
@@ -30,7 +30,7 @@ namespace SDVXStarter
         /// Construct an xml storage of global storage
         /// </summary>
         /// <param name="globalStorage">Global storage to construct</param>
-        public XmlStorage(Storage globalStorage)
+        public XmlStorage(IStorage globalStorage)
         {
             path = "cfg.xml";
             localStorage = globalStorage;
@@ -125,7 +125,7 @@ namespace SDVXStarter
 
         public bool CheckValidity()
         {
-            return (localStorage != null);
+            return (localStorage != null)&&localStorage.CheckValidity();
         }
 
         public XmlDocument CreateXml(string inputs)
@@ -220,7 +220,7 @@ namespace SDVXStarter
                     cardSet.Add(card.InnerText);
                 }
             }
-            Storage importedStorage = new Storage1L();
+            IStorage importedStorage = new Storage1L();
             // Updates importedStorage's verPathSet
             foreach(KeyValuePair<string,string> x in verPathSet)
             {
@@ -243,7 +243,7 @@ namespace SDVXStarter
         /// <summary>
         /// Get and set localStorage
         /// </summary>
-        public Storage LocalStorage
+        public IStorage LocalStorage
         {
             get
             {
@@ -253,6 +253,11 @@ namespace SDVXStarter
             {
                 this.localStorage = value;
             }
+        }
+
+        public string GetAttribute(XmlNode name, string attrName)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
