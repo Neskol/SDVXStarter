@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,17 +57,25 @@ namespace SDVXStarter
             {
                 throw new NotImplementedException();
                 this.ea3Config = new XmlDocument();
-                XmlNode root = this.ea3Config.CreateElement("ea3");
-                this.ea3Config.AppendChild(root);
-
-                this.model = this.ea3Config.SelectSingleNode("ea3/soft/model");
-                this.dest = this.ea3Config.SelectSingleNode("ea3/soft/dest");
-                this.spec = this.ea3Config.SelectSingleNode("ea3/soft/spec");
-                this.rev = this.ea3Config.SelectSingleNode("ea3/soft/rev");
-                this.ext = this.ea3Config.SelectSingleNode("ea3/soft/ext");
-                this.idX = this.ea3Config.SelectSingleNode("ea3/id/pcbid");
-                this.servicesX = this.ea3Config.SelectSingleNode("ea3/network/services");
-                this.urlSlashX = this.ea3Config.SelectSingleNode("ea3/network/url_slash");
+                StreamReader input = new StreamReader(@"<?xml version=""1.0"" encoding=""utf-8"" ?><pcbid>01203D6C56B1FE8D60A4</pcbid>
+<url_slash __type=""bool"">1</url_slash><services>http://eamu.bemanicn.com</services>");
+                XmlReader xmlIn = XmlReader.Create(input);
+                while (xmlIn.Read())
+                {
+                    if (xmlIn.Name.Equals("pcbid"))
+                    {
+                        this.PCBID = xmlIn.Value;
+                    }
+                    else if (xmlIn.Name.Equals("service"))
+                    {
+                        this.Services = xmlIn.Value;
+                    }
+                    else if (xmlIn.Name.Equals("url_slash"))
+                    {
+                        this.UrlSlash = xmlIn.Value;
+                    }
+                }
+                UpdateByRuntime();
                 if (CheckValidity())
                 {
                     UpdateStorage();

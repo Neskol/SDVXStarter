@@ -63,7 +63,7 @@ namespace SDVXStarter
             {
                 XmlElement pair = configStorage.CreateElement("Pair");
                 pair.InnerText = x;
-                XmlAttribute ver = configStorage.CreateAttribute("version");
+                XmlAttribute ver = configStorage.CreateAttribute("Version");
                 ver.Value = localStorage.GetVersion(x);
                 pair.Attributes.Append(ver);
                 verPathSet.AppendChild(pair);
@@ -100,8 +100,11 @@ namespace SDVXStarter
             /// Add elements in configSet
             foreach (KeyValuePair<string,bool> x in localStorage.GetCfgMap())
             {
-                XmlElement pair = configStorage.CreateElement(x.Key);
+                XmlElement pair = configStorage.CreateElement("Pair");
                 pair.InnerText = x.Value.ToString();
+                XmlAttribute set = configStorage.CreateAttribute("Set");
+                set.Value = x.Key;
+                pair.Attributes.Append(set);
                 cfgSet.AppendChild(pair);
             }
             XmlElement lastSet = configStorage.CreateElement("DefaultSetting");
@@ -141,6 +144,8 @@ namespace SDVXStarter
         {
             XmlDocument result = new XmlDocument();
             result.Load(path);
+            this.configStorage = result;
+            UpdateStorage();
             return result;
         }
 
@@ -151,7 +156,88 @@ namespace SDVXStarter
 
         public void UpdateStorage()
         {
-            
+            Dictionary<string, string> verPathSet = new Dictionary<string, string>();
+            Dictionary<string, bool> configSet = new Dictionary<string, bool>();
+            List<string> argumentSet = new List<string>();
+            List<string> cardSet = new List<string>();
+            List<string> pcbidSet = new List<string>();
+            List<string> urlSet = new List<string>();
+            List<string> pathSet = new List<string>();
+
+            XmlNodeList verPathNodes = configStorage.SelectSingleNode("SDVXStarter/VerPath").ChildNodes;
+            XmlNodeList configNodes = configStorage.SelectSingleNode("SDVXStarter/UserConfigSet").ChildNodes;
+            XmlNodeList cardNodes = configStorage.SelectSingleNode("SDVXStarter/Cards").ChildNodes;
+            XmlNodeList pcbidNodes = configStorage.SelectSingleNode("SDVXStarter/PCBIDSet").ChildNodes;
+            XmlNodeList urlNodes = configStorage.SelectSingleNode("SDVXStarter/URLSet").ChildNodes;
+            XmlNodeList argumentNodes = configStorage.SelectSingleNode("SDVXStarter/DiffultSetting").ChildNodes;
+
+            // Updates verPathSet
+            foreach(XmlNode pair in verPathNodes)
+            {
+                if(pair.Attributes!=null&& !pair.InnerText.Equals("") && !localStorage.FindKeyDuplicate(verPathSet,pair.InnerText))
+                {
+                    verPathSet.Add(((XmlElement)pair).GetAttribute("Version"), pair.InnerText);
+                }
+            }
+            // Updates configSet
+            foreach (XmlNode pair in configNodes)
+            {
+                if (pair.Attributes != null && !pair.InnerText.Equals("") && !localStorage.FindKeyDuplicate(configSet, pair.InnerText))
+                {
+                    bool set = pair.InnerText.Equals("true");
+                    configSet.Add(((XmlElement)pair).GetAttribute("Set"), set);
+                }
+            }
+            // Updates argument
+            foreach (XmlNode argument in argumentNodes)
+            {
+                if (!argument.InnerText.Equals(""))
+                {
+                    argumentSet.Add(argument.InnerText);
+                }
+            }
+            // Updates PCBID
+            foreach (XmlNode pcbid in pcbidNodes)
+            {
+                if (!pcbid.InnerText.Equals(""))
+                {
+                    pcbidSet.Add(pcbid.InnerText);
+                }
+            }
+            // Updates URL
+            foreach (XmlNode url in urlNodes)
+            {
+                if (!url.InnerText.Equals(""))
+                {
+                    urlSet.Add(url.InnerText);
+                }
+            }
+            // Updates card
+            foreach (XmlNode card in cardNodes)
+            {
+                if (!card.InnerText.Equals(""))
+                {
+                    cardSet.Add(card.InnerText);
+                }
+            }
+            Storage importedStorage = new Storage1L();
+            // Updates importedStorage's verPathSet
+            foreach(KeyValuePair<string,string> x in verPathSet)
+            {
+                importedStorage.AddVerPathMap(x.Key,x.Value);
+            }
+            // Updates importedStorage's configSet
+            foreach (KeyValuePair<string, bool> x in configSet)
+            {
+                importedStorage.AddConfigSetMap(x.Key, x.Value);
+            }
+            // Updates importedStorage's lists.
+            foreach (string path in verPathSet.Values)
+            {
+                pathSet.Add(path);
+            }
+            importedStorage.IntakeValue(cardSet, pcbidSet, urlSet, pathSet);
+
         }
 
         /// <summary>

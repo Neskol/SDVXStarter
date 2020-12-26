@@ -38,7 +38,7 @@ namespace SDVXStarter
             this.AddVerPathMap("Root SDVX", "(root path)");
         }
 
-        public void IntakeViewValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet)
+        public void IntakeValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet)
         {
             this.cardSet = cardSet;
             this.pcbidSet = pcbidSet;
@@ -120,9 +120,13 @@ namespace SDVXStarter
             return found;
         }
 
-        public void AddConfigMap(string item, bool set, string value)
+        public void AddConfigSetMap(string item, bool set)
         {
             this.configSet.Add(item, set);
+        }
+
+        public void AddConfigValueMap(string item, string value)
+        {
             this.valueSet.Add(item, value);
         }
 
@@ -303,7 +307,22 @@ namespace SDVXStarter
 
             foreach (KeyValuePair<string,string> x in set)
             {
-                if (x.Key.Equals(key))
+                if (x.Key.Equals(key) || x.Key.Equals(key + "\\") || x.Key.Equals(key + "/")) // Incase URL has a slash at the end
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public bool FindKeyDuplicate(Dictionary<string, bool> set, string key)
+        {
+            bool result = false;
+
+            foreach (KeyValuePair<string, bool> x in set)
+            {
+                if (x.Key.Equals(key)||x.Key.Equals(key+"\\") || x.Key.Equals(key + "/"))
                 {
                     result = true;
                 }
@@ -335,6 +354,21 @@ namespace SDVXStarter
         public List<string> ReturnArgument()
         {
             return this.argument;
+        }
+
+        /// <summary>
+        /// Get and set this.configSet
+        /// </summary>
+        public Dictionary<string,bool> ConfigSet
+        {
+            get
+            {
+                return this.configSet;
+            }
+            set
+            {
+                this.configSet = value;
+            }
         }
     }
 }

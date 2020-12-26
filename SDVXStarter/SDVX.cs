@@ -799,7 +799,7 @@ namespace SDVXStarter
             {
                 pcbidSet.Add(x);
             }
-            globalStorage.IntakeViewValue(cardSet,pcbidSet,urlSet,viewPathSet);
+            globalStorage.IntakeValue(cardSet,pcbidSet,urlSet,viewPathSet);
             XmlStorage save = new XmlStorage(globalStorage);
             save.ConstructCfgStorage();
             save.SaveXml("cfg.xml");
@@ -840,6 +840,63 @@ namespace SDVXStarter
                 }
             
         }
-        }   
+        }
+
+        private void ea3configToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void starterConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+            bool selected = false;
+            OpenFileDialog xmlSelector = new OpenFileDialog();
+            xmlSelector.Title = "Select the ea3-config.xml you'd like to load:";
+            xmlSelector.Filter = "ea3-config.xml|*.xml";
+            if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
+            {
+                xmlSelector.InitialDirectory = pathCombo.Text;
+            }
+            else
+            {
+                xmlSelector.InitialDirectory = Application.StartupPath;
+            }
+            if (xmlSelector.ShowDialog() == DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(xmlSelector.FileName))
+                {
+                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                }
+                else
+                {
+                    selected = true;
+                }
+            }
+            if (selected)
+            {
+                EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
+                if (!compiler.CheckValidity())
+                {
+                    MessageBox.Show("The xml file you selected is invalid.");
+                }
+                else
+                {
+                    if (!FindDuplicate(pcbidCombo.Items, compiler.PCBID))
+                    {
+                        pcbidCombo.Items.Add(compiler.PCBID);
+                    }
+                    pcbidCombo.SelectedItem = (compiler.PCBID);
+                    if (!FindDuplicate(urlCombo.Items, compiler.Services))
+                    {
+                        urlCombo.Items.Add(compiler.Services);
+                    }
+                    urlCombo.SelectedItem = (compiler.Services);
+                    sslCheck.CheckState = CheckState.Unchecked;
+                    urlCheck.CheckState = CheckState.Checked;
+                    PackageAndUpdate();
+                }
+            }
+        }
     }
 }

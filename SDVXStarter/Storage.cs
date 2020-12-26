@@ -18,7 +18,7 @@ namespace SDVXStarter
         /// <param name="pcbidSet">pcbid set in view</param>
         /// <param name="urlSet">url set in view</param>
         /// <param name="viewPathSet">path set in view</param>
-         void IntakeViewValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet);
+         void IntakeValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet);
 
         /// <summary>
         /// Return this.CardSet
@@ -95,8 +95,14 @@ namespace SDVXStarter
         /// </summary>
         /// <param name="item">Item to add</param>
         /// <param name="set">Status to add</param>
+        void AddConfigSetMap(string item, bool set);
+
+        /// <summary>
+        /// Add config for arguments.
+        /// </summary>
+        /// <param name="item">Item to add</param>
         /// <param name="value">Specific value to add</param>
-        void AddConfigMap(string item, bool set, string value);
+        void AddConfigValueMap(string item, string value);
 
         /// <summary>
         /// Get version of given path.
@@ -184,7 +190,15 @@ namespace SDVXStarter
         /// </summary>
         /// <param name="set">Set specified</param>
         /// <param name="key">Key to verify</param>
-        /// <returns></returns>
+        /// <returns>True if contains key, false elsewise</returns>
         bool FindKeyDuplicate(Dictionary<string, string> set, string key);
+
+        /// <summary>
+        /// Find if given set already has value as key.
+        /// </summary>
+        /// <param name="set">Set specified</param>
+        /// <param name="key">Key to verify</param>
+        /// <returns>True if contains key, false elsewise</returns>
+        bool FindKeyDuplicate(Dictionary<string, bool> set, string key);
     }
 }

@@ -508,8 +508,9 @@
             // starterConfigToolStripMenuItem
             // 
             this.starterConfigToolStripMenuItem.Name = "starterConfigToolStripMenuItem";
-            this.starterConfigToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.starterConfigToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.starterConfigToolStripMenuItem.Text = "Starter Config";
+            this.starterConfigToolStripMenuItem.Click += new System.EventHandler(this.starterConfigToolStripMenuItem_Click);
             // 
             // ea3configToolStripMenuItem
             // 
@@ -538,15 +539,16 @@
             // starterConfigToolStripMenuItem1
             // 
             this.starterConfigToolStripMenuItem1.Name = "starterConfigToolStripMenuItem1";
-            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(194, 26);
+            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.starterConfigToolStripMenuItem1.Text = "Starter Config";
             this.starterConfigToolStripMenuItem1.Click += new System.EventHandler(this.starterConfigToolStripMenuItem1_Click);
             // 
             // ea3configToolStripMenuItem1
             // 
             this.ea3configToolStripMenuItem1.Name = "ea3configToolStripMenuItem1";
-            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(194, 26);
+            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.ea3configToolStripMenuItem1.Text = "ea3-config";
+            this.ea3configToolStripMenuItem1.Click += new System.EventHandler(this.ea3configToolStripMenuItem1_Click);
             // 
             // saveAsToolStripMenuItem
             // 
