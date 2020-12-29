@@ -55,7 +55,7 @@ namespace SDVXStarter
             }
             else
             {
-                valueSet.Add("pcbid", pcbidCombo.SelectedItem.ToString());
+                valueSet.Add("pcbid", pcbidCombo.Text.ToString());
             }
             // Checks card
             if (cardCombo.Text.Equals("") || cardCombo.Text.Equals("(Empty)"))
@@ -68,7 +68,7 @@ namespace SDVXStarter
             }
             else
             {
-                valueSet.Add("card", cardCombo.SelectedItem.ToString());
+                valueSet.Add("card", cardCombo.Text.ToString());
             }
             // Checks url
             if (urlCombo.Text.Equals("") || urlCombo.Text.Equals("(Empty)"))
@@ -171,6 +171,7 @@ namespace SDVXStarter
             RefreshStorage();
             RefreshView();
             PackageAndUpdate();
+            Console.WriteLine("Hello World!");
         }
 
         private void bGenerate_Click(object sender, EventArgs e)
@@ -283,7 +284,7 @@ namespace SDVXStarter
                 globalStorage.GetVerSet().TryGetValue(current.Text, out path);
                 spice.StandardInput.WriteLine(GetDiskName(path));
                 spice.StandardInput.WriteLine("cd " + "\"" + path + "\"");
-                spice.StandardInput.WriteLine(".\\spice.exe " + globalStorage.GetArgument());          
+                spice.StandardInput.WriteLine(".\\spice.exe " + globalStorage.ComposeArgument());          
                 spice.StandardInput.WriteLine("exit");
                 spice.Close();
             }         
@@ -296,7 +297,7 @@ namespace SDVXStarter
                 spice.StartInfo.RedirectStandardError = true;
                 spice.StartInfo.CreateNoWindow = false;
                 spice.Start();
-                spice.StandardInput.WriteLine(".\\spice.exe " + globalStorage.GetArgument());
+                spice.StandardInput.WriteLine(".\\spice.exe " + globalStorage.ComposeArgument());
                 spice.StandardInput.WriteLine("exit");
                 spice.Close();
             }
@@ -332,7 +333,7 @@ namespace SDVXStarter
                 globalStorage.GetVerSet().TryGetValue(current.Text, out path);
                 spice.StandardInput.WriteLine(GetDiskName(path));
                 spice.StandardInput.WriteLine("cd " + "\"" + path + "\"");
-                spice.StandardInput.WriteLine(".\\spice64.exe " + globalStorage.GetArgument());
+                spice.StandardInput.WriteLine(".\\spice64.exe " + globalStorage.ComposeArgument());
                 spice.StandardInput.WriteLine("exit");
                 spice.Close();
             }
@@ -345,7 +346,7 @@ namespace SDVXStarter
                 spice.StartInfo.RedirectStandardError = true;
                 spice.StartInfo.CreateNoWindow = false;
                 spice.Start();
-                spice.StandardInput.WriteLine(".\\spice64.exe " + globalStorage.GetArgument());
+                spice.StandardInput.WriteLine(".\\spice64.exe " + globalStorage.ComposeArgument());
                 spice.StandardInput.WriteLine("exit");
                 spice.Close();
             }
@@ -660,7 +661,7 @@ namespace SDVXStarter
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SDVX Starter ver 0.1a\nBy Neskol Lu, 2020\nManages details to play.", "About");
+            MessageBox.Show("SDVX Starter ver 0.09\nBy Neskol Lu, 2020\nManages details to play.\nSee https://github.com/Neskol/SDVXStarter for source codes", "About");
         }
 
         private void apiBox_CheckedChanged(object sender, EventArgs e)
@@ -849,7 +850,6 @@ namespace SDVXStarter
 
         private void starterConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
             bool selected = false;
             OpenFileDialog configSelector = new OpenFileDialog();
             configSelector.Title = "Select the Starter Config you'd like to load:";
@@ -883,21 +883,165 @@ namespace SDVXStarter
                 }
                 else
                 {
+                    // Adds items to PCBID combo
                     pcbidCombo.Items.Clear();
-                    foreach(string x in configLoader.LocalStorage.GetVerSet().Values)
+                    foreach (string x in configLoader.LocalStorage.GetPCBIDSet())
                     {
                         pcbidCombo.Items.Add(x);
                     }
-                    pcbidCombo.SelectedItem = configLoader.LocalStorage.GetArgument();
-                    //pcbidCombo.SelectedItem = (configLoader.PCBID);
-                    //if (!FindDuplicate(urlCombo.Items, configLoader.Services))
-                    //{
-                     //   urlCombo.Items.Add(configLoader.Services);
-                    //}
-                   // urlCombo.SelectedItem = (configLoader.Services);
-                    //sslCheck.CheckState = CheckState.Unchecked;
-                   // urlCheck.CheckState = CheckState.Checked;
-                   // PackageAndUpdate();
+                    // Adds items to Path Combo
+                    pathCombo.Items.Clear();
+                    foreach (string x in configLoader.LocalStorage.GetVerSet().Values)
+                    {
+                        pathCombo.Items.Add(x);
+                    }
+                    // Adds items to card combo
+                    cardCombo.Items.Clear();
+                    foreach (string x in configLoader.LocalStorage.GetCardSet())
+                    {
+                        cardCombo.Items.Add(x);
+                    }
+                    // Adds items to URL combo
+                    urlCombo.Items.Clear();
+                    foreach (string x in configLoader.LocalStorage.GetUrlSet())
+                    {
+                        urlCombo.Items.Add(x);
+                    }
+                    RefreshView(configLoader.LocalStorage.ReturnArgument());
+                    foreach (string x in configLoader.LocalStorage.ReturnArgument())
+                    {
+                        Console.WriteLine(x);
+                    }
+                    globalStorage = configLoader.LocalStorage;
+                    PackageAndUpdate();
+                }
+            }
+        }
+
+        public void RefreshView(List<string> newArgument)
+        {
+            foreach (string argument in newArgument)
+            {
+                // Processes 720p option
+                if (argument.Equals("-sdvx"))
+                {
+                    hdCheck.CheckState = CheckState.Unchecked;
+                }
+                else if (argument.Equals("-sdvx720p"))
+                {
+                    hdCheck.CheckState = CheckState.Checked;
+                }
+                //Process card selection
+                if (argument.Contains("-card"))
+                {
+                    cardCombo.SelectedItem = argument.Split(' ')[1];
+                }
+                //Process URL selection
+                if (argument.Contains("-url")&&!argument.Contains("-urlslash"))
+                {
+                    urlCombo.SelectedItem = argument.Split(' ')[1];
+                    urlCheck.CheckState = CheckState.Checked;
+                }
+                //Process SSL option
+                if (argument.Equals("-ssldisable"))
+                {
+                    sslCheck.CheckState = CheckState.Checked;
+                }
+                //Process printer option
+                if (argument.Equals("-printer"))
+                {
+                    printerCheck.CheckState = CheckState.Checked;
+                }
+                //Process PCBID option
+                if (argument.Contains("-p"))
+                {
+                    pcbidCombo.SelectedItem = argument.Split(' ')[1];
+                }
+                //Process full screen option
+                if (argument.Equals("-w"))
+                {
+                    fullScreenCheck.CheckState = CheckState.Unchecked;
+                }
+                //Process spice comanion option
+                if (argument.Contains("-api")&&!argument.Contains("-apipass"))
+                {
+                    apiCheck.CheckState = CheckState.Checked;
+                    portBox.Text = argument.Split(' ')[1];
+                }
+                else if (argument.Contains("-apipass"))
+                {
+                    apiCheck.CheckState = CheckState.Checked;
+                    passwordBox.Text = argument.Split(' ')[1];
+                }
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool selected = false;
+            OpenFileDialog configSelector = new OpenFileDialog();
+            configSelector.Title = "Select the Starter Config you'd like to save:";
+            configSelector.Filter = "Starter Config |*.xml";
+            configSelector.FileName = "cfg.xml";
+            if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
+            {
+                configSelector.InitialDirectory = pathCombo.Text;
+            }
+            else
+            {
+                configSelector.InitialDirectory = Application.StartupPath;
+            }
+            if (configSelector.ShowDialog() == DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(configSelector.FileName))
+                {
+                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                }
+                else
+                {
+                    selected = true;
+                }
+            }
+            if (selected)
+            {
+                XmlStorage configLoader = new XmlStorage();
+                configLoader.LoadXml(configSelector.FileName);
+                if (!configLoader.CheckValidity())
+                {
+                    MessageBox.Show("The xml file you selected is invalid.");
+                }
+                else
+                {
+                    PackageAndUpdate();
+                    List<string> viewPathSet = new List<string>();
+                    List<string> cardSet = new List<string>();
+                    List<string> urlSet = new List<string>();
+                    List<string> pcbidSet = new List<string>();
+                    /// Add element to view path set
+                    foreach (string x in pathCombo.Items)
+                    {
+                        viewPathSet.Add(x);
+                    }
+                    /// Add element to card set
+                    foreach (string x in cardCombo.Items)
+                    {
+                        cardSet.Add(x);
+                    }
+                    /// Add element to url set
+                    foreach (string x in urlCombo.Items)
+                    {
+                        urlSet.Add(x);
+                    }
+                    /// Add element to view path set
+                    foreach (string x in pcbidCombo.Items)
+                    {
+                        pcbidSet.Add(x);
+                    }
+                    globalStorage.IntakeValue(cardSet, pcbidSet, urlSet, viewPathSet);
+                    XmlStorage save = new XmlStorage(globalStorage);
+                    save.ConstructCfgStorage();
+                    save.SaveXml(configSelector.FileName);
+                    MessageBox.Show("Successfully saved at: " + configSelector.FileName);
                 }
             }
         }

@@ -45,6 +45,12 @@ namespace SDVXStatrter
         void RefreshView(XmlStorage newStorage);
 
         /// <summary>
+        /// Update selected items to given argument.
+        /// </summary>
+        /// <param name="newArgument">Previous launch up argument list or new argument list</param>
+        void RefreshView(List<string> newArgument);
+
+        /// <summary>
         /// Resets the storage to its initial value.
         /// </summary>
         void RefreshStorage();

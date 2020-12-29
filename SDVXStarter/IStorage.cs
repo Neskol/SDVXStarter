@@ -143,7 +143,7 @@ namespace SDVXStarter
         /// <returns>
         /// each in this.argument
         /// </returns>
-        string GetArgument();
+        string ComposeArgument();
 
         /// <summary>
         /// Return Argument List for saving
@@ -156,6 +156,13 @@ namespace SDVXStarter
         /// </summary>
         /// <changes>this.argument</changes>
         void UpdateArgument();
+
+        /// <summary>
+        /// Updates argument to match user choises in pannel.
+        /// </summary>
+        /// <param name="newArgument">the new argument to replace</param>
+        /// <changes>this.argument</changes>
+        void UpdateArgument(List<string> newArgument);
 
         /// <summary>
         /// Updates all settings to match user choises in pannel.

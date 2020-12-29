@@ -35,7 +35,6 @@ namespace SDVXStarter
             urlSet = new List<string>();
             viewPathSet = new List<string>();
             argument = new List<string>();
-            this.AddVerPathMap("Root SDVX", "(root path)");
         }
 
         public void IntakeValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet)
@@ -148,7 +147,7 @@ namespace SDVXStarter
             return path;
         }
 
-        public string GetArgument()
+        public string ComposeArgument()
         {
             string result = "";
 
@@ -188,7 +187,7 @@ namespace SDVXStarter
                 this.argument.Add("-urlslash 1");
             }
             // Updates ssl setting
-            if (!this.GetCfgSet("ssl"))
+            if (this.GetCfgSet("ssl"))
             {
                 this.argument.Add("-ssldisable");
             }
@@ -357,6 +356,21 @@ namespace SDVXStarter
         }
 
         /// <summary>
+        /// Get and sets argument
+        /// </summary>
+        public List<string> Argument
+        {
+            get
+            {
+                return this.argument;
+            }
+            set
+            {
+                this.argument = value;
+            }
+        }
+
+        /// <summary>
         /// Get and set this.configSet
         /// </summary>
         public Dictionary<string,bool> ConfigSet
@@ -374,6 +388,11 @@ namespace SDVXStarter
         public bool CheckValidity()
         {
             return (this.pathSet != null)&& (this.versionSet != null) && (this.valueSet != null) && (this.configSet != null)  ;
+        }
+
+        public void UpdateArgument(List<string> newArgument)
+        {
+            this.argument = newArgument;
         }
     }
 }
