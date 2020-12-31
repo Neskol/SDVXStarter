@@ -35,8 +35,9 @@ namespace SDVXStarter
 
         public bool Verify(string cardNumber)
         {
-            bool valid = true;
             char[] array = cardNumber.ToCharArray();
+            bool valid = array.Length == 16;
+
 
             for (int i = 0; i<16 && valid; i++)
             {

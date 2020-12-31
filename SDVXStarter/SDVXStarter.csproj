@@ -63,8 +63,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardNumberGenerator1L.cs" />
+    <Compile Include="EA3Modifier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EA3Modifier.Designer.cs">
+      <DependentUpon>EA3Modifier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ultilities.cs" />
+    <Compile Include="UserMassInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserMassInput.Designer.cs">
+      <DependentUpon>UserMassInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="ICardNumberGenerator.cs" />
     <Compile Include="InputFormMethods.cs" />
+    <Compile Include="InputMediate.cs" />
+    <Compile Include="UserInputCombo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInputCombo.Designer.cs">
+      <DependentUpon>UserInputCombo.cs</DependentUpon>
+    </Compile>
     <Compile Include="XmlStorage.cs" />
     <Compile Include="IXmlUltility.cs" />
     <Compile Include="SDVXView.cs" />
@@ -79,6 +99,12 @@
       <DependentUpon>SDVX.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EA3Modifier.resx">
+      <DependentUpon>EA3Modifier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserMassInput.resx">
+      <DependentUpon>UserMassInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SDVX.resx">
       <DependentUpon>SDVX.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +118,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserInputCombo.resx">
+      <DependentUpon>UserInputCombo.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -335,7 +335,9 @@ namespace SDVXStarter
             this.versionSet.Clear();
             this.pathSet.Clear();
             this.versionSet.Add("Root SDVX","(root path)");
+            this.versionSet.Add("Remove SDVX", "(Remove)");
             this.pathSet.Add("(root path)","Root SDVX");
+            this.pathSet.Add("(Remove)", "Remove SDVX");
             this.configSet.Clear();
             this.valueSet.Clear();
         }

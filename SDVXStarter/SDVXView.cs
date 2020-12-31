@@ -58,6 +58,11 @@ namespace SDVXStatrter
         /// <summary>
         /// Updates the view to match the storage
         /// </summary>
-        void UpdateView(IStorage stroage);
+        void UpdateView(IStorage storage);
+
+        /// <summary>
+        /// Restores command items for all view items
+        /// </summary>
+        void RestoreCommands();
     }
 }

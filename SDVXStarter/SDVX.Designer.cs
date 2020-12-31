@@ -76,6 +76,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreDefaultCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -85,6 +86,8 @@
             this.portLabel = new System.Windows.Forms.Label();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.portBox = new System.Windows.Forms.TextBox();
+            this.starterConfigToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ea3configToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.versionGroup.SuspendLayout();
             this.configGroup.SuspendLayout();
             this.optionBox.SuspendLayout();
@@ -534,6 +537,7 @@
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // starterConfigToolStripMenuItem1
             // 
@@ -551,10 +555,12 @@
             // 
             // saveAsToolStripMenuItem
             // 
+            this.saveAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.starterConfigToolStripMenuItem2,
+            this.ea3configToolStripMenuItem2});
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.saveAsToolStripMenuItem.Text = "Save &As";
-            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -576,7 +582,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customizeToolStripMenuItem});
+            this.customizeToolStripMenuItem,
+            this.restoreDefaultCommandToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -584,8 +591,16 @@
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
             this.customizeToolStripMenuItem.Text = "&EA3 Modifier";
+            this.customizeToolStripMenuItem.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
+            // 
+            // restoreDefaultCommandToolStripMenuItem
+            // 
+            this.restoreDefaultCommandToolStripMenuItem.Name = "restoreDefaultCommandToolStripMenuItem";
+            this.restoreDefaultCommandToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
+            this.restoreDefaultCommandToolStripMenuItem.Text = "&Restore Default Command";
+            this.restoreDefaultCommandToolStripMenuItem.Click += new System.EventHandler(this.restoreDefaultCommandToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -669,6 +684,19 @@
             this.portBox.Size = new System.Drawing.Size(109, 25);
             this.portBox.TabIndex = 0;
             this.portBox.Text = "8080";
+            // 
+            // starterConfigToolStripMenuItem2
+            // 
+            this.starterConfigToolStripMenuItem2.Name = "starterConfigToolStripMenuItem2";
+            this.starterConfigToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.starterConfigToolStripMenuItem2.Text = "Starter Config";
+            this.starterConfigToolStripMenuItem2.Click += new System.EventHandler(this.starterConfigToolStripMenuItem2_Click);
+            // 
+            // ea3configToolStripMenuItem2
+            // 
+            this.ea3configToolStripMenuItem2.Name = "ea3configToolStripMenuItem2";
+            this.ea3configToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.ea3configToolStripMenuItem2.Text = "ea3-config";
             // 
             // SDVX
             // 
@@ -763,6 +791,9 @@
         private System.Windows.Forms.Label portLabel;
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.TextBox portBox;
+        private System.Windows.Forms.ToolStripMenuItem restoreDefaultCommandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem starterConfigToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem ea3configToolStripMenuItem2;
     }
 }
 

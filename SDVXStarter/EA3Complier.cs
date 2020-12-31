@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using static SDVXStarter.Ultilities;
 
 
 namespace SDVXStarter
@@ -19,10 +20,10 @@ namespace SDVXStarter
         private string pcbid;
         private string services;
         private string urlSlash;
-        XmlNode model, dest, spec, rev, ext;
-        XmlNode idX;
-        XmlNode servicesX;
-        XmlNode urlSlashX;
+        private XmlNode model, dest, spec, rev, ext;
+        private XmlNode idX;
+        private XmlNode servicesX;
+        private XmlNode urlSlashX;
 
        /// <summary>
        /// Construct compiler from given path.
@@ -55,36 +56,21 @@ namespace SDVXStarter
         {
             if (isText)
             {
-                throw new NotImplementedException();
                 this.ea3Config = new XmlDocument();
-                StreamReader input = new StreamReader(@"<?xml version=""1.0"" encoding=""utf-8"" ?><pcbid>01203D6C56B1FE8D60A4</pcbid>
-<url_slash __type=""bool"">1</url_slash><services>http://eamu.bemanicn.com</services>");
-                XmlReader xmlIn = XmlReader.Create(input);
-                while (xmlIn.Read())
-                {
-                    if (xmlIn.Name.Equals("pcbid"))
-                    {
-                        this.PCBID = xmlIn.Value;
-                    }
-                    else if (xmlIn.Name.Equals("service"))
-                    {
-                        this.Services = xmlIn.Value;
-                    }
-                    else if (xmlIn.Name.Equals("url_slash"))
-                    {
-                        this.UrlSlash = xmlIn.Value;
-                    }
-                }
-                UpdateByRuntime();
+                intake = "<cfg>" + intake + "</cfg>";
+                this.ea3Config.LoadXml(intake);
+                this.idX = this.ea3Config.SelectSingleNode("cfg/pcbid");
+                this.servicesX = this.ea3Config.SelectSingleNode("cfg/services");
+                this.urlSlashX = this.ea3Config.SelectSingleNode("cfg/url_slash");
                 if (CheckValidity())
                 {
-                    UpdateStorage();
+                    UpdateStorage(true);
                 }
             }
             else
             {
                 this.ea3Config = new XmlDocument();
-                this.ea3Config.Load(intake);
+                ea3Config.Load(intake);
                 this.model = this.ea3Config.SelectSingleNode("ea3/soft/model");
                 this.dest = this.ea3Config.SelectSingleNode("ea3/soft/dest");
                 this.spec = this.ea3Config.SelectSingleNode("ea3/soft/spec");
@@ -93,6 +79,7 @@ namespace SDVXStarter
                 this.idX = this.ea3Config.SelectSingleNode("ea3/id/pcbid");
                 this.servicesX = this.ea3Config.SelectSingleNode("ea3/network/services");
                 this.urlSlashX = this.ea3Config.SelectSingleNode("ea3/network/url_slash");
+
                 if (CheckValidity())
                 {
                     UpdateStorage();
@@ -110,7 +97,14 @@ namespace SDVXStarter
             this.version = this.ComposeVersion();
             this.pcbid = this.idX.InnerText;
             this.services = this.servicesX.InnerText;
-            this.urlSlash = this.urlSlashX.Attributes.ToString();
+            this.urlSlash = this.urlSlashX.InnerText.ToString();
+        }
+
+        public void UpdateStorage(bool loadFromText)
+        {
+            this.pcbid = this.idX.InnerText;
+            this.services = this.servicesX.InnerText;
+            this.urlSlash = this.urlSlashX.InnerText.ToString();
         }
 
         /// <summary>
@@ -145,14 +139,11 @@ namespace SDVXStarter
         /// </summary>
         public string ComposeVersion()
         {
-            string result = "";
-
-            result = this.model.InnerText + ":"
-                + this.dest.InnerText + ":"
-                + this.spec.InnerText + ":"
-                + this.rev.InnerText + ":"
-                + this.ext.InnerText;
-
+            string result = model.InnerText + ":"
+                            + dest.InnerText + ":"
+                            + spec.InnerText + ":"
+                            + rev.InnerText + ":"
+                            + ext.InnerText;
             return result;
         }
 

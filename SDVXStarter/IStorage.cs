@@ -9,7 +9,7 @@ namespace SDVXStarter
     /// <summary>
     /// Interface of Memory / IStorage
     /// </summary>
-    interface IStorage
+    public interface IStorage
     {
         /// <summary>
         /// Updates cardSet, pcbidSet, urlSet and viewPathSet
@@ -69,6 +69,7 @@ namespace SDVXStarter
         /// this.versionSet.
         /// </returns>
         Dictionary<string, string> GetVerSet();
+
 
         /// <summary>
         /// Return the path set for operation.

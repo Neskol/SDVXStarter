@@ -27,6 +27,81 @@ namespace SDVXStarter
             globalGenerator = new CardNumberGenerator1L();
         }
 
+        public void RestoreCommands()
+        {
+            // Processes pathCombo
+            List<string> previous = new List<string>();
+            foreach (string x in pathCombo.Items)
+            {
+                previous.Add(x);
+            }
+            pathCombo.Items.Clear();
+            pathCombo.Items.Add("(Remove)");
+            pathCombo.Items.Add("(root path)");
+            foreach (string x in previous)
+            {
+                if (!pathCombo.Items.Contains(x))
+                {
+                    pathCombo.Items.Add(x);
+                }
+            }
+            // Processes cardCombo
+            previous = new List<string>();
+            foreach (string x in cardCombo.Items)
+            {
+                previous.Add(x);
+            }
+            cardCombo.Items.Clear();
+            cardCombo.Items.Add("(Empty)");
+            cardCombo.Items.Add("(Remove)");
+            cardCombo.Items.Add("(Add)");
+            cardCombo.Items.Add(DefaultCard);
+            foreach (string x in previous)
+            {
+                if (!cardCombo.Items.Contains(x))
+                {
+                    cardCombo.Items.Add(x);
+                }
+            }
+            // Processes urlCombo
+            previous = new List<string>();
+            foreach (string x in urlCombo.Items)
+            {
+                previous.Add(x);
+            }
+            urlCombo.Items.Clear();
+            urlCombo.Items.Add("(Offline)");
+            urlCombo.Items.Add("(Add)");
+            urlCombo.Items.Add("(Remove)");
+            urlCombo.Items.Add("http://xrpc.arcana.nu/core/");
+            urlCombo.Items.Add("http://eamu.bemanicn.com/");
+            foreach (string x in previous)
+            {
+                if (!urlCombo.Items.Contains(x))
+                {
+                    urlCombo.Items.Add(x);
+                }
+            }
+            // Process pcbidCombo
+            previous = new List<string>();
+            foreach (string x in pcbidCombo.Items)
+            {
+                previous.Add(x);
+            }
+            pcbidCombo.Items.Clear();
+            pcbidCombo.Items.Add("(Empty)");
+            pcbidCombo.Items.Add("(Default)");
+            pcbidCombo.Items.Add("(Add)");
+            pcbidCombo.Items.Add("(Remove)");
+            foreach (string x in previous)
+            {
+                if (!pcbidCombo.Items.Contains(x))
+                {
+                    pcbidCombo.Items.Add(x);
+                }
+            }
+        }
+
         public void PackageAndUpdate()
         {
             pcbidCombo.SelectedItem = pcbidCombo.Text;
@@ -360,10 +435,11 @@ namespace SDVXStarter
         {
             if (pathCombo.SelectedItem.ToString().Equals("(Remove)"))
             {
-                string remove = Interaction.InputBox("Insert the version NOTE you'd like to remove.", "Which version is it?", "SDVX", -1, -1);
-                if (remove.Equals("Root SDVX"))
+                string remove = "";
+                InputMediate.Show("SDVXStarter", "Insert the version NOTE you'd like to remove.",globalStorage.GetPathSet().Values,out remove);
+                if (remove.Equals("Root SDVX")|| remove.Equals("Remove SDVX"))
                 {
-                    MessageBox.Show("No you cannot remove the root path.");
+                    MessageBox.Show("No you cannot remove the command item.");
                 }
                 else if (!remove.Equals(""))
                 {
@@ -371,7 +447,6 @@ namespace SDVXStarter
                     if (found)
                     {
                         pathCombo.Items.Clear();
-                        pathCombo.Items.Add("(Remove)");
                         foreach (string x in globalStorage.GetVerSet().Values)
                         {
                             if (!x.Equals(""))
@@ -406,7 +481,8 @@ namespace SDVXStarter
         {
             if (cardCombo.SelectedItem.ToString().Equals("(Add)"))
             {
-                string intake = Interaction.InputBox("It shall start with E004, contains only 0-9 and A-F and 16 characters in total", "Input your card number.", DefaultCard, -1, -1);
+                string intake = "";
+                InputMediate.Show("SDVXStarter","It shall start with E004, contains only 0-9 and A-F and 16 characters in total",out intake);
                 intake = intake.ToUpper();
                 if (intake.Equals(""))
                 {
@@ -417,7 +493,7 @@ namespace SDVXStarter
                     while (!globalGenerator.Verify(intake) && !intake.Equals(""))
                     {
                         MessageBox.Show("The card number is not valid.", "Invalid card");
-                        intake = Interaction.InputBox("It shall start with E004, contains only 0-9 and A-F and 16 characters in total", "Input your card number.", DefaultCard, -1, -1);
+                        InputMediate.Show("SDVXStarter", "It shall start with E004, contains only 0-9 and A-F and 16 characters in total", out intake);
                         intake = intake.ToUpper();
                     }
                     if (intake.Equals(""))
@@ -438,10 +514,11 @@ namespace SDVXStarter
             }
             else if(cardCombo.Text.Equals("(Remove)"))
             {
-                string intake = Interaction.InputBox("It shall start with E004, contains only 0-9 and A-F and 16 characters in total",  "Input your card number.", DefaultCard, -1, -1);
-                if (intake.Equals("(Add)")||intake.Equals("(Remove)"))
+                string intake = "";
+                InputMediate.Show("SDVXStarter", "It shall start with E004, contains only 0-9 and A-F and 16 characters in total",cardCombo.Items, out intake);
+                if (intake.Equals("(Add)")||intake.Equals("(Remove)")|| intake.Equals("(Empty)")|| intake.Equals("E004000000000000"))
                 {
-                    MessageBox.Show("This shall throw an exception... But not today!","How do you do if you removes the commands?");
+                    MessageBox.Show("You cannot move default items.","How do you do if you removes the commands?");
                 }
                 else
                 {
@@ -845,7 +922,75 @@ namespace SDVXStarter
 
         private void ea3configToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            bool selected = false;
+            bool valueChanged = !pcbidCombo.Text.Equals("(Remove)")&& !pcbidCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("(Add)")&& !urlCombo.Text.Equals("Remove") && (urlCheck.CheckState == CheckState.Checked|| urlCheck.CheckState == CheckState.Unchecked);
+            if (!valueChanged)
+            {
+                MessageBox.Show("You must select URL, PCBID and URLSlash section to modify ea3-config, or selected items contains comands.\ne.g. (Remove) but not (Default), (Offline) or (Empty)");
+            }
+            else
+            {
+                OpenFileDialog xmlSelector = new OpenFileDialog();
+                xmlSelector.Title = "Select the ea3-config.xml you'd like to load:";
+                xmlSelector.Filter = "ea3-config.xml|*.xml";
+                if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
+                {
+                    xmlSelector.InitialDirectory = pathCombo.Text;
+                }
+                else
+                {
+                    xmlSelector.InitialDirectory = Application.StartupPath;
+                }
+                if (xmlSelector.ShowDialog() == DialogResult.OK)
+                {
+                    if (string.IsNullOrEmpty(xmlSelector.FileName))
+                    {
+                        MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                    }
+                    else
+                    {
+                        selected = true;
+                    }
+                }
+                if (selected)
+                {
+                    EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
+                    if (!compiler.CheckValidity())
+                    {
+                        MessageBox.Show("The xml file you selected is invalid.");
+                    }
+                    else
+                    {
+                        string preProcessPCBID = pcbidCombo.Text;
+                        string preProcessURL = urlCombo.Text;
+                        if (preProcessPCBID.Equals("(Default)"))
+                        {
+                            preProcessPCBID = "01020304050607080900";
+                        }
+                        else if (preProcessPCBID.Equals("(Empty)"))
+                        {
+                            preProcessPCBID = "";
+                        }
+                        if (preProcessURL.Equals("(Empty)")|| preProcessURL.Equals("(Offline)"))
+                        {
+                            preProcessURL = "";
+                        }
+                        compiler.PCBID = preProcessPCBID;
+                        compiler.Services = preProcessURL;
+                        if (urlCheck.CheckState == CheckState.Checked)
+                        {
+                            compiler.UrlSlash = "1";
+                        }
+                        else
+                        {
+                            compiler.UrlSlash = "0";
+                        }
+                        compiler.UpdateByRuntime();
+                        compiler.SaveXml(xmlSelector.FileName);
+                        MessageBox.Show("Successfully saved ea3-config.xml at path "+xmlSelector.FileName);
+                    }
+                }
+            }            
         }
 
         private void starterConfigToolStripMenuItem_Click(object sender, EventArgs e)
@@ -976,74 +1121,26 @@ namespace SDVXStarter
             }
         }
 
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void restoreDefaultCommandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool selected = false;
-            OpenFileDialog configSelector = new OpenFileDialog();
-            configSelector.Title = "Select the Starter Config you'd like to save:";
-            configSelector.Filter = "Starter Config |*.xml";
-            configSelector.FileName = "cfg.xml";
-            if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
-            {
-                configSelector.InitialDirectory = pathCombo.Text;
-            }
-            else
-            {
-                configSelector.InitialDirectory = Application.StartupPath;
-            }
-            if (configSelector.ShowDialog() == DialogResult.OK)
-            {
-                if (string.IsNullOrEmpty(configSelector.FileName))
-                {
-                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
-                }
-                else
-                {
-                    selected = true;
-                }
-            }
-            if (selected)
-            {
-                XmlStorage configLoader = new XmlStorage();
-                configLoader.LoadXml(configSelector.FileName);
-                if (!configLoader.CheckValidity())
-                {
-                    MessageBox.Show("The xml file you selected is invalid.");
-                }
-                else
-                {
-                    PackageAndUpdate();
-                    List<string> viewPathSet = new List<string>();
-                    List<string> cardSet = new List<string>();
-                    List<string> urlSet = new List<string>();
-                    List<string> pcbidSet = new List<string>();
-                    /// Add element to view path set
-                    foreach (string x in pathCombo.Items)
-                    {
-                        viewPathSet.Add(x);
-                    }
-                    /// Add element to card set
-                    foreach (string x in cardCombo.Items)
-                    {
-                        cardSet.Add(x);
-                    }
-                    /// Add element to url set
-                    foreach (string x in urlCombo.Items)
-                    {
-                        urlSet.Add(x);
-                    }
-                    /// Add element to view path set
-                    foreach (string x in pcbidCombo.Items)
-                    {
-                        pcbidSet.Add(x);
-                    }
-                    globalStorage.IntakeValue(cardSet, pcbidSet, urlSet, viewPathSet);
-                    XmlStorage save = new XmlStorage(globalStorage);
-                    save.ConstructCfgStorage();
-                    save.SaveXml(configSelector.FileName);
-                    MessageBox.Show("Successfully saved at: " + configSelector.FileName);
-                }
-            }
+            RestoreCommands();
+            MessageBox.Show("Successfully Restored.");
+        }
+
+        private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EA3Modifier ea3 = new EA3Modifier(pathCombo.Text, globalStorage);
+            ea3.ShowDialog();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void starterConfigToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
