@@ -738,7 +738,7 @@ namespace SDVXStarter
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SDVX Starter ver 0.09\nBy Neskol Lu, 2020\nManages details to play.\nSee https://github.com/Neskol/SDVXStarter for source codes", "About");
+            MessageBox.Show("SDVX Starter ver 0.9a\nBy Neskol Lu, 2020\nManages details to play.\nSee https://github.com/Neskol/SDVXStarter for source codes", "About");
         }
 
         private void apiBox_CheckedChanged(object sender, EventArgs e)
@@ -922,42 +922,31 @@ namespace SDVXStarter
 
         private void ea3configToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            bool selected = false;
-            bool valueChanged = !pcbidCombo.Text.Equals("(Remove)")&& !pcbidCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("(Add)")&& !urlCombo.Text.Equals("Remove") && (urlCheck.CheckState == CheckState.Checked|| urlCheck.CheckState == CheckState.Unchecked);
+            bool valueChanged = !pcbidCombo.Text.Equals("(Remove)") && !pcbidCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("Remove") && (urlCheck.CheckState == CheckState.Checked || urlCheck.CheckState == CheckState.Unchecked);
             if (!valueChanged)
             {
                 MessageBox.Show("You must select URL, PCBID and URLSlash section to modify ea3-config, or selected items contains comands.\ne.g. (Remove) but not (Default), (Offline) or (Empty)");
             }
             else
             {
-                OpenFileDialog xmlSelector = new OpenFileDialog();
-                xmlSelector.Title = "Select the ea3-config.xml you'd like to load:";
-                xmlSelector.Filter = "ea3-config.xml|*.xml";
-                if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
+                string path = pathCombo.Text;
+                bool propExist;
+                if (pathCombo.Text.Equals("")|| pathCombo.Text.Equals("(root path)")|| pathCombo.Text.Equals("(Remove)"))
                 {
-                    xmlSelector.InitialDirectory = pathCombo.Text;
+                    path = "";
                 }
-                else
+                propExist = File.Exists(path + "\\prop\\ea3-config.xml");
+                if (!propExist)
                 {
-                    xmlSelector.InitialDirectory = Application.StartupPath;
+                    MessageBox.Show("The path you selected in path combo does not contain\n" +
+                        "prop\\ea3-config.xml. Please use save as function or EA3 modifier ultility to save.");
                 }
-                if (xmlSelector.ShowDialog() == DialogResult.OK)
+                else if (propExist)
                 {
-                    if (string.IsNullOrEmpty(xmlSelector.FileName))
-                    {
-                        MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
-                    }
-                    else
-                    {
-                        selected = true;
-                    }
-                }
-                if (selected)
-                {
-                    EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
+                    EA3Compiler compiler = new EA3Compiler(path + "\\prop\\ea3-config.xml");
                     if (!compiler.CheckValidity())
                     {
-                        MessageBox.Show("The xml file you selected is invalid.");
+                        MessageBox.Show("The ea3-config.xml in "+path+" is not valid.");
                     }
                     else
                     {
@@ -971,7 +960,7 @@ namespace SDVXStarter
                         {
                             preProcessPCBID = "";
                         }
-                        if (preProcessURL.Equals("(Empty)")|| preProcessURL.Equals("(Offline)"))
+                        if (preProcessURL.Equals("(Empty)") || preProcessURL.Equals("(Offline)"))
                         {
                             preProcessURL = "";
                         }
@@ -986,11 +975,11 @@ namespace SDVXStarter
                             compiler.UrlSlash = "0";
                         }
                         compiler.UpdateByRuntime();
-                        compiler.SaveXml(xmlSelector.FileName);
-                        MessageBox.Show("Successfully saved ea3-config.xml at path "+xmlSelector.FileName);
+                        compiler.SaveXml(path + "\\prop\\ea3-config.xml");
+                        MessageBox.Show("Successfully saved ea3-config.xml at path " + path + "\\prop\\ea3-config.xml");
                     }
                 }
-            }            
+            }
         }
 
         private void starterConfigToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1133,14 +1122,138 @@ namespace SDVXStarter
             ea3.ShowDialog();
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void starterConfigToolStripMenuItem2_Click(object sender, EventArgs e)
         {
+            bool selected = false;
+            SaveFileDialog xmlSelector = new SaveFileDialog();
+            xmlSelector.Title = "Select the path you'd like to save:";
+            xmlSelector.FileName = "cfg.xml";
+            xmlSelector.Filter = "Starter Config |*.xml";
+            if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
+            {
+                xmlSelector.InitialDirectory = pathCombo.Text;
+            }
+            else
+            {
+                xmlSelector.InitialDirectory = Application.StartupPath;
+            }
+            if (xmlSelector.ShowDialog() == DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(xmlSelector.FileName))
+                {
+                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                }
+                else
+                {
+                    selected = true;
+                }
+            }
+            if (selected)
+            {
+                PackageAndUpdate();
+                List<string> viewPathSet = new List<string>();
+                List<string> cardSet = new List<string>();
+                List<string> urlSet = new List<string>();
+                List<string> pcbidSet = new List<string>();
+                /// Add element to view path set
+                foreach (string x in pathCombo.Items)
+                {
+                    viewPathSet.Add(x);
+                }
+                /// Add element to card set
+                foreach (string x in cardCombo.Items)
+                {
+                    cardSet.Add(x);
+                }
+                /// Add element to url set
+                foreach (string x in urlCombo.Items)
+                {
+                    urlSet.Add(x);
+                }
+                /// Add element to view path set
+                foreach (string x in pcbidCombo.Items)
+                {
+                    pcbidSet.Add(x);
+                }
+                globalStorage.IntakeValue(cardSet, pcbidSet, urlSet, viewPathSet);
+                XmlStorage save = new XmlStorage(globalStorage);
+                save.ConstructCfgStorage();
+                save.SaveXml(xmlSelector.FileName);
+                MessageBox.Show("Successfully saved at: " + xmlSelector.FileName);
+            }
+        }
 
+        private void ea3configToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            bool selected = false;
+            bool valueChanged = !pcbidCombo.Text.Equals("(Remove)") && !pcbidCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("Remove") && (urlCheck.CheckState == CheckState.Checked || urlCheck.CheckState == CheckState.Unchecked);
+            if (!valueChanged)
+            {
+                MessageBox.Show("You must select URL, PCBID and URLSlash section to modify ea3-config, or selected items contains comands.\ne.g. (Remove) but not (Default), (Offline) or (Empty)");
+            }
+            else
+            {
+                SaveFileDialog xmlSelector = new SaveFileDialog();
+                xmlSelector.Title = "Select the ea3-config.xml you'd like to load:";
+                xmlSelector.Filter = "ea3-config.xml|*.xml";
+                if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
+                {
+                    xmlSelector.InitialDirectory = pathCombo.Text;
+                }
+                else
+                {
+                    xmlSelector.InitialDirectory = Application.StartupPath;
+                }
+                if (xmlSelector.ShowDialog() == DialogResult.OK)
+                {
+                    if (string.IsNullOrEmpty(xmlSelector.FileName))
+                    {
+                        MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                    }
+                    else
+                    {
+                        selected = true;
+                    }
+                }
+                if (selected)
+                {
+                    EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
+                    if (!compiler.CheckValidity())
+                    {
+                        MessageBox.Show("The xml file you selected is invalid.");
+                    }
+                    else
+                    {
+                        string preProcessPCBID = pcbidCombo.Text;
+                        string preProcessURL = urlCombo.Text;
+                        if (preProcessPCBID.Equals("(Default)"))
+                        {
+                            preProcessPCBID = "01020304050607080900";
+                        }
+                        else if (preProcessPCBID.Equals("(Empty)"))
+                        {
+                            preProcessPCBID = "";
+                        }
+                        if (preProcessURL.Equals("(Empty)") || preProcessURL.Equals("(Offline)"))
+                        {
+                            preProcessURL = "";
+                        }
+                        compiler.PCBID = preProcessPCBID;
+                        compiler.Services = preProcessURL;
+                        if (urlCheck.CheckState == CheckState.Checked)
+                        {
+                            compiler.UrlSlash = "1";
+                        }
+                        else
+                        {
+                            compiler.UrlSlash = "0";
+                        }
+                        compiler.UpdateByRuntime();
+                        compiler.SaveXml(xmlSelector.FileName);
+                        MessageBox.Show("Successfully saved ea3-config.xml at path " + xmlSelector.FileName);
+                    }
+                }
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -176,6 +177,125 @@ namespace SDVXStarter
             if (saved)
             {
                 RefreshView();
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = pathContentLabel.Text;
+            bool propExist;
+            if (pathContentLabel.Text.Equals("") || pathContentLabel.Text.Equals("(root path)") || pathContentLabel.Text.Equals("(Remove)"))
+            {
+                path = "\\prop\\ea3-config.xml";
+            }
+            propExist = File.Exists(path);
+            if (!propExist)
+            {
+                MessageBox.Show("The path you selected does not contain prop\\ea3-config.xml. \nPlease use save as function to save.");
+            }
+            else if (propExist)
+            {
+                EA3Compiler compiler = new EA3Compiler(path);
+                if (!compiler.CheckValidity())
+                {
+                    MessageBox.Show("The ea3-config.xml in " + path + " is not valid.");
+                }
+                else
+                {
+                    string preProcessPCBID = pcbidCombo.Text;
+                    string preProcessURL = urlCombo.Text;
+                    if (preProcessPCBID.Equals("(Default)"))
+                    {
+                        preProcessPCBID = "01020304050607080900";
+                    }
+                    else if (preProcessPCBID.Equals("(Empty)"))
+                    {
+                        preProcessPCBID = "";
+                    }
+                    if (preProcessURL.Equals("(Empty)") || preProcessURL.Equals("(Offline)"))
+                    {
+                        preProcessURL = "";
+                    }
+                    compiler.PCBID = preProcessPCBID;
+                    compiler.Services = preProcessURL;
+                    if (slashButton1.Checked)
+                    {
+                        compiler.UrlSlash = "1";
+                    }
+                    else
+                    {
+                        compiler.UrlSlash = "0";
+                    }
+                    compiler.UpdateByRuntime();
+                    compiler.SaveXml(path);
+                    MessageBox.Show("Successfully saved ea3-config.xml at path " + path);
+                }
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool selected = false;
+            SaveFileDialog xmlSelector = new SaveFileDialog();
+            xmlSelector.Title = "Select the ea3-config.xml you'd like to save:";
+            xmlSelector.FileName = "ea3-config.xml";
+            xmlSelector.Filter = "ea3-config.xml|*.xml";
+            if (!pathContentLabel.Text.Equals("(root path)") && !pathContentLabel.Text.Equals("(Remove)") && !pathContentLabel.Text.Equals(""))
+            {
+                xmlSelector.InitialDirectory = FindFatherPathContainSpice(pathContentLabel.Text,false);
+            }
+            else
+            {
+                xmlSelector.InitialDirectory = Application.StartupPath;
+            }
+            if (xmlSelector.ShowDialog() == DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(xmlSelector.FileName))
+                {
+                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                }
+                else
+                {
+                    selected = true;
+                }
+            }
+            if (selected)
+            {
+                EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
+                if (!compiler.CheckValidity())
+                {
+                    MessageBox.Show("The xml file you selected is invalid.");
+                }
+                else
+                {
+                    string preProcessPCBID = pcbidCombo.Text;
+                    string preProcessURL = urlCombo.Text;
+                    if (preProcessPCBID.Equals("(Default)"))
+                    {
+                        preProcessPCBID = "01020304050607080900";
+                    }
+                    else if (preProcessPCBID.Equals("(Empty)"))
+                    {
+                        preProcessPCBID = "";
+                    }
+                    if (preProcessURL.Equals("(Empty)") || preProcessURL.Equals("(Offline)"))
+                    {
+                        preProcessURL = "";
+                    }
+                    compiler.PCBID = preProcessPCBID;
+                    compiler.Services = preProcessURL;
+                    if (slashButton1.Checked)
+                    {
+                        compiler.UrlSlash = "1";
+                    }
+                    else
+                    {
+                        compiler.UrlSlash = "0";
+                    }
+                    compiler.UpdateByRuntime();
+                    compiler.SaveXml(xmlSelector.FileName);
+                    MessageBox.Show("Successfully saved ea3-config.xml at path " + xmlSelector.FileName);
+                }
             }
         }
     }
