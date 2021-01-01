@@ -246,7 +246,50 @@ namespace SDVXStarter
             RefreshStorage();
             RefreshView();
             PackageAndUpdate();
-            Console.WriteLine("Hello World!");
+            bool CfgAtRootPath = File.Exists("cfg.xml");
+            if (CfgAtRootPath)
+            {
+                XmlStorage configLoader = new XmlStorage();
+                configLoader.LoadXml("cfg.xml");
+                if (!configLoader.CheckValidity())
+                {
+                    MessageBox.Show("The xml file you selected is invalid.");
+                }
+                else
+                {
+                    // Adds items to PCBID combo
+                    pcbidCombo.Items.Clear();
+                    foreach (string x in configLoader.LocalStorage.GetPCBIDSet())
+                    {
+                        pcbidCombo.Items.Add(x);
+                    }
+                    // Adds items to Path Combo
+                    pathCombo.Items.Clear();
+                    foreach (string x in configLoader.LocalStorage.GetVerSet().Values)
+                    {
+                        pathCombo.Items.Add(x);
+                    }
+                    // Adds items to card combo
+                    cardCombo.Items.Clear();
+                    foreach (string x in configLoader.LocalStorage.GetCardSet())
+                    {
+                        cardCombo.Items.Add(x);
+                    }
+                    // Adds items to URL combo
+                    urlCombo.Items.Clear();
+                    foreach (string x in configLoader.LocalStorage.GetUrlSet())
+                    {
+                        urlCombo.Items.Add(x);
+                    }
+                    RefreshView(configLoader.LocalStorage.ReturnArgument());
+                    foreach (string x in configLoader.LocalStorage.ReturnArgument())
+                    {
+                        Console.WriteLine(x);
+                    }
+                    globalStorage = configLoader.LocalStorage;
+                    PackageAndUpdate();
+                }
+            }
         }
 
         private void bGenerate_Click(object sender, EventArgs e)
