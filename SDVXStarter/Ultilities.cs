@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace SDVXStarter
 {
     /// <summary>
-    /// Provide handful functions to stupid Neskol how did not bother 
+    /// Provide handful functions to stupid Neskol some how did not bother 
     /// to find if any exsiting functions can be used.
     /// </summary>
     public static class Ultilities

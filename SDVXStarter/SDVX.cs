@@ -346,9 +346,10 @@ namespace SDVXStarter
                     note = "New SDVX Instance";
                 }
                 bool verDuplicated = globalStorage.FindKeyDuplicate(globalStorage.GetVerSet(), note);
-                if (verDuplicated)
+                while (verDuplicated)
                 {
                     note += "(n)";
+                    verDuplicated = globalStorage.FindKeyDuplicate(globalStorage.GetVerSet(), note);
                 }
                 pathCombo.Items.Add(path);
                 pathCombo.Text = (path);
