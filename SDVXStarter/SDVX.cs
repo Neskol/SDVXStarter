@@ -781,7 +781,7 @@ namespace SDVXStarter
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SDVX Starter ver 0.9a\nBy Neskol Lu, 2020\nManages details to play.\nSee https://github.com/Neskol/SDVXStarter for source codes", "About");
+            MessageBox.Show("SDVX Starter ver. 1.01a\nBy Neskol Lu, 2020\nManages details to play.\nSee https://github.com/Neskol/SDVXStarter for source codes", "About");
         }
 
         private void apiBox_CheckedChanged(object sender, EventArgs e)
@@ -929,7 +929,8 @@ namespace SDVXStarter
 
         private void bImport_Click(object sender, EventArgs e)
         {
-            string note = Interaction.InputBox("Paste config text from your account.", "BEMANICN Config fast import", "", -1, -1);
+            string note = "";
+            InputMediate.Show(true, "SDVXStarter - Quick Load", "Paste the fast config text here to fill settings:", out note);
             if (!note.Equals(""))
             {
                 EA3Compiler quickImport = new EA3Compiler(note, true);
@@ -945,9 +946,10 @@ namespace SDVXStarter
                     /// Set URL
                     if (!FindDuplicate(urlCombo.Items, quickImport.Services))
                     {
-                        pcbidCombo.Items.Add(quickImport.Services);
+                       urlCombo.Items.Add(quickImport.Services);
                     }
-                    pcbidCombo.SelectedItem = quickImport.Services;
+                    pcbidCombo.SelectedItem = quickImport.PCBID;
+                    urlCombo.SelectedItem = quickImport.Services;
                     /// Set UrlSlash
                     sslCheck.CheckState = CheckState.Unchecked;
                     if (quickImport.UrlSlash.Equals("1"))
