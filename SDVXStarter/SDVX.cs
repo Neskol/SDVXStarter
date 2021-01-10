@@ -1088,10 +1088,6 @@ namespace SDVXStarter
                         urlCombo.Items.Add(x);
                     }
                     RefreshView(configLoader.LocalStorage.ReturnArgument());
-                    foreach (string x in configLoader.LocalStorage.ReturnArgument())
-                    {
-                        Console.WriteLine(x);
-                    }
                     globalStorage = configLoader.LocalStorage;
                     PackageAndUpdate();
                 }

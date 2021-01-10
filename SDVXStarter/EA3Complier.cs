@@ -89,7 +89,7 @@ namespace SDVXStarter
 
         public string GetAttribute(XmlNode name, string attrName)
         {
-            throw new NotImplementedException();
+            return ((XmlElement)name).GetAttribute(attrName);
         }
 
         public void UpdateStorage()
