@@ -156,7 +156,7 @@ namespace SDVXStarter
             }
             else
             {
-                valueSet.Add("url", urlCombo.SelectedItem.ToString());
+                valueSet.Add("url", urlCombo.Text.ToString());
             }
             // Checks api
             if (apiCheck.Checked)
@@ -754,13 +754,13 @@ namespace SDVXStarter
             }
             else if (!cancel)
             {
-                MessageBox.Show("The root path does not contain spice tools.");
+                MessageBox.Show("当前路径下并没有找到可以启动的spice tools。");
             }
         }
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("椰叶您这么强还需要找我？\n辣您不如直接联系neskol@foxmail.com", "椰叶又在卖弱了");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -770,7 +770,7 @@ namespace SDVXStarter
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int result = (int)MessageBox.Show("Please confirm you have saved any changes in this page.","SDVX Starter", MessageBoxButtons.YesNoCancel);
+            int result = (int)MessageBox.Show("请确认已经保存所有本页设置。","SDVX启动器", MessageBoxButtons.YesNoCancel);
             bool saved = result == 6;
             if (saved)
             {
@@ -782,7 +782,7 @@ namespace SDVXStarter
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SDVX Starter ver. 1.01a\nBy Neskol Lu, 2020\nManages details to play.\nSee https://github.com/Neskol/SDVXStarter for source codes", "About");
+            MessageBox.Show("SDVX Starter ver. 1.01a CN\n顾问谨制 By Neskol Lu, 2020\n山东维系启动参数管理器\n源码： https://github.com/Neskol/SDVXStarter", "关于");
         }
 
         private void apiBox_CheckedChanged(object sender, EventArgs e)

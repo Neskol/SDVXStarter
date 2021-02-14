@@ -111,7 +111,7 @@
             this.versionGroup.Size = new System.Drawing.Size(291, 168);
             this.versionGroup.TabIndex = 0;
             this.versionGroup.TabStop = false;
-            this.versionGroup.Text = "Version Select";
+            this.versionGroup.Text = "版本选择";
             // 
             // bStarter64
             // 
@@ -120,7 +120,7 @@
             this.bStarter64.Name = "bStarter64";
             this.bStarter64.Size = new System.Drawing.Size(115, 72);
             this.bStarter64.TabIndex = 4;
-            this.bStarter64.Text = "Run spice64";
+            this.bStarter64.Text = "启动spice64 (64位)";
             this.bStarter64.UseVisualStyleBackColor = true;
             this.bStarter64.Click += new System.EventHandler(this.bStarter64_Click);
             // 
@@ -144,7 +144,7 @@
             this.bStarter.Name = "bStarter";
             this.bStarter.Size = new System.Drawing.Size(115, 72);
             this.bStarter.TabIndex = 2;
-            this.bStarter.Text = "Run spice";
+            this.bStarter.Text = "启动spice (32位)";
             this.bStarter.UseVisualStyleBackColor = true;
             this.bStarter.Click += new System.EventHandler(this.bStarter_Click);
             // 
@@ -153,9 +153,9 @@
             this.versionLabel.AutoSize = true;
             this.versionLabel.Location = new System.Drawing.Point(24, 21);
             this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(231, 15);
+            this.versionLabel.Size = new System.Drawing.Size(187, 15);
             this.versionLabel.TabIndex = 1;
-            this.versionLabel.Text = "Select a version to startup.";
+            this.versionLabel.Text = "从下拉菜单选择一个版本：";
             // 
             // configGroup
             // 
@@ -168,7 +168,7 @@
             this.configGroup.Size = new System.Drawing.Size(500, 315);
             this.configGroup.TabIndex = 1;
             this.configGroup.TabStop = false;
-            this.configGroup.Text = "Quick Config";
+            this.configGroup.Text = "快速配置";
             // 
             // optionBox
             // 
@@ -190,7 +190,7 @@
             this.optionBox.Size = new System.Drawing.Size(475, 161);
             this.optionBox.TabIndex = 2;
             this.optionBox.TabStop = false;
-            this.optionBox.Text = "Start up selection";
+            this.optionBox.Text = "启动选项";
             // 
             // apiCheck
             // 
@@ -198,9 +198,9 @@
             this.apiCheck.Location = new System.Drawing.Point(352, 96);
             this.apiCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.apiCheck.Name = "apiCheck";
-            this.apiCheck.Size = new System.Drawing.Size(101, 19);
+            this.apiCheck.Size = new System.Drawing.Size(119, 19);
             this.apiCheck.TabIndex = 14;
-            this.apiCheck.Text = "Use Comp.";
+            this.apiCheck.Text = "使用助手程序";
             this.apiCheck.UseVisualStyleBackColor = true;
             this.apiCheck.CheckedChanged += new System.EventHandler(this.apiBox_CheckedChanged);
             // 
@@ -222,7 +222,7 @@
             this.bImport.Name = "bImport";
             this.bImport.Size = new System.Drawing.Size(83, 54);
             this.bImport.TabIndex = 11;
-            this.bImport.Text = "Quick Import";
+            this.bImport.Text = "从ea3导入";
             this.bImport.UseVisualStyleBackColor = true;
             this.bImport.Click += new System.EventHandler(this.bImport_Click);
             // 
@@ -232,9 +232,9 @@
             this.hdCheck.Location = new System.Drawing.Point(352, 131);
             this.hdCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.hdCheck.Name = "hdCheck";
-            this.hdCheck.Size = new System.Drawing.Size(109, 19);
+            this.hdCheck.Size = new System.Drawing.Size(91, 19);
             this.hdCheck.TabIndex = 10;
-            this.hdCheck.Text = "Force 720p";
+            this.hdCheck.Text = "强制720p";
             this.hdCheck.UseVisualStyleBackColor = true;
             // 
             // urlCheck
@@ -243,9 +243,9 @@
             this.urlCheck.Location = new System.Drawing.Point(173, 131);
             this.urlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.urlCheck.Name = "urlCheck";
-            this.urlCheck.Size = new System.Drawing.Size(157, 19);
+            this.urlCheck.Size = new System.Drawing.Size(131, 19);
             this.urlCheck.TabIndex = 8;
-            this.urlCheck.Text = "Enable URL Slash";
+            this.urlCheck.Text = "启用URL Slash";
             this.urlCheck.UseVisualStyleBackColor = true;
             // 
             // sslCheck
@@ -254,9 +254,9 @@
             this.sslCheck.Location = new System.Drawing.Point(173, 96);
             this.sslCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sslCheck.Name = "sslCheck";
-            this.sslCheck.Size = new System.Drawing.Size(117, 19);
+            this.sslCheck.Size = new System.Drawing.Size(113, 19);
             this.sslCheck.TabIndex = 6;
-            this.sslCheck.Text = "Disable SSL";
+            this.sslCheck.Text = "禁用SSL连接";
             this.sslCheck.UseVisualStyleBackColor = true;
             // 
             // printerCheck
@@ -265,9 +265,9 @@
             this.printerCheck.Location = new System.Drawing.Point(16, 131);
             this.printerCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.printerCheck.Name = "printerCheck";
-            this.printerCheck.Size = new System.Drawing.Size(141, 19);
+            this.printerCheck.Size = new System.Drawing.Size(104, 19);
             this.printerCheck.TabIndex = 5;
-            this.printerCheck.Text = "Enable printer";
+            this.printerCheck.Text = "启用印卡机";
             this.printerCheck.UseVisualStyleBackColor = true;
             // 
             // fullScreenCheck
@@ -276,9 +276,9 @@
             this.fullScreenCheck.Location = new System.Drawing.Point(17, 96);
             this.fullScreenCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fullScreenCheck.Name = "fullScreenCheck";
-            this.fullScreenCheck.Size = new System.Drawing.Size(117, 19);
+            this.fullScreenCheck.Size = new System.Drawing.Size(59, 19);
             this.fullScreenCheck.TabIndex = 4;
-            this.fullScreenCheck.Text = "Full screen";
+            this.fullScreenCheck.Text = "全屏";
             this.fullScreenCheck.UseVisualStyleBackColor = true;
             // 
             // pcbLabel
@@ -306,9 +306,9 @@
             this.networkLabel.AutoSize = true;
             this.networkLabel.Location = new System.Drawing.Point(11, 31);
             this.networkLabel.Name = "networkLabel";
-            this.networkLabel.Size = new System.Drawing.Size(95, 15);
+            this.networkLabel.Size = new System.Drawing.Size(52, 15);
             this.networkLabel.TabIndex = 0;
-            this.networkLabel.Text = "Connect to:";
+            this.networkLabel.Text = "连接至";
             // 
             // cardBox
             // 
@@ -323,7 +323,7 @@
             this.cardBox.Size = new System.Drawing.Size(475, 106);
             this.cardBox.TabIndex = 1;
             this.cardBox.TabStop = false;
-            this.cardBox.Text = "Card number";
+            this.cardBox.Text = "卡号";
             // 
             // bGenerate
             // 
@@ -332,7 +332,7 @@
             this.bGenerate.Name = "bGenerate";
             this.bGenerate.Size = new System.Drawing.Size(83, 54);
             this.bGenerate.TabIndex = 3;
-            this.bGenerate.Text = "Generate";
+            this.bGenerate.Text = "生成并添加";
             this.bGenerate.UseVisualStyleBackColor = true;
             this.bGenerate.Click += new System.EventHandler(this.bGenerate_Click);
             // 
@@ -343,7 +343,7 @@
             this.bLoad.Name = "bLoad";
             this.bLoad.Size = new System.Drawing.Size(83, 54);
             this.bLoad.TabIndex = 2;
-            this.bLoad.Text = "Load";
+            this.bLoad.Text = "从txt加载";
             this.bLoad.UseVisualStyleBackColor = true;
             this.bLoad.Click += new System.EventHandler(this.bLoad_Click);
             // 
@@ -354,7 +354,7 @@
             this.bCardVerify.Name = "bCardVerify";
             this.bCardVerify.Size = new System.Drawing.Size(83, 54);
             this.bCardVerify.TabIndex = 1;
-            this.bCardVerify.Text = "Verify and Add";
+            this.bCardVerify.Text = "验证并添加";
             this.bCardVerify.UseVisualStyleBackColor = true;
             this.bCardVerify.Click += new System.EventHandler(this.bCardVerify_Click);
             // 
@@ -376,7 +376,7 @@
             this.bSpiceConfig.Name = "bSpiceConfig";
             this.bSpiceConfig.Size = new System.Drawing.Size(95, 75);
             this.bSpiceConfig.TabIndex = 7;
-            this.bSpiceConfig.Text = " spice   Config";
+            this.bSpiceConfig.Text = "打开spicecfg配置程序";
             this.bSpiceConfig.UseVisualStyleBackColor = true;
             this.bSpiceConfig.Click += new System.EventHandler(this.bSpiceConfig_Click);
             // 
@@ -393,7 +393,7 @@
             this.pathGroup.Size = new System.Drawing.Size(291, 181);
             this.pathGroup.TabIndex = 2;
             this.pathGroup.TabStop = false;
-            this.pathGroup.Text = "Game path verifier";
+            this.pathGroup.Text = "路径/版本添加器";
             // 
             // bBrowse
             // 
@@ -411,9 +411,9 @@
             this.pathLabel.AutoSize = true;
             this.pathLabel.Location = new System.Drawing.Point(25, 21);
             this.pathLabel.Name = "pathLabel";
-            this.pathLabel.Size = new System.Drawing.Size(183, 15);
+            this.pathLabel.Size = new System.Drawing.Size(172, 15);
             this.pathLabel.TabIndex = 2;
-            this.pathLabel.Text = "Verify following path:";
+            this.pathLabel.Text = "程序将会验证下列路径：";
             // 
             // bPathVerify
             // 
@@ -422,7 +422,7 @@
             this.bPathVerify.Name = "bPathVerify";
             this.bPathVerify.Size = new System.Drawing.Size(243, 56);
             this.bPathVerify.TabIndex = 1;
-            this.bPathVerify.Text = "Verify";
+            this.bPathVerify.Text = "验证";
             this.bPathVerify.UseVisualStyleBackColor = true;
             this.bPathVerify.Click += new System.EventHandler(this.bPathVerify_Click);
             // 
@@ -445,7 +445,7 @@
             this.curentGroup.Size = new System.Drawing.Size(291, 58);
             this.curentGroup.TabIndex = 3;
             this.curentGroup.TabStop = false;
-            this.curentGroup.Text = "Current Version";
+            this.curentGroup.Text = "当前选中版本";
             // 
             // current
             // 
@@ -482,8 +482,8 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
-            this.fileToolStripMenuItem.Text = "&File";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.fileToolStripMenuItem.Text = "文件(&F)";
             // 
             // newToolStripMenuItem
             // 
@@ -491,8 +491,8 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.newToolStripMenuItem.Text = "&New Config";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newToolStripMenuItem.Text = "新配置(N)";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
@@ -504,27 +504,27 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Text = "打开(&O)";
             // 
             // starterConfigToolStripMenuItem
             // 
             this.starterConfigToolStripMenuItem.Name = "starterConfigToolStripMenuItem";
-            this.starterConfigToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
-            this.starterConfigToolStripMenuItem.Text = "Starter Config";
+            this.starterConfigToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.starterConfigToolStripMenuItem.Text = "启动器配置";
             this.starterConfigToolStripMenuItem.Click += new System.EventHandler(this.starterConfigToolStripMenuItem_Click);
             // 
             // ea3configToolStripMenuItem
             // 
             this.ea3configToolStripMenuItem.Name = "ea3configToolStripMenuItem";
-            this.ea3configToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.ea3configToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.ea3configToolStripMenuItem.Text = "ea3-config";
             this.ea3configToolStripMenuItem.Click += new System.EventHandler(this.ea3configToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(232, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(221, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -535,14 +535,14 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Text = "保存(&S)";
             // 
             // starterConfigToolStripMenuItem1
             // 
             this.starterConfigToolStripMenuItem1.Name = "starterConfigToolStripMenuItem1";
             this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.starterConfigToolStripMenuItem1.Text = "Starter Config";
+            this.starterConfigToolStripMenuItem1.Text = "启动器配置";
             this.starterConfigToolStripMenuItem1.Click += new System.EventHandler(this.starterConfigToolStripMenuItem1_Click);
             // 
             // ea3configToolStripMenuItem1
@@ -558,14 +558,14 @@
             this.starterConfigToolStripMenuItem2,
             this.ea3configToolStripMenuItem2});
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.saveAsToolStripMenuItem.Text = "Save &As";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveAsToolStripMenuItem.Text = "另存为(&A)";
             // 
             // starterConfigToolStripMenuItem2
             // 
             this.starterConfigToolStripMenuItem2.Name = "starterConfigToolStripMenuItem2";
             this.starterConfigToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
-            this.starterConfigToolStripMenuItem2.Text = "Starter Config";
+            this.starterConfigToolStripMenuItem2.Text = "启动器配置";
             this.starterConfigToolStripMenuItem2.Click += new System.EventHandler(this.starterConfigToolStripMenuItem2_Click);
             // 
             // ea3configToolStripMenuItem2
@@ -578,18 +578,18 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(232, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(232, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Text = "退出(&X)";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
@@ -598,21 +598,21 @@
             this.customizeToolStripMenuItem,
             this.restoreDefaultCommandToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
-            this.toolsToolStripMenuItem.Text = "&Tools";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.toolsToolStripMenuItem.Text = "工具(&T)";
             // 
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
-            this.customizeToolStripMenuItem.Text = "&EA3 Modifier";
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.customizeToolStripMenuItem.Text = "ea3-config修改器(&E)";
             this.customizeToolStripMenuItem.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
             // 
             // restoreDefaultCommandToolStripMenuItem
             // 
             this.restoreDefaultCommandToolStripMenuItem.Name = "restoreDefaultCommandToolStripMenuItem";
-            this.restoreDefaultCommandToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
-            this.restoreDefaultCommandToolStripMenuItem.Text = "&Restore Default Command";
+            this.restoreDefaultCommandToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.restoreDefaultCommandToolStripMenuItem.Text = "重置选项命令(&R)";
             this.restoreDefaultCommandToolStripMenuItem.Click += new System.EventHandler(this.restoreDefaultCommandToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -622,26 +622,26 @@
             this.toolStripSeparator5,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
-            this.helpToolStripMenuItem.Text = "&Help";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.helpToolStripMenuItem.Text = "帮助(H)";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
-            this.searchToolStripMenuItem.Text = "&Get Help";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.searchToolStripMenuItem.Text = "求助(G)";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(154, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(221, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
-            this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aboutToolStripMenuItem.Text = "关于(A)";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // apiGroup
@@ -657,7 +657,7 @@
             this.apiGroup.Size = new System.Drawing.Size(384, 79);
             this.apiGroup.TabIndex = 8;
             this.apiGroup.TabStop = false;
-            this.apiGroup.Text = "Spice Companion Settings";
+            this.apiGroup.Text = "Spice助手程序设定";
             this.apiGroup.Visible = false;
             // 
             // passwordLabel
@@ -666,9 +666,9 @@
             this.passwordLabel.Location = new System.Drawing.Point(136, 26);
             this.passwordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(167, 15);
+            this.passwordLabel.Size = new System.Drawing.Size(82, 15);
             this.passwordLabel.TabIndex = 3;
-            this.passwordLabel.Text = "Password to connect:";
+            this.passwordLabel.Text = "连接密码：";
             // 
             // portLabel
             // 
@@ -676,9 +676,9 @@
             this.portLabel.Location = new System.Drawing.Point(13, 25);
             this.portLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(95, 15);
+            this.portLabel.Size = new System.Drawing.Size(82, 15);
             this.portLabel.TabIndex = 2;
-            this.portLabel.Text = "Using port:";
+            this.portLabel.Text = "使用端口：";
             // 
             // passwordBox
             // 
@@ -712,7 +712,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SDVX";
-            this.Text = "SDVX Starter";
+            this.Text = "SDVX 启动器 By 顾问 Neskol";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.versionGroup.ResumeLayout(false);
             this.versionGroup.PerformLayout();
