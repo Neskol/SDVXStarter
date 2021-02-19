@@ -801,7 +801,7 @@ namespace SDVXStarter
         {
             bool selected = false;
             OpenFileDialog xmlSelector = new OpenFileDialog();
-            xmlSelector.Title = "Select the ea3-config.xml you'd like to load:";
+            xmlSelector.Title = "选择想修改的ea3-config.xml";
             xmlSelector.Filter = "ea3-config.xml|*.xml";
             if (!pathCombo.Text.Equals("(root path)")&& !pathCombo.Text.Equals("(Remove)")&& !pathCombo.Text.Equals(""))
             {
@@ -815,7 +815,7 @@ namespace SDVXStarter
             {
                 if (string.IsNullOrEmpty(xmlSelector.FileName))
                 {
-                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                    MessageBox.Show(this, "您选中的地址不能为空", "SDVXStarter");
                 }else
                 {
                     selected = true;
@@ -1131,7 +1131,7 @@ namespace SDVXStarter
                 //Process PCBID option
                 if (argument.Contains("-p"))
                 {
-                    pcbidCombo.SelectedItem = argument.Split(' ')[1];
+                    pcbidCombo.SelectedItem = argument.Split(' ')[0];
                 }
                 //Process full screen option
                 if (argument.Equals("-w"))
