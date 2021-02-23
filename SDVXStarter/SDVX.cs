@@ -74,7 +74,7 @@ namespace SDVXStarter
             urlCombo.Items.Add("(Add)");
             urlCombo.Items.Add("(Remove)");
             urlCombo.Items.Add("http://xrpc.arcana.nu/core/");
-            urlCombo.Items.Add("http://eamu.bemanicn.com/");
+            urlCombo.Items.Add("http://localhost:8083");
             foreach (string x in previous)
             {
                 if (!urlCombo.Items.Contains(x))
@@ -230,7 +230,7 @@ namespace SDVXStarter
             urlCombo.Items.Add("(Add)");
             urlCombo.Items.Add("(Remove)");
             urlCombo.Items.Add("http://xrpc.arcana.nu/core/");
-            urlCombo.Items.Add("http://eamu.bemanicn.com/");
+            urlCombo.Items.Add("http://localhost:8083");
             cardCombo.Items.Add("(Empty)");
             cardCombo.Items.Add("(Add)");
             cardCombo.Items.Add("(Remove)");
@@ -304,7 +304,7 @@ namespace SDVXStarter
             {
                 cardCombo.Text = newCard;
             }
-            else MessageBox.Show("This card is duplicated.");
+            else MessageBox.Show("已有重复的卡号。");
             
         }
 
@@ -313,7 +313,7 @@ namespace SDVXStarter
             bool valid = globalGenerator.Verify(cardCombo.Text.ToString());
             if (valid)
             {
-                MessageBox.Show("Your card is valid and added to list.","Card Verifier");
+                MessageBox.Show("您的卡号是有效的，并已被添加到列表。","Card Verifier");
                 if (!FindDuplicate(cardCombo.Items, cardCombo.Text))
                 {
                     cardCombo.Items.Add(cardCombo.Text);
@@ -321,7 +321,7 @@ namespace SDVXStarter
             }
             else
             {
-                MessageBox.Show("Your card is invalid!", "Card Verifier");               
+                MessageBox.Show("您的卡号是无效的！", "Card Verifier");               
             }
         }
 
@@ -336,14 +336,14 @@ namespace SDVXStarter
             allExists = (spiceExist || spice64Exist) && spiceCfgExist;
             if (!allExists&&!pathDuplicated)
             {
-                MessageBox.Show("Given path does not contain all spice tools to run.\n","Invalid Path");
+                MessageBox.Show("选定的路径不包含至少一个spice tool。\n","无效路径");
             }
             else if(allExists && !pathDuplicated)
             {
-                string note = Interaction.InputBox("Note your path here.","Which version is it?","SDVX",-1,-1);
+                string note = Interaction.InputBox("请在下方备注这个路径：\n"+path,"备注版本号","SDVX",-1,-1);
                 if (note.Equals(""))
                 {
-                    note = "New SDVX Instance";
+                    note = "新SDVX版本";
                 }
                 bool verDuplicated = globalStorage.FindKeyDuplicate(globalStorage.GetVerSet(), note);
                 while (verDuplicated)
@@ -358,19 +358,19 @@ namespace SDVXStarter
             }  
             else
             {
-                MessageBox.Show("Given path was already in list.");
+                MessageBox.Show("该路径已被注册。");
             }
         }
 
         private void bBrowse_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog pathSelector = new FolderBrowserDialog();
-            pathSelector.Description = "Select the folder with Game assets and spice tools:";
+            pathSelector.Description = "选择包含游戏资源与spice tool的路径:";
             if (pathSelector.ShowDialog() == DialogResult.OK)
             {
                 if (string.IsNullOrEmpty(pathSelector.SelectedPath))
                 {
-                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                    MessageBox.Show(this, "不能处理空路径。", "SDVXStarter");
                     return;
                 }
             }
@@ -422,7 +422,7 @@ namespace SDVXStarter
             }
             else
             {
-                MessageBox.Show("The root path does not contain spice tools.");
+                MessageBox.Show("选定的路径不包含至少一个spice tool。");
             }
         }
 
@@ -471,7 +471,7 @@ namespace SDVXStarter
             }
             else
             {
-                MessageBox.Show("The root path does not contain spice tools.");
+                MessageBox.Show("选定的路径不包含至少一个spice tool。");
             }
         }
 
@@ -480,10 +480,10 @@ namespace SDVXStarter
             if (pathCombo.SelectedItem.ToString().Equals("(Remove)"))
             {
                 string remove = "";
-                InputMediate.Show("SDVXStarter", "Insert the version NOTE you'd like to remove.",globalStorage.GetPathSet().Values,out remove);
+                InputMediate.Show("SDVXStarter", "请输入需要删除的版本备注：",globalStorage.GetPathSet().Values,out remove);
                 if (remove.Equals("Root SDVX")|| remove.Equals("Remove SDVX"))
                 {
-                    MessageBox.Show("No you cannot remove the command item.");
+                    MessageBox.Show("命令选项不能被删除。");
                 }
                 else if (!remove.Equals(""))
                 {
@@ -498,7 +498,7 @@ namespace SDVXStarter
                                 pathCombo.Items.Add(x);
                             }
                         }
-                        MessageBox.Show("Suceesfuly removed version "+remove);
+                        MessageBox.Show("已删除版本 "+remove);
                         if (pathCombo.Text.Equals(""))
                         {
                             pathCombo.SelectedItem = "(root path)";
@@ -506,7 +506,7 @@ namespace SDVXStarter
                     }
                     else
                     {
-                        MessageBox.Show("No such version identified.");
+                        MessageBox.Show("没有该当版本。");
                     }
                 }
             }
@@ -526,7 +526,7 @@ namespace SDVXStarter
             if (cardCombo.SelectedItem.ToString().Equals("(Add)"))
             {
                 string intake = "";
-                InputMediate.Show("SDVXStarter","It shall start with E004, contains only 0-9 and A-F and 16 characters in total",out intake);
+                InputMediate.Show("SDVXStarter","卡号应以E004开头，仅包含0-9和A-F，共16个字符。",out intake);
                 intake = intake.ToUpper();
                 if (intake.Equals(""))
                 {
@@ -1129,9 +1129,9 @@ namespace SDVXStarter
                     printerCheck.CheckState = CheckState.Checked;
                 }
                 //Process PCBID option
-                if (argument.Contains("-p"))
+                if (argument.Contains("-p ") && !argument.Equals("-printer"))
                 {
-                    pcbidCombo.SelectedItem = argument.Split(' ')[0];
+                    pcbidCombo.SelectedItem = argument.Split(' ')[1];
                 }
                 //Process full screen option
                 if (argument.Equals("-w"))
