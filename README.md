@@ -3,7 +3,7 @@
 功能：
 +添加山东卫星所在路径，以及游玩用的卡号、ID和网址
 +快速设置启动是否全屏、离线、使用720p或使用spice companion.
-+快速ea3-config编辑（无论是否是SDVX）,以及某坛信息快速导入（<service><pcbid><url_slash>）
++快速ea3-config编辑（无论是否是SDVX）,以及某坛信息快速导入（<service><pcbid><url_slash>）(众所周知的原因现在应该貌似不行了)
 +保存设置以快速加载
 
 缺陷：
