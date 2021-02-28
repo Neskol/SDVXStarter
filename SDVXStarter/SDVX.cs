@@ -126,7 +126,7 @@ namespace SDVXStarter
             }
             else if (pcbidCombo.Text.Equals("(Add)") || pcbidCombo.Text.Equals("(Remove)"))
             {
-                MessageBox.Show("Invalid PCBID.", "Seems like you entered with errors");
+                MessageBox.Show("该PCBID无效", "您输入的PCBD无效。");
             }
             else
             {
@@ -139,7 +139,7 @@ namespace SDVXStarter
             }
             else if (cardCombo.Text.Equals("(Add)") || cardCombo.Text.Equals("(Remove)"))
             {
-                MessageBox.Show("Invalid card.", "Seems like you entered with errors");
+                MessageBox.Show("该PCBID无效", "您输入的PCBD无效。");
             }
             else
             {
@@ -152,7 +152,7 @@ namespace SDVXStarter
             }
             else if (urlCombo.Text.Equals("(Add)") || urlCombo.Text.Equals("(Remove)"))
             {
-                MessageBox.Show("Invalid url.", "Seems like you entered ommands");
+                MessageBox.Show("该URL无效", "您输入的URL无效。");
             }
             else
             {
@@ -253,7 +253,7 @@ namespace SDVXStarter
                 configLoader.LoadXml("cfg.xml");
                 if (!configLoader.CheckValidity())
                 {
-                    MessageBox.Show("The xml file you selected is invalid.");
+                    MessageBox.Show("您选择的xml无效。");
                 }
                 else
                 {
@@ -526,7 +526,7 @@ namespace SDVXStarter
             if (cardCombo.SelectedItem.ToString().Equals("(Add)"))
             {
                 string intake = "";
-                InputMediate.Show("SDVXStarter","卡号应以E004开头，仅包含0-9和A-F，共16个字符。",out intake);
+                InputMediate.Show("SDVXStarter", "虚拟卡应以E004开头共17位，街机卡请确认spice里的卡号", out intake);
                 intake = intake.ToUpper();
                 if (intake.Equals(""))
                 {
@@ -536,8 +536,8 @@ namespace SDVXStarter
                 {
                     while (!globalGenerator.Verify(intake) && !intake.Equals(""))
                     {
-                        MessageBox.Show("The card number is not valid.", "Invalid card");
-                        InputMediate.Show("SDVXStarter", "It shall start with E004, contains only 0-9 and A-F and 16 characters in total", out intake);
+                        MessageBox.Show("该卡号无效。", "无效卡号");
+                        InputMediate.Show("SDVXStarter", "虚拟卡应以E004开头共17位，街机卡请确认spice里的卡号", out intake);
                         intake = intake.ToUpper();
                     }
                     if (intake.Equals(""))
@@ -546,7 +546,7 @@ namespace SDVXStarter
                     }
                     else if (FindDuplicate(cardCombo.Items, intake))
                     {
-                        MessageBox.Show("This card is already registered!", "Invalid card");
+                        MessageBox.Show("该卡号已被注册！", "无效卡号");
                         cardCombo.Text = DefaultCard;
                     }
                     else

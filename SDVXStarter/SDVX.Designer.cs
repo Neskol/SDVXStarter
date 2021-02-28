@@ -88,6 +88,7 @@
             this.portLabel = new System.Windows.Forms.Label();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.portBox = new System.Windows.Forms.TextBox();
+            this.导出选项为batBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionGroup.SuspendLayout();
             this.configGroup.SuspendLayout();
             this.optionBox.SuspendLayout();
@@ -510,14 +511,14 @@
             // starterConfigToolStripMenuItem
             // 
             this.starterConfigToolStripMenuItem.Name = "starterConfigToolStripMenuItem";
-            this.starterConfigToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.starterConfigToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
             this.starterConfigToolStripMenuItem.Text = "启动器配置";
             this.starterConfigToolStripMenuItem.Click += new System.EventHandler(this.starterConfigToolStripMenuItem_Click);
             // 
             // ea3configToolStripMenuItem
             // 
             this.ea3configToolStripMenuItem.Name = "ea3configToolStripMenuItem";
-            this.ea3configToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.ea3configToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
             this.ea3configToolStripMenuItem.Text = "ea3-config";
             this.ea3configToolStripMenuItem.Click += new System.EventHandler(this.ea3configToolStripMenuItem_Click);
             // 
@@ -541,14 +542,14 @@
             // starterConfigToolStripMenuItem1
             // 
             this.starterConfigToolStripMenuItem1.Name = "starterConfigToolStripMenuItem1";
-            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.starterConfigToolStripMenuItem1.Size = new System.Drawing.Size(170, 26);
             this.starterConfigToolStripMenuItem1.Text = "启动器配置";
             this.starterConfigToolStripMenuItem1.Click += new System.EventHandler(this.starterConfigToolStripMenuItem1_Click);
             // 
             // ea3configToolStripMenuItem1
             // 
             this.ea3configToolStripMenuItem1.Name = "ea3configToolStripMenuItem1";
-            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.ea3configToolStripMenuItem1.Size = new System.Drawing.Size(170, 26);
             this.ea3configToolStripMenuItem1.Text = "ea3-config";
             this.ea3configToolStripMenuItem1.Click += new System.EventHandler(this.ea3configToolStripMenuItem1_Click);
             // 
@@ -564,14 +565,14 @@
             // starterConfigToolStripMenuItem2
             // 
             this.starterConfigToolStripMenuItem2.Name = "starterConfigToolStripMenuItem2";
-            this.starterConfigToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.starterConfigToolStripMenuItem2.Size = new System.Drawing.Size(170, 26);
             this.starterConfigToolStripMenuItem2.Text = "启动器配置";
             this.starterConfigToolStripMenuItem2.Click += new System.EventHandler(this.starterConfigToolStripMenuItem2_Click);
             // 
             // ea3configToolStripMenuItem2
             // 
             this.ea3configToolStripMenuItem2.Name = "ea3configToolStripMenuItem2";
-            this.ea3configToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.ea3configToolStripMenuItem2.Size = new System.Drawing.Size(170, 26);
             this.ea3configToolStripMenuItem2.Text = "ea3-config";
             this.ea3configToolStripMenuItem2.Click += new System.EventHandler(this.ea3configToolStripMenuItem2_Click);
             // 
@@ -596,7 +597,8 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customizeToolStripMenuItem,
-            this.restoreDefaultCommandToolStripMenuItem});
+            this.restoreDefaultCommandToolStripMenuItem,
+            this.导出选项为batBToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.toolsToolStripMenuItem.Text = "工具(&T)";
@@ -628,19 +630,19 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
             this.searchToolStripMenuItem.Text = "求助(G)";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(140, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
             this.aboutToolStripMenuItem.Text = "关于(A)";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -697,6 +699,12 @@
             this.portBox.Size = new System.Drawing.Size(109, 25);
             this.portBox.TabIndex = 0;
             this.portBox.Text = "8080";
+            // 
+            // 导出选项为batBToolStripMenuItem
+            // 
+            this.导出选项为batBToolStripMenuItem.Name = "导出选项为batBToolStripMenuItem";
+            this.导出选项为batBToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.导出选项为batBToolStripMenuItem.Text = "导出选项为bat (&B)";
             // 
             // SDVX
             // 
@@ -794,6 +802,7 @@
         private System.Windows.Forms.ToolStripMenuItem restoreDefaultCommandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem starterConfigToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem ea3configToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem 导出选项为batBToolStripMenuItem;
     }
 }
 

@@ -40,23 +40,8 @@ namespace SDVXStarter
 
 
             for (int i = 0; i<16 && valid; i++)
-            {
-                if (i == 0)
-                {
-                    valid = array[i] == 'E';
-                }
-                else if (i == 1 || i==2)
-                {
-                    valid = array[i] == '0';
-                }
-                else if (i == 3)
-                {
-                    valid = array[i] == '4';
-                }
-                else
-                {
-                    valid = CHAR_ALLOWED.Contains(array[i]);
-                }
+            {              
+                valid = CHAR_ALLOWED.Contains(array[i]);
             }
             return valid;
         }
