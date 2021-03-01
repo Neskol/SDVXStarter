@@ -559,10 +559,10 @@ namespace SDVXStarter
             else if(cardCombo.Text.Equals("(Remove)"))
             {
                 string intake = "";
-                InputMediate.Show("SDVXStarter", "It shall start with E004, contains only 0-9 and A-F and 16 characters in total",cardCombo.Items, out intake);
+                InputMediate.Show("SDVXStarter", "虚拟卡应以E004开头共17位，街机卡请确认spice里的卡号",cardCombo.Items, out intake);
                 if (intake.Equals("(Add)")||intake.Equals("(Remove)")|| intake.Equals("(Empty)")|| intake.Equals("E004000000000000"))
                 {
-                    MessageBox.Show("You cannot move default items.","How do you do if you removes the commands?");
+                    MessageBox.Show("不能移除命令项目", "不能移除命令项目。");
                 }
                 else
                 {
@@ -577,11 +577,11 @@ namespace SDVXStarter
                     if (remove)
                     {
                         cardCombo.Items.Remove(intake);
-                        MessageBox.Show("Successfully removed card number:\n"+intake);
+                        MessageBox.Show("成功移除卡号\n"+intake);
                     }
                     else
                     {
-                        MessageBox.Show("No such card found!");
+                        MessageBox.Show("并没有注册该卡。");
                     }
                 }
             }
@@ -592,7 +592,7 @@ namespace SDVXStarter
         {
             if (urlCombo.SelectedItem.ToString().Equals("(Add)"))
             {
-                string intake = Interaction.InputBox("Copy from your server URL.", "Input your URL.", "u.osu.edu", -1, -1);
+                string intake = Interaction.InputBox("从服务提供处复制URL", "要连接的URL:", "u.osu.edu", -1, -1);
                 if (intake.Equals("")||intake.Equals("(Offline)"))
                 {
                     urlCombo.Text = "(Offline)";
@@ -601,7 +601,7 @@ namespace SDVXStarter
                 {
                     if (FindDuplicate(urlCombo.Items, intake))
                     {
-                        MessageBox.Show("This URL is already registered!", "Invalid URL");
+                        MessageBox.Show("该URL已被注册。", "无效URL");
                         urlCombo.Text = "(Offline)";
                     }
                     else
@@ -613,10 +613,10 @@ namespace SDVXStarter
             }
             else if (urlCombo.Text.Equals("(Remove)"))
             {
-                string intake = Interaction.InputBox("It shall start with E004, contains only 0-9 and A-F and 16 characters in total", "Input your card number.", DefaultCard, -1, -1);
+                string intake = Interaction.InputBox("虚拟卡应以E004开头共17位，街机卡请确认spice里的卡号", "请输入卡号", DefaultCard, -1, -1);
                 if (intake.Equals("(Add)") || intake.Equals("(Remove)"))
                 {
-                    MessageBox.Show("This shall throw an exception... But not today!", "How do you do if you removes the commands?");
+                    MessageBox.Show("您不能移除命令行。", "无效选项");
                 }
                 else
                 {
@@ -631,11 +631,11 @@ namespace SDVXStarter
                     if (remove)
                     {
                         cardCombo.Items.Remove(intake);
-                        MessageBox.Show("Successfully removed url:\n" + intake);
+                        MessageBox.Show("成功移除URL\n" + intake);
                     }
                     else
                     {
-                        MessageBox.Show("No such url found!");
+                        MessageBox.Show("没有找到该URL。");
                     }
                 }
             }
@@ -646,7 +646,7 @@ namespace SDVXStarter
         {
             if (pcbidCombo.SelectedItem.ToString().Equals("(Add)"))
             {
-                string intake = Interaction.InputBox("So far only PCBID is supported. Please directly modify xml files for further modifications.", "Input your PCBID","", -1, -1);
+                string intake = Interaction.InputBox("此处支持修改PCBID，其他选项请更改ea3-config.xml", "请输入PCBID","", -1, -1);
                 if (intake.Equals("") || intake.Equals("(Empty)"))
                 {
                     pcbidCombo.Text = "";
@@ -655,7 +655,7 @@ namespace SDVXStarter
                 {
                     if (FindDuplicate(pcbidCombo.Items, intake))
                     {
-                        MessageBox.Show("This PCBID is already registered!", "Invalid PCBID");
+                        MessageBox.Show("该PCBID已被重复注册。", "无效PCBID");
                         pcbidCombo.Text = "(Empty)";
                     }
                     else
@@ -667,10 +667,10 @@ namespace SDVXStarter
             }
             else if (pcbidCombo.Text.Equals("(Remove)"))
             {
-                string intake = Interaction.InputBox("Input the PCBID record you'd like to delete.", "Input your PCBID", "", -1, -1);
+                string intake = Interaction.InputBox("输入要移除的PCBID。", "输入您的PCBID", "", -1, -1);
                 if (intake.Equals("(Add)") || intake.Equals("(Remove)"))
                 {
-                    MessageBox.Show("This shall throw an exception... But not today!", "How do you do if you removes the commands?");
+                    MessageBox.Show("您不能移除命令行。", "无效选项");
                 }
                 else
                 {
@@ -685,11 +685,11 @@ namespace SDVXStarter
                     if (remove)
                     {
                         pcbidCombo.Items.Remove(intake);
-                        MessageBox.Show("Successfully removed PCBID:\n" + intake);
+                        MessageBox.Show("成功移除PCBID\n" + intake);
                     }
                     else
                     {
-                        MessageBox.Show("No such PCBID found!");
+                        MessageBox.Show("没有找到该PCBID。");
                     }
                 }
             }
@@ -704,7 +704,7 @@ namespace SDVXStarter
             }
             string path = globalStorage.GetPath(current.Text);
             bool spiceCfgExist = File.Exists(path + "spicecfg.exe");
-            int result = (int)MessageBox.Show("Is this version in 64-bit?","SDVX Starter", MessageBoxButtons.YesNoCancel);
+            int result = (int)MessageBox.Show("该SDVX版本是64位的吗？\n注：4代不是，5代是","SDVX Starter", MessageBoxButtons.YesNoCancel);
             bool x64 = result == 6;
             bool x86 = result == 7;
             bool cancel = result == 2;
@@ -826,7 +826,7 @@ namespace SDVXStarter
                 EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
                 if (!compiler.CheckValidity())
                 {
-                    MessageBox.Show("The xml file you selected is invalid.");
+                    MessageBox.Show("该xml文档无效。");
                 }
                 else
                 {
@@ -851,7 +851,7 @@ namespace SDVXStarter
         {
             bool selected = false;
             OpenFileDialog cardSelector = new OpenFileDialog();
-            cardSelector.Title = "Select the card number you'd like to load:";
+            cardSelector.Title = "选择要加载的卡号文档：";
             cardSelector.Filter = "Text File |*.txt";
             if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
             {
@@ -865,7 +865,7 @@ namespace SDVXStarter
             {
                 if (string.IsNullOrEmpty(cardSelector.FileName))
                 {
-                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                    MessageBox.Show(this, "路径不能为空。", "SDVXStarter");
                 }
                 else
                 {
@@ -879,7 +879,7 @@ namespace SDVXStarter
                 bool valid = globalGenerator.Verify(card);
                 if (valid)
                 {
-                    MessageBox.Show("Your card is valid and added to list.", "Card Verifier");
+                    MessageBox.Show("您的卡号有效且已添加。", "卡号验证");
                     if (!FindDuplicate(cardCombo.Items, card))
                     {
                         cardCombo.Items.Add(card);
@@ -888,7 +888,7 @@ namespace SDVXStarter
                 }
                 else
                 {
-                    MessageBox.Show("Your card is invalid!", "Card Verifier");
+                    MessageBox.Show("该卡号无效！", "卡号验证");
                 }
             }
             PackageAndUpdate();
@@ -925,13 +925,13 @@ namespace SDVXStarter
             XmlStorage save = new XmlStorage(globalStorage);
             save.ConstructCfgStorage();
             save.SaveXml("cfg.xml");
-            MessageBox.Show("Successfully saved at: "+ Application.StartupPath + "\\cfg.xml");
+            MessageBox.Show("成功保存在一下路径：\n"+ Application.StartupPath + "\\cfg.xml");
         }
 
         private void bImport_Click(object sender, EventArgs e)
         {
             string note = "";
-            InputMediate.Show(true, "SDVXStarter - Quick Load", "Paste the fast config text here to fill settings:", out note);
+            InputMediate.Show(true, "SDVX启动器 - 快速加载", "粘贴您拿到的配置代码：", out note);
             if (!note.Equals(""))
             {
                 EA3Compiler quickImport = new EA3Compiler(note, true);
