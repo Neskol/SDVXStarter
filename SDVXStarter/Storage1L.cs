@@ -165,7 +165,7 @@ namespace SDVXStarter
             // Updates 720p setting
             if (this.GetCfgSet("hd"))
             {
-                this.argument.Add("-sdvx720p");
+                this.argument.Add("-sdvx720");
             }           
             else
             { 

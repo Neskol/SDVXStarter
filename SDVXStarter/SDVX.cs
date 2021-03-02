@@ -1103,7 +1103,7 @@ namespace SDVXStarter
                 {
                     hdCheck.CheckState = CheckState.Unchecked;
                 }
-                else if (argument.Equals("-sdvx720p"))
+                else if (argument.Equals("-sdvx720"))
                 {
                     hdCheck.CheckState = CheckState.Checked;
                 }
