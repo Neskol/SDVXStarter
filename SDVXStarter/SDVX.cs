@@ -197,7 +197,7 @@ namespace SDVXStarter
             urlCombo.Text = "(Offline)";
             pcbidCombo.SelectedItem = "(Default)";
             pcbidCombo.Text = "(Default)";
-            fullScreenCheck.CheckState = CheckState.Unchecked;
+            fullScreenCheck.CheckState = CheckState.Checked;
             sslCheck.CheckState = CheckState.Unchecked;
             printerCheck.CheckState = CheckState.Unchecked;
             urlCheck.CheckState = CheckState.Unchecked;
@@ -925,7 +925,7 @@ namespace SDVXStarter
             XmlStorage save = new XmlStorage(globalStorage);
             save.ConstructCfgStorage();
             save.SaveXml("cfg.xml");
-            MessageBox.Show("成功保存在一下路径：\n"+ Application.StartupPath + "\\cfg.xml");
+            MessageBox.Show("成功保存在以下路径：\n"+ Application.StartupPath + "\\cfg.xml");
         }
 
         private void bImport_Click(object sender, EventArgs e)
@@ -971,7 +971,7 @@ namespace SDVXStarter
             bool valueChanged = !pcbidCombo.Text.Equals("(Remove)") && !pcbidCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("Remove") && (urlCheck.CheckState == CheckState.Checked || urlCheck.CheckState == CheckState.Unchecked);
             if (!valueChanged)
             {
-                MessageBox.Show("You must select URL, PCBID and URLSlash section to modify ea3-config, or selected items contains comands.\ne.g. (Remove) but not (Default), (Offline) or (Empty)");
+                MessageBox.Show("您必须选择URL, PCBID和URLSlash选项来更改ea3-config,或选择框里的选项。.\n如(Empty)，(Default)，(Offline)或(Empty)");
             }
             else
             {
@@ -984,15 +984,15 @@ namespace SDVXStarter
                 propExist = File.Exists(path + "\\prop\\ea3-config.xml");
                 if (!propExist)
                 {
-                    MessageBox.Show("The path you selected in path combo does not contain\n" +
-                        "prop\\ea3-config.xml. Please use save as function or EA3 modifier ultility to save.");
+                    MessageBox.Show("所选路径不包含\n" +
+                        "prop\\ea3-config.xml. 请使用另存为ea3-config或EA3编辑器来保存。");
                 }
                 else if (propExist)
                 {
                     EA3Compiler compiler = new EA3Compiler(path + "\\prop\\ea3-config.xml");
                     if (!compiler.CheckValidity())
                     {
-                        MessageBox.Show("The ea3-config.xml in "+path+" is not valid.");
+                        MessageBox.Show(path+"中的ea3-config.xml无效。");
                     }
                     else
                     {
@@ -1022,7 +1022,7 @@ namespace SDVXStarter
                         }
                         compiler.UpdateByRuntime();
                         compiler.SaveXml(path + "\\prop\\ea3-config.xml");
-                        MessageBox.Show("Successfully saved ea3-config.xml at path " + path + "\\prop\\ea3-config.xml");
+                        MessageBox.Show("成功将ea3-config保存在路径： " + path + "\\prop\\ea3-config.xml");
                     }
                 }
             }
@@ -1032,7 +1032,7 @@ namespace SDVXStarter
         {
             bool selected = false;
             OpenFileDialog configSelector = new OpenFileDialog();
-            configSelector.Title = "Select the Starter Config you'd like to load:";
+            configSelector.Title = "选择要加载的启动器配置：";
             configSelector.Filter = "Starter Config |*.xml";
             if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
             {
@@ -1046,7 +1046,7 @@ namespace SDVXStarter
             {
                 if (string.IsNullOrEmpty(configSelector.FileName))
                 {
-                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                    MessageBox.Show(this, "不能处理空路径。", "SDVXStarter");
                 }
                 else
                 {
@@ -1059,7 +1059,7 @@ namespace SDVXStarter
                 configLoader.LoadXml(configSelector.FileName);
                 if (!configLoader.CheckValidity())
                 {
-                    MessageBox.Show("The xml file you selected is invalid.");
+                    MessageBox.Show("所选xml文档无效。");
                 }
                 else
                 {
@@ -1155,7 +1155,7 @@ namespace SDVXStarter
         private void restoreDefaultCommandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RestoreCommands();
-            MessageBox.Show("Successfully Restored.");
+            MessageBox.Show("成功重置。");
         }
 
         private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1168,7 +1168,7 @@ namespace SDVXStarter
         {
             bool selected = false;
             SaveFileDialog xmlSelector = new SaveFileDialog();
-            xmlSelector.Title = "Select the path you'd like to save:";
+            xmlSelector.Title = "选择需要保存的路径：";
             xmlSelector.FileName = "cfg.xml";
             xmlSelector.Filter = "Starter Config |*.xml";
             if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
@@ -1183,7 +1183,7 @@ namespace SDVXStarter
             {
                 if (string.IsNullOrEmpty(xmlSelector.FileName))
                 {
-                    MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                    MessageBox.Show(this, "不能处理空路径。", "SDVXStarter");
                 }
                 else
                 {
@@ -1221,7 +1221,7 @@ namespace SDVXStarter
                 XmlStorage save = new XmlStorage(globalStorage);
                 save.ConstructCfgStorage();
                 save.SaveXml(xmlSelector.FileName);
-                MessageBox.Show("Successfully saved at: " + xmlSelector.FileName);
+                MessageBox.Show("成功保存在以下路径：" + xmlSelector.FileName);
             }
         }
 
@@ -1231,12 +1231,12 @@ namespace SDVXStarter
             bool valueChanged = !pcbidCombo.Text.Equals("(Remove)") && !pcbidCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("(Add)") && !urlCombo.Text.Equals("Remove") && (urlCheck.CheckState == CheckState.Checked || urlCheck.CheckState == CheckState.Unchecked);
             if (!valueChanged)
             {
-                MessageBox.Show("You must select URL, PCBID and URLSlash section to modify ea3-config, or selected items contains comands.\ne.g. (Remove) but not (Default), (Offline) or (Empty)");
+                MessageBox.Show("您必须选择URL, PCBID和URLSlash选项来更改ea3-config,或选择框里的选项。.\n如(Empty)，(Default)，(Offline)或(Empty)");
             }
             else
             {
                 SaveFileDialog xmlSelector = new SaveFileDialog();
-                xmlSelector.Title = "Select the ea3-config.xml you'd like to load:";
+                xmlSelector.Title = "选择您要加载的xml：";
                 xmlSelector.Filter = "ea3-config.xml|*.xml";
                 if (!pathCombo.Text.Equals("(root path)") && !pathCombo.Text.Equals("(Remove)") && !pathCombo.Text.Equals(""))
                 {
@@ -1250,7 +1250,7 @@ namespace SDVXStarter
                 {
                     if (string.IsNullOrEmpty(xmlSelector.FileName))
                     {
-                        MessageBox.Show(this, "Cannot process null path.", "SDVXStarter");
+                        MessageBox.Show(this, "不能处理空路径。", "SDVXStarter");
                     }
                     else
                     {
@@ -1262,7 +1262,7 @@ namespace SDVXStarter
                     EA3Compiler compiler = new EA3Compiler(xmlSelector.FileName);
                     if (!compiler.CheckValidity())
                     {
-                        MessageBox.Show("The xml file you selected is invalid.");
+                        MessageBox.Show("所选xml无效。");
                     }
                     else
                     {
@@ -1292,7 +1292,7 @@ namespace SDVXStarter
                         }
                         compiler.UpdateByRuntime();
                         compiler.SaveXml(xmlSelector.FileName);
-                        MessageBox.Show("Successfully saved ea3-config.xml at path " + xmlSelector.FileName);
+                        MessageBox.Show("成功将ea3-config保存在" + xmlSelector.FileName);
                     }
                 }
             }
