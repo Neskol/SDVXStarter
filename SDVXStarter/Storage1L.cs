@@ -219,6 +219,11 @@ namespace SDVXStarter
                     this.argument.Add("-apipass " + this.GetCfgValue("apiPassword"));
                 }
             }
+            // Updates display settings
+            if (this.GetVerSet().ContainsKey("display"))
+            {
+                this.argument.Add("-monitor"+this.GetCfgValue("display"));
+            }
         }
 
         public void Update(Dictionary<string, bool> configSet, Dictionary<string, string> valueSet)
