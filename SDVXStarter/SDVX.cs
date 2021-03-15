@@ -854,7 +854,6 @@ namespace SDVXStarter
                     }
                     urlCombo.SelectedItem = (compiler.Services);
                     sslCheck.CheckState = CheckState.Unchecked;
-                    urlCheck.CheckState = CheckState.Checked;
                     PackageAndUpdate();
                 }
             }
@@ -1129,7 +1128,13 @@ namespace SDVXStarter
                 if (argument.Contains("-url")&&!argument.Contains("-urlslash"))
                 {
                     urlCombo.SelectedItem = argument.Split(' ')[1];
-                    urlCheck.CheckState = CheckState.Checked;
+                }
+                if (argument.Contains("-urlslash"))
+                {
+                    if (argument.Split(' ')[1]=="1")
+                    {
+                        urlCheck.CheckState = CheckState.Checked;
+                    }
                 }
                 //Process SSL option
                 if (argument.Equals("-ssldisable"))
