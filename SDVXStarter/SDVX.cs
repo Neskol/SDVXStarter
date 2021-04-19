@@ -165,11 +165,6 @@ namespace SDVXStarter
                 valueSet.Add("apiPort", portBox.Text);
                 valueSet.Add("apiPassword",passwordBox.Text);
             }
-            // Checks Display
-            if (!(displayCombo.Text.Equals("1")))
-            {
-                //valueSet.Add("display", int.Parse(displayCombo.Text).ToString());
-            }
             globalStorage.Update(configSet, valueSet);
         }
 
@@ -208,13 +203,6 @@ namespace SDVXStarter
             printerCheck.CheckState = CheckState.Unchecked;
             urlCheck.CheckState = CheckState.Unchecked;
             hdCheck.CheckState = CheckState.Unchecked;
-            displayCombo.Items.Clear();
-            displayCombo.Items.Add(1);
-            for (int i = 1; i < Screen.AllScreens.Count(); i++)
-            {
-                displayCombo.Items.Add(i+1);
-            }
-            displayCombo.SelectedItem = "1";
         }
 
         void SDVXStatrter.SDVXView.RefreshView(XmlStorage newStorage)
@@ -1316,9 +1304,9 @@ namespace SDVXStarter
             }
         }
 
-        private void displayCombo_SelectedIndexChanged(object sender, EventArgs e)
+        private void GenerateButton_Click(object sender, EventArgs e)
         {
-            displayCombo.SelectedItem = displayCombo.Text;
+
         }
     }
 }
