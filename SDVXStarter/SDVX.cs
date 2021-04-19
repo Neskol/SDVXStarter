@@ -1306,7 +1306,19 @@ namespace SDVXStarter
 
         private void GenerateButton_Click(object sender, EventArgs e)
         {
-
+            PackageAndUpdate();
+            string v_filepath;
+            string s;
+            v_filepath = "StartSDVX.bat";
+            // 判断 bat文件是否存在，如果存在先把文件删除
+            if (System.IO.File.Exists(v_filepath))
+                System.IO.File.Delete(v_filepath);
+            // 成功样板
+            s = @"dir";                          //显示目录列表
+            s += "\r\n" + @"copy f:\a.txt d:\";  //换行，拷贝文件a.txt
+            s += "\r\n" + @" del f:\a.txt";      //删除文件a.txt
+            s += "\r\n" + @"pause";              // 通过pause 命令可以查看bat文件是否按照要求自动执行
+            File.WriteAllText(v_filepath, s, Encoding.Default);   //将s字符串的内容写入v_filepath指定的bat文件中。
         }
     }
 }
