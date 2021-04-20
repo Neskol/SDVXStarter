@@ -783,7 +783,7 @@ namespace SDVXStarter
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SDVX Starter ver. 1.01a CN\n顾问谨制 By Neskol Lu, 2020\n山东维系启动参数管理器\n源码： https://github.com/Neskol/SDVXStarter", "关于");
+            MessageBox.Show("SDVX Starter ver. 1.02a CN\n顾问谨制 By Neskol Lu, 2020\n山东维系启动参数管理器\n源码： https://github.com/Neskol/SDVXStarter", "关于");
         }
 
         private void apiBox_CheckedChanged(object sender, EventArgs e)
@@ -1307,18 +1307,29 @@ namespace SDVXStarter
         private void GenerateButton_Click(object sender, EventArgs e)
         {
             PackageAndUpdate();
-            string v_filepath;
-            string s;
-            v_filepath = "StartSDVX.bat";
-            // 判断 bat文件是否存在，如果存在先把文件删除
-            if (System.IO.File.Exists(v_filepath))
-                System.IO.File.Delete(v_filepath);
-            // 成功样板
-            s = @"dir";                          //显示目录列表
-            s += "\r\n" + @"copy f:\a.txt d:\";  //换行，拷贝文件a.txt
-            s += "\r\n" + @" del f:\a.txt";      //删除文件a.txt
-            s += "\r\n" + @"pause";              // 通过pause 命令可以查看bat文件是否按照要求自动执行
-            File.WriteAllText(v_filepath, s, Encoding.Default);   //将s字符串的内容写入v_filepath指定的bat文件中。
+            int result = (int)MessageBox.Show("该SDVX版本是64位的吗？\n注：4代不是，5代是", "SDVX Starter", MessageBoxButtons.YesNoCancel);
+            bool x64 = result == 6;
+            bool x86 = result == 7;
+            bool cancel = result == 2;
+            if (result != 2)
+            {
+                string batPath="StartSDVX.bat";
+                string command="";
+                if (File.Exists(batPath))
+                    File.Delete(batPath);
+                if (result == 6)
+                {
+                    command += "spice64"+" ";
+                }
+                else if (result == 7)
+                {
+                    command += "spice" + " ";
+                }
+                command += globalStorage.ComposeArgument();
+                command += "pause";
+                File.WriteAllText(batPath, command, Encoding.Default);
+                MessageBox.Show("成功生成" + batPath);
+            }
         }
     }
 }
