@@ -17,7 +17,7 @@ namespace SDVXStarter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SDVX());
+            Application.Run(new MainForm());
         }
     }
 }
