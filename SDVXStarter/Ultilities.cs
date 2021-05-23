@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -211,6 +212,44 @@ namespace SDVXStarter
                 }
             }
             return result;
+        }
+
+        /// <summary>
+        /// Returns a list that contains IP address of WORKING adapter and subnet masking.
+        /// [0] For IP address and [1] for subnet mask.
+        /// </summary>
+        /// <returns>a list of IP addr and mask</returns>
+        public static List<string> Networking()
+        {
+            List<string> netSet = new List<string>();
+            string currentIP = "";
+            Match m = Regex.Match(currentIP, @"0.0.0.0\s+0.0.0.0\s+(\d+.\d+.\d+.\d+)\s+(\d+.\d+.\d+.\d+)");
+            if (m.Success)
+            {
+                currentIP = m.Groups[2].Value;
+            }
+            else
+            {
+                try
+                {
+                    System.Net.Sockets.TcpClient c = new System.Net.Sockets.TcpClient();
+                    c.Connect("172.0.0.1", 80);
+                    string ip = ((System.Net.IPEndPoint)c.Client.LocalEndPoint).Address.ToString();
+                    c.Close();
+                    currentIP = ip;
+                }
+                catch (Exception)
+                {
+                    currentIP = null;
+                }
+            }
+            if (currentIP != null)
+            {
+                netSet.Add(currentIP);
+            }
+            else netSet.Add("172.0.0.1");
+            netSet.Add("255.255.240.0");
+            return netSet;
         }
     }
 }

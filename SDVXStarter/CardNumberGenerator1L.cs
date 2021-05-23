@@ -38,10 +38,9 @@ namespace SDVXStarter
             char[] array = cardNumber.ToCharArray();
             bool valid = array.Length == 16;
 
-
             for (int i = 0; i<16 && valid; i++)
             {              
-                valid = CHAR_ALLOWED.Contains(array[i]);
+                valid = valid && CHAR_ALLOWED.Contains(array[i]);
             }
             return valid;
         }

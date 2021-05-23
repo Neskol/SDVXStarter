@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.VisualBasic;
 using SDVXStarter;
+using System.Text.RegularExpressions;
 
 namespace SDVXStarter
 {
@@ -188,6 +189,7 @@ namespace SDVXStarter
 
         public void RefreshView()
         {
+            ipBox.Text = "";
             pathCombo.SelectedItem = "(root path)";
             pathCombo.Text = ("(root path)");
             current.Text = "Root SDVX";
@@ -1326,7 +1328,6 @@ namespace SDVXStarter
                     command += "spice" + " ";
                 }
                 command += globalStorage.ComposeArgument();
-                command += "pause";
                 File.WriteAllText(batPath, command, Encoding.Default);
                 MessageBox.Show("成功生成" + batPath);
             }
