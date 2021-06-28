@@ -15,7 +15,6 @@ namespace SDVXStarter
         private Dictionary<string, string> pathSet;
         private Dictionary<string, string> valueSet;
         private Dictionary<string, bool> configSet;
-        private Dictionary<string, string> matchingSet;
         private List<string> cardSet;
         private List<string> pcbidSet;
         private List<string> urlSet;
@@ -31,7 +30,6 @@ namespace SDVXStarter
             pathSet = new Dictionary<string, string>();
             configSet = new Dictionary<string, bool>();
             valueSet = new Dictionary<string, string>();
-            matchingSet = new Dictionary<string, string>();
             cardSet = new List<string>();
             pcbidSet = new List<string>();
             urlSet = new List<string>();

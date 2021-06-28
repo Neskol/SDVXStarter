@@ -1332,5 +1332,10 @@ namespace SDVXStarter
                 MessageBox.Show("成功生成" + batPath);
             }
         }
+
+        private void ipBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
