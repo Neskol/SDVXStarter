@@ -167,10 +167,10 @@ namespace SDVXStarter
             {
                 this.argument.Add("-sdvx720");
             }           
-            else
-            { 
-                this.argument.Add("-sdvx");
-            }
+            //else
+            //{ 
+             //   this.argument.Add("-sdvx");
+            //} Remove // if need only to start SDVX
             // Updates full screen setting
             if (!this.GetCfgSet("window"))
             {

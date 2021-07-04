@@ -11,7 +11,7 @@ namespace SDVXStarter
      */
     public class CardNumberGenerator1L : ICardNumberGenerator
     {
-        public const string CHAR_ALLOWED = "01234567890ABCDEF";
+        public const string CHAR_ALLOWED = "0123456789ABCDEF";
        
        /// <summary>
        /// Constructor.
@@ -45,6 +45,9 @@ namespace SDVXStarter
             return valid;
         }
 
+        /// <summary>
+        /// Returns all char allowed
+        /// </summary>
         public string AllowedArray
         {
             get
