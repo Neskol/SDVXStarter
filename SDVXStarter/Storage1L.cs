@@ -380,6 +380,9 @@ namespace SDVXStarter
             }
         }
 
+        /// <summary>
+        /// Get and set networking
+        /// </summary>
         public String[] Networking
         {
             get
