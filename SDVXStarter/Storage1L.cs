@@ -20,6 +20,7 @@ namespace SDVXStarter
         private List<string> urlSet;
         private List<string> viewPathSet;
         private List<string> argument;
+        private String[] networking;
 
         /// <summary>
         /// Initializes Storage1L();
@@ -35,14 +36,16 @@ namespace SDVXStarter
             urlSet = new List<string>();
             viewPathSet = new List<string>();
             argument = new List<string>();
+            networking = new String[2];
         }
 
-        public void IntakeValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet)
+        public void IntakeValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet, String[] networking)
         {
             this.cardSet = cardSet;
             this.pcbidSet = pcbidSet;
             this.urlSet = urlSet;
             this.viewPathSet = viewPathSet;
+            this.networking = networking;
         }
 
         /// <summary>
@@ -374,6 +377,18 @@ namespace SDVXStarter
             set
             {
                 this.argument = value;
+            }
+        }
+
+        public String[] Networking
+        {
+            get
+            {
+                return this.networking;
+            }
+            set
+            {
+                this.networking = value;
             }
         }
 

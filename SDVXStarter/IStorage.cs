@@ -18,7 +18,8 @@ namespace SDVXStarter
         /// <param name="pcbidSet">pcbid set in view</param>
         /// <param name="urlSet">url set in view</param>
         /// <param name="viewPathSet">path set in view</param>
-         void IntakeValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet);
+        /// <param name="netorking">networking in view</param>
+         void IntakeValue(List<string> cardSet, List<string> pcbidSet, List<string> urlSet, List<string> viewPathSet,String[]netorking);
 
         /// <summary>
         /// Return this.CardSet

@@ -115,7 +115,7 @@ namespace SDVXStarter
             configSet.Add("ssl", sslCheck.CheckState == CheckState.Checked);
             configSet.Add("printer", printerCheck.CheckState == CheckState.Checked);
             configSet.Add("urlSlash", urlCheck.CheckState == CheckState.Checked);
-            configSet.Add("hd", hdCheck.CheckState == CheckState.Checked);
+            configSet.Add("hd", networkCheck.CheckState == CheckState.Checked);
             configSet.Add("api", apiCheck.CheckState == CheckState.Checked);
             // Checks PCBID
             if (pcbidCombo.Text.Equals("(Default)"))
@@ -204,7 +204,7 @@ namespace SDVXStarter
             sslCheck.CheckState = CheckState.Unchecked;
             printerCheck.CheckState = CheckState.Unchecked;
             urlCheck.CheckState = CheckState.Unchecked;
-            hdCheck.CheckState = CheckState.Unchecked;
+            networkCheck.CheckState = CheckState.Unchecked;
         }
 
         void SDVXStatrter.SDVXView.RefreshView(XmlStorage newStorage)
@@ -1103,11 +1103,11 @@ namespace SDVXStarter
                 // Processes 720p option
                 if (argument.Equals("-sdvx"))
                 {
-                    hdCheck.CheckState = CheckState.Unchecked;
+                    networkCheck.CheckState = CheckState.Unchecked;
                 }
                 else if (argument.Equals("-sdvx720"))
                 {
-                    hdCheck.CheckState = CheckState.Checked;
+                    networkCheck.CheckState = CheckState.Checked;
                 }
                 //Process card selection
                 if (argument.Contains("-card"))
