@@ -287,7 +287,7 @@ namespace SDVXStarter
                     RefreshView(configLoader.LocalStorage.ReturnArgument());
                     foreach (string x in configLoader.LocalStorage.ReturnArgument())
                     {
-                        Console.WriteLine(x);
+                        Console.WriteLine(x); //For debug: see arguments
                     }
                     globalStorage = configLoader.LocalStorage;
                     PackageAndUpdate();
@@ -903,6 +903,8 @@ namespace SDVXStarter
             List<string> cardSet = new List<string>();
             List<string> urlSet = new List<string>();
             List<string> pcbidSet = new List<string>();
+            string[] networking = new string[2];
+
             /// Add element to view path set
             foreach (string x in pathCombo.Items)
             {
@@ -923,7 +925,13 @@ namespace SDVXStarter
             {
                 pcbidSet.Add(x);
             }
-            globalStorage.IntakeValue(cardSet,pcbidSet,urlSet,viewPathSet);
+            ///Add networking
+            if (networkCheck.CheckState==CheckState.Checked)
+            {
+                networking[0] = ipBox.Text;
+                networking[1] = subnetBox.Text;
+            }
+            globalStorage.IntakeValue(cardSet,pcbidSet,urlSet,viewPathSet,networking);
             XmlStorage save = new XmlStorage(globalStorage);
             save.ConstructCfgStorage();
             save.SaveXml("cfg.xml");
@@ -1100,15 +1108,6 @@ namespace SDVXStarter
         {
             foreach (string argument in newArgument)
             {
-                // Processes 720p option
-                if (argument.Equals("-sdvx"))
-                {
-                    networkCheck.CheckState = CheckState.Unchecked;
-                }
-                else if (argument.Equals("-sdvx720"))
-                {
-                    networkCheck.CheckState = CheckState.Checked;
-                }
                 //Process card selection
                 if (argument.Contains("-card"))
                 {
@@ -1205,6 +1204,7 @@ namespace SDVXStarter
                 List<string> cardSet = new List<string>();
                 List<string> urlSet = new List<string>();
                 List<string> pcbidSet = new List<string>();
+                string[] networking = new string[2];
                 /// Add element to view path set
                 foreach (string x in pathCombo.Items)
                 {
@@ -1225,7 +1225,12 @@ namespace SDVXStarter
                 {
                     pcbidSet.Add(x);
                 }
-                globalStorage.IntakeValue(cardSet, pcbidSet, urlSet, viewPathSet);
+                if (networkCheck.CheckState == CheckState.Checked)
+                {
+                    networking[0] = ipBox.Text;
+                    networking[1] = subnetBox.Text;
+                }
+                globalStorage.IntakeValue(cardSet, pcbidSet, urlSet, viewPathSet, networking);
                 XmlStorage save = new XmlStorage(globalStorage);
                 save.ConstructCfgStorage();
                 save.SaveXml(xmlSelector.FileName);
@@ -1336,6 +1341,18 @@ namespace SDVXStarter
         private void ipBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void networkCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (networkCheck.Checked)
+            {
+                networkGroup.Visible = true;
+            }
+            else
+            {
+                networkGroup.Visible = false;
+            }
         }
     }
 }

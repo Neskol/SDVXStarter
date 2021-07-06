@@ -64,7 +64,7 @@ namespace SDVXStarter
         /// <param name="name">Name to find</param>
         /// <param name="isKey">True to find in keys, false to find in values</param>
         /// <returns>True if contained, false elsewise</returns>
-        public static bool FindDuplicates(Dictionary<string,string> set, string name, bool isKey)
+        public static bool FindDuplicates(Dictionary<string, string> set, string name, bool isKey)
         {
             bool result = false;
 
@@ -139,12 +139,12 @@ namespace SDVXStarter
             string[] pathGroup = path.Split('\\');
             bool exists = ContainSpice(path, strict);
 
-            if(!exists)
+            if (!exists)
             {
                 string currentPath = "";
-                for (int i = 0; i<pathGroup.Length&&!exists;i++)
+                for (int i = 0; i < pathGroup.Length && !exists; i++)
                 {
-                    currentPath += (pathGroup[i]+"\\");
+                    currentPath += (pathGroup[i] + "\\");
                     exists = ContainSpice(currentPath, strict);
                 }
                 result = currentPath;
@@ -159,7 +159,7 @@ namespace SDVXStarter
         /// <param name="add">Item to add</param>
         public static void SafeAdd(List<string> receiver, string add)
         {
-            if (!FindDuplicates(receiver,add))
+            if (!FindDuplicates(receiver, add))
             {
                 receiver.Add(add);
             }
@@ -188,7 +188,7 @@ namespace SDVXStarter
             List<string> result = new List<string>();
             foreach (string item in set)
             {
-                if (!item.Equals("(Remove)")&& !item.Equals("(Add)") && !item.Equals("(Empty)") && !item.Equals("Default") && !item.Equals("Offline"))
+                if (!item.Equals("(Remove)") && !item.Equals("(Add)") && !item.Equals("(Empty)") && !item.Equals("Default") && !item.Equals("Offline"))
                 {
                     result.Add(item);
                 }
@@ -250,6 +250,32 @@ namespace SDVXStarter
             else netSet.Add("172.0.0.1");
             netSet.Add("255.255.240.0");
             return netSet;
+        }
+
+        /// <summary>
+        /// Intake networking array and see if it is valid
+        /// </summary>
+        /// <param name="networking">String array of 2: first is IP and second is subnet</param>
+        /// <returns>True if both is valid in format, false if it is not</returns>
+        public static bool isNetworkingValid(string[] networking)
+        {
+            bool result = networking.Length == 2;
+
+            if (result)
+            {
+                Match mIP = Regex.Match(networking[0], @"0.0.0.0\s+0.0.0.0\s+(\d+.\d+.\d+.\d+)\s+(\d+.\d+.\d+.\d+)");
+                Match mSub = Regex.Match(networking[1], @"0.0.0.0\s+0.0.0.0\s+(\d+.\d+.\d+.\d+)\s+(\d+.\d+.\d+.\d+)");
+                if (mIP.Success&&mSub.Success)
+                {
+                    result = true; //Might not needed but too lazy to remove
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+
+            return result;
         }
     }
 }

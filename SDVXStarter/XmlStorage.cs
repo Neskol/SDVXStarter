@@ -165,6 +165,7 @@ namespace SDVXStarter
                 List<string> pcbidSet = new List<string>();
                 List<string> urlSet = new List<string>();
                 List<string> pathSet = new List<string>();
+                string[] networking = new string[2];
 
                 XmlNodeList verPathNodes = configStorage.SelectSingleNode("SDVXStarter/VerPath").ChildNodes;
                 XmlNodeList configNodes = configStorage.SelectSingleNode("SDVXStarter/UserConfigSet").ChildNodes;
@@ -240,7 +241,7 @@ namespace SDVXStarter
                 }
                 //Updates importedStorage's argument
                 importedStorage.UpdateArgument(argumentSet);
-                importedStorage.IntakeValue(cardSet, pcbidSet, urlSet, pathSet);
+                importedStorage.IntakeValue(cardSet, pcbidSet, urlSet, pathSet,networking);
                 this.localStorage = importedStorage;
             }
         }
